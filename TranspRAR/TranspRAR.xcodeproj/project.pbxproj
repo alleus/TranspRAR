@@ -1,0 +1,650 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		5BA9D88A123A5AF700C73E85 /* XADMaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D873123A5AD100C73E85 /* XADMaster.framework */; };
+		5BA9D88B123A5B0300C73E85 /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */; };
+		5BA9D8B9123A61FE00C73E85 /* XADMaster.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D873123A5AD100C73E85 /* XADMaster.framework */; };
+		5BA9D8BA123A620000C73E85 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */; };
+		5BA9D91B123A68CD00C73E85 /* ACArchiveEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9D91A123A68CD00C73E85 /* ACArchiveEntry.m */; };
+		5BA9D924123A698300C73E85 /* ACArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9D923123A698300C73E85 /* ACArchive.m */; };
+		5BA9D941123A6B0700C73E85 /* ACPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9D940123A6B0700C73E85 /* ACPath.m */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		FFA311CF0EE5160400FF2904 /* TranspRAR.icns in Resources */ = {isa = PBXBuildFile; fileRef = FFA311CE0EE5160400FF2904 /* TranspRAR.icns */; };
+		FFA311D10EE5167200FF2904 /* MacFUSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA311D00EE5167200FF2904 /* MacFUSE.framework */; };
+		FFD925C00EE507A800A7B2B2 /* TranspRAR_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */; };
+		FFD925C30EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5BA9D85B123A5AC600C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* UniversalDetector.framework */;
+			remoteInfo = UniversalDetector;
+		};
+		5BA9D85D123A5AC600C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B23E0871190F29400620319 /* libUniversalDetector.a */;
+			remoteInfo = libUniversalDetector;
+		};
+		5BA9D85F123A5AC600C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B91CBE011D821A70081E40A /* libUniversalDetector.a */;
+			remoteInfo = "libUniversalDetector (Windows)";
+		};
+		5BA9D861123A5AC600C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B0DDCAB0A2D0AD10009B697 /* DetectorTest */;
+			remoteInfo = DetectorTest;
+		};
+		5BA9D872123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* XADMaster.framework */;
+			remoteInfo = XADMaster;
+		};
+		5BA9D874123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B5A7BA30A24F9B400B189EB /* XADTest */;
+			remoteInfo = XADTest;
+		};
+		5BA9D876123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1BBAB68B0EC274A3007FE6A2 /* XADTest2 */;
+			remoteInfo = XADTest2;
+		};
+		5BA9D878123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1BC8931A0ED6F283006B47FE /* XADTest3 */;
+			remoteInfo = XADTest3;
+		};
+		5BA9D87A123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B3A68A2101BA12C00AE25A8 /* XADTest4 */;
+			remoteInfo = XADTest4;
+		};
+		5BA9D87C123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B34A97511C2FD0500396C26 /* libXADMaster.a */;
+			remoteInfo = libXADMaster.a;
+		};
+		5BA9D87E123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B23DDC01185EBA300620319 /* unar */;
+			remoteInfo = unar;
+		};
+		5BA9D880123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B91D18F11E1677B0081E40A /* lsar */;
+			remoteInfo = lsar;
+		};
+		5BA9D882123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B91CD5E11D97E7C0081E40A /* libXADMaster.a */;
+			remoteInfo = "libXADMaster.a (Windows)";
+		};
+		5BA9D884123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B91CDAC11D981E20081E40A /* unar.exe */;
+			remoteInfo = "unar.exe (Windows)";
+		};
+		5BA9D886123A5AD100C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B91D2EE11E694860081E40A /* lsar.exe */;
+			remoteInfo = "lsar.exe (Windows)";
+		};
+		5BA9D888123A5ADC00C73E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* XADMaster */;
+			remoteInfo = XADMaster;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5BC6429312395B31005EC80B /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5BA9D8BA123A620000C73E85 /* UniversalDetector.framework in Copy Frameworks */,
+				5BA9D8B9123A61FE00C73E85 /* XADMaster.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* TranspRAR_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Prefix.pch; sourceTree = "<group>"; };
+		5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UniversalDetector.xcodeproj; path = ../UniversalDetector/UniversalDetector.xcodeproj; sourceTree = SOURCE_ROOT; };
+		5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XADMaster.xcodeproj; path = ../XADMaster/XADMaster.xcodeproj; sourceTree = SOURCE_ROOT; };
+		5BA9D919123A68CD00C73E85 /* ACArchiveEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACArchiveEntry.h; sourceTree = "<group>"; };
+		5BA9D91A123A68CD00C73E85 /* ACArchiveEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACArchiveEntry.m; sourceTree = "<group>"; };
+		5BA9D922123A698300C73E85 /* ACArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACArchive.h; sourceTree = "<group>"; };
+		5BA9D923123A698300C73E85 /* ACArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACArchive.m; sourceTree = "<group>"; };
+		5BA9D93F123A6B0700C73E85 /* ACPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPath.h; sourceTree = "<group>"; };
+		5BA9D940123A6B0700C73E85 /* ACPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPath.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* TranspRAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranspRAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFA311CE0EE5160400FF2904 /* TranspRAR.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TranspRAR.icns; sourceTree = "<group>"; };
+		FFA311D00EE5167200FF2904 /* MacFUSE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacFUSE.framework; path = /Library/Frameworks/MacFUSE.framework; sourceTree = "<absolute>"; };
+		FFD925BE0EE507A800A7B2B2 /* TranspRAR_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Controller.h; sourceTree = "<group>"; };
+		FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranspRAR_Controller.m; sourceTree = "<group>"; };
+		FFD925C10EE5082D00A7B2B2 /* TranspRAR_Filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Filesystem.h; sourceTree = "<group>"; };
+		FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TranspRAR_Filesystem.mm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BA9D88A123A5AF700C73E85 /* XADMaster.framework in Frameworks */,
+				5BA9D88B123A5B0300C73E85 /* UniversalDetector.framework in Frameworks */,
+				FFA311D10EE5167200FF2904 /* MacFUSE.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5BA9D918123A68A700C73E85 /* Models */,
+				FFD925C10EE5082D00A7B2B2 /* TranspRAR_Filesystem.h */,
+				FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm */,
+				FFD925BE0EE507A800A7B2B2 /* TranspRAR_Controller.h */,
+				FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				FFA311D00EE5167200FF2904 /* MacFUSE.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* TranspRAR.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* TranspRAR */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */,
+				5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */,
+			);
+			name = TranspRAR;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* TranspRAR_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FFA311CE0EE5160400FF2904 /* TranspRAR.icns */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5BA9D855123A5AC600C73E85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */,
+				5BA9D85E123A5AC600C73E85 /* libUniversalDetector.a */,
+				5BA9D860123A5AC600C73E85 /* libUniversalDetector.a */,
+				5BA9D862123A5AC600C73E85 /* DetectorTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5BA9D864123A5AD100C73E85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BA9D873123A5AD100C73E85 /* XADMaster.framework */,
+				5BA9D875123A5AD100C73E85 /* XADTest */,
+				5BA9D877123A5AD100C73E85 /* XADTest2 */,
+				5BA9D879123A5AD100C73E85 /* XADTest3 */,
+				5BA9D87B123A5AD100C73E85 /* XADTest4 */,
+				5BA9D87D123A5AD100C73E85 /* libXADMaster.a */,
+				5BA9D87F123A5AD100C73E85 /* unar */,
+				5BA9D881123A5AD100C73E85 /* lsar */,
+				5BA9D883123A5AD100C73E85 /* libXADMaster.a */,
+				5BA9D885123A5AD100C73E85 /* unar.exe */,
+				5BA9D887123A5AD100C73E85 /* lsar.exe */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5BA9D918123A68A700C73E85 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BA9D919123A68CD00C73E85 /* ACArchiveEntry.h */,
+				5BA9D91A123A68CD00C73E85 /* ACArchiveEntry.m */,
+				5BA9D922123A698300C73E85 /* ACArchive.h */,
+				5BA9D923123A698300C73E85 /* ACArchive.m */,
+				5BA9D93F123A6B0700C73E85 /* ACPath.h */,
+				5BA9D940123A6B0700C73E85 /* ACPath.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* TranspRAR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "TranspRAR" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				5BC6429312395B31005EC80B /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5BA9D889123A5ADC00C73E85 /* PBXTargetDependency */,
+			);
+			name = TranspRAR;
+			productInstallPath = "$(HOME)/Applications";
+			productName = TranspRAR;
+			productReference = 8D1107320486CEB800E47090 /* TranspRAR.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TranspRAR" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* TranspRAR */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5BA9D855123A5AC600C73E85 /* Products */;
+					ProjectRef = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
+				},
+				{
+					ProductGroup = 5BA9D864123A5AD100C73E85 /* Products */;
+					ProjectRef = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* TranspRAR */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = UniversalDetector.framework;
+			remoteRef = 5BA9D85B123A5AC600C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D85E123A5AC600C73E85 /* libUniversalDetector.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libUniversalDetector.a;
+			remoteRef = 5BA9D85D123A5AC600C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D860123A5AC600C73E85 /* libUniversalDetector.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libUniversalDetector.a;
+			remoteRef = 5BA9D85F123A5AC600C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D862123A5AC600C73E85 /* DetectorTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = DetectorTest;
+			remoteRef = 5BA9D861123A5AC600C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D873123A5AD100C73E85 /* XADMaster.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XADMaster.framework;
+			remoteRef = 5BA9D872123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D875123A5AD100C73E85 /* XADTest */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = XADTest;
+			remoteRef = 5BA9D874123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D877123A5AD100C73E85 /* XADTest2 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = XADTest2;
+			remoteRef = 5BA9D876123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D879123A5AD100C73E85 /* XADTest3 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = XADTest3;
+			remoteRef = 5BA9D878123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D87B123A5AD100C73E85 /* XADTest4 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = XADTest4;
+			remoteRef = 5BA9D87A123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D87D123A5AD100C73E85 /* libXADMaster.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libXADMaster.a;
+			remoteRef = 5BA9D87C123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D87F123A5AD100C73E85 /* unar */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = unar;
+			remoteRef = 5BA9D87E123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D881123A5AD100C73E85 /* lsar */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = lsar;
+			remoteRef = 5BA9D880123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D883123A5AD100C73E85 /* libXADMaster.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libXADMaster.a;
+			remoteRef = 5BA9D882123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D885123A5AD100C73E85 /* unar.exe */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = unar.exe;
+			remoteRef = 5BA9D884123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BA9D887123A5AD100C73E85 /* lsar.exe */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = lsar.exe;
+			remoteRef = 5BA9D886123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				FFA311CF0EE5160400FF2904 /* TranspRAR.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				FFD925C00EE507A800A7B2B2 /* TranspRAR_Controller.m in Sources */,
+				FFD925C30EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm in Sources */,
+				5BA9D91B123A68CD00C73E85 /* ACArchiveEntry.m in Sources */,
+				5BA9D924123A698300C73E85 /* ACArchive.m in Sources */,
+				5BA9D941123A6B0700C73E85 /* ACPath.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5BA9D889123A5ADC00C73E85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XADMaster;
+			targetProxy = 5BA9D888123A5ADC00C73E85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58150DA1D0A300B32029 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/Library/Frameworks,
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_CFLAGS = "-DDEBUG";
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = TranspRAR;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					/Library/Frameworks,
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_NAME = TranspRAR;
+				STRIP_INSTALLED_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					x86_64,
+					i386,
+					ppc,
+				);
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PREFIX_HEADER = TranspRAR_Prefix.pch;
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
+				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					x86_64,
+					i386,
+					ppc,
+				);
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PREFIX_HEADER = TranspRAR_Prefix.pch;
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.5;
+				MACOSX_DEPLOYMENT_TARGET_ppc = 10.5;
+				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "TranspRAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TranspRAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
