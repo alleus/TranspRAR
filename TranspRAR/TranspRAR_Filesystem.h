@@ -16,6 +16,8 @@
 // GMUserFileSystemOperations found in the documentation at:
 // http://macfuse.googlecode.com/svn/trunk/core/sdk-objc/Documentation/index.html
 @interface TranspRAR_Filesystem : NSObject  {
+	NSFileManager			*fileManager;
+	
 	NSMutableDictionary		*paths;
 	
 	NSString				*rootPath;

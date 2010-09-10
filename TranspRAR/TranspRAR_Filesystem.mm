@@ -34,6 +34,7 @@
 - (id)init {
 	if ((self = [super init])) {
 		paths = [[NSMutableDictionary alloc] init];
+		fileManager = [[NSFileManager alloc] init];
 		rootPath = @"";
 	}
 	return self;
@@ -42,6 +43,8 @@
 - (void)dealloc {
 	[paths release];
 	paths = nil;
+	[fileManager release];
+	fileManager = nil;
 	
 	[super dealloc];
 }
@@ -50,7 +53,7 @@
 #pragma mark Directory Contents
 
 - (NSArray *)contentsOfDirectoryAtPath:(NSString *)path error:(NSError **)error {
-	NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:error];
+	NSArray *contents = [fileManager contentsOfDirectoryAtPath:path error:error];
 	
 	NSMutableArray *returnArray = [NSMutableArray array];
 	
@@ -127,7 +130,7 @@
 	if (entry) {
 		return entry.attributes;
 	} else {
-		return [[NSFileManager defaultManager] attributesOfItemAtPath:path error:error];
+		return [fileManager attributesOfItemAtPath:path error:error];
 	}
 }
 
