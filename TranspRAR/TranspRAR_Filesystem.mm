@@ -156,15 +156,18 @@
 		if (entry.handle != nil) {
 			return YES;
 		} else {
+			*error = [NSError errorWithPOSIXCode:ENOENT];
 			return NO;
 		}
 	} else {
 		*userData = [NSFileHandle fileHandleForReadingAtPath:path];
-		return YES;
+		if (userData) {
+			return YES;
+		} else {
+			*error = [NSError errorWithPOSIXCode:ENOENT];
+			return NO;
+		}
 	}
-	
-	*error = [NSError errorWithPOSIXCode:ENOENT];
-	return NO;
 }
 
 - (void)releaseFileAtPath:(NSString *)path userData:(id)userData {
