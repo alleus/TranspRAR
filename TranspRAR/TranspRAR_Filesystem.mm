@@ -12,12 +12,6 @@
 #import <XADMaster/XADArchive.h>
 #import <XADMaster/XADRegex.h>
 
-#define kACAttributes	@"ACAttributes"
-#define kACArchivePath	@"ACArchivePath"
-#define kACArchive		@"ACArchive"
-#define kACParser		@"ACParser"
-#define kACDict			@"ACDict"
-
 
 // Category on NSError to  simplify creating an NSError based on posix errno.
 @interface NSError (POSIX)
@@ -63,7 +57,6 @@
 	for (NSString *filename in contents) {
 		BOOL ignoreFile = NO;
 		BOOL isArchive = NO;
-		
 		
 		if ([filename matchedByPattern:@"^.*\\.rar$" options:REG_ICASE]) {
 			if ([filename matchedByPattern:@"^.*\\.part(([0-9]{1,3}))\\.rar$" options:REG_ICASE]) {
@@ -146,8 +139,6 @@
 
 #pragma mark File Contents
 
-#define SIMPLE_FILE_CONTENTS 0
-
 - (BOOL)openFileAtPath:(NSString *)path 
                   mode:(int)mode
               userData:(id *)userData
@@ -207,42 +198,6 @@
 		return [readBytes length];
 	}
 }
-
-#pragma mark Symbolic Links (Optional)
-
-- (NSString *)destinationOfSymbolicLinkAtPath:(NSString *)path
-                                        error:(NSError **)error {
-	return [[NSFileManager defaultManager] destinationOfSymbolicLinkAtPath:path error:error];
-}
-
-#pragma mark Extended Attributes (Optional)
-
-- (NSArray *)extendedAttributesOfItemAtPath:(NSString *)path error:(NSError **)error {
-	return [NSArray array];  // No extended attributes.
-}
-
-- (NSData *)valueOfExtendedAttribute:(NSString *)name 
-                        ofItemAtPath:(NSString *)path
-                            position:(off_t)position
-                               error:(NSError **)error {
-	*error = [NSError errorWithPOSIXCode:ENOATTR];
-	return nil;
-}
-
-#pragma mark FinderInfo and ResourceFork (Optional)
-
-- (NSDictionary *)finderAttributesAtPath:(NSString *)path 
-                                   error:(NSError **)error {
-  return [NSDictionary dictionary];
-}
-
-- (NSDictionary *)resourceAttributesAtPath:(NSString *)path
-                                     error:(NSError **)error {
-  return [NSDictionary dictionary];
-}
-
-
-
 
 
 @end
