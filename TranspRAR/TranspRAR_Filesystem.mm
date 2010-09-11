@@ -61,6 +61,7 @@
 		BOOL ignoreFile = NO;
 		BOOL isArchive = NO;
 		
+		// "(\.part(1|01|001)\.rar$)|(^(?:(?!part\d{1,3}).)*\.rar$)"
 		if ([filename matchedByPattern:@"^.*\\.rar$" options:REG_ICASE]) {
 			if ([filename matchedByPattern:@"^.*\\.part(([0-9]{1,3}))\\.rar$" options:REG_ICASE]) {
 				if ([filename matchedByPattern:@"^.*\\.part(1|01|001)\\.rar$" options:REG_ICASE]) {
