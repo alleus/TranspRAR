@@ -1,0 +1,9 @@
+h1. TranspRAR
+
+This is an Mac OS X Preference Pane (and background service) mounts a "MacFUSE":http://code.google.com/p/macfuse/ file system that handles RAR archives completely transparent. Instead of finding a directory with RAR files, the user will find the contents of the archive. Since the mounted file system behaves like any other drive, TranspRAR is made to work with any other application that can read from file.
+
+TranspRAR was initially made to support media files inside RAR archives from "Plex .9":http://www.plexapp.com/. For more information, see the "the forum thread":http://forums.plexapp.com/index.php?/topic/17211-transprar-rar-workaround-for-plex-9/ that started the developement.
+
+h2. Unarchiving library
+
+TranspRAR uses the awesome Objective-C wrapper/port XADMaster, made from "libxad":http://sourceforge.net/projects/libxad/ by "Dan Ågren":http://wakaba.c3.cx/s/. This is the same library used in his application "The Unarchiver":http://wakaba.c3.cx/s/apps/unarchiver.
