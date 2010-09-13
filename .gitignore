@@ -9,3 +9,4 @@ DeveloperSettings.xcconfig
 .DS_Store
 dSYM_Archive/
 The Unarchiver/
+Signing/
