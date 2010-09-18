@@ -9,7 +9,15 @@
 #import "TranspRAR_Filesystem.h"
 #import <MacFUSE/MacFUSE.h>
 
+
+#define kRootPath			@"RootPath"
+#define kDebugLogging		@"DebugLogging"
+#define kPersistentDomain	@"com.alleus.TranspRAR.pref"
+
+
 @implementation TranspRAR_Controller
+
+static BOOL debugLogging;
 
 - (void)mountFailed:(NSNotification *)notification {
   NSDictionary* userInfo = [notification userInfo];
@@ -42,7 +50,12 @@
   
   NSString* mountPath = @"/Volumes/TranspRAR";
   fs_delegate_ = [[TranspRAR_Filesystem alloc] init];
+  NSString *rootPath = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kRootPath];
+  if (rootPath) {
+    fs_delegate_.rootPath = rootPath;
+  }
   fs_ = [[GMUserFileSystem alloc] initWithDelegate:fs_delegate_ isThreadSafe:NO];
+	debugLogging = [[[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kDebugLogging] boolValue];
 
   NSMutableArray* options = [NSMutableArray array];
   NSString* volArg = 
@@ -52,6 +65,8 @@
   [options addObject:@"volname=TranspRAR"];
   [options addObject:@"rdonly"];
   [fs_ mountAtPath:mountPath withOptions:options];
+	
+	[self startServer];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
@@ -62,8 +77,23 @@
   return NSTerminateNow;
 }
 
++ (BOOL)debugLogging {
+	return debugLogging;
+}
+
+- (void)startServer {
+	connection = [[NSConnection alloc] init];
+	[connection setRootObject:self];
+	[connection registerName:@"TranspRAR"];
+}
+
 - (void)showMountError:(NSError *)error {
 	NSRunAlertPanel(@"Mount Failed", [error localizedDescription], nil, nil, nil);
+}
+
+- (oneway)terminate {
+	[[NSApplication sharedApplication] terminate:nil];
+	return nil;
 }
 
 @end

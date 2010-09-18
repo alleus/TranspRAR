@@ -13,8 +13,11 @@
 @interface TranspRAR_Controller : NSObject {
   GMUserFileSystem* fs_;
   TranspRAR_Filesystem* fs_delegate_;
+	NSConnection	*connection;
 }
 
++ (BOOL)debugLogging;
+- (void)startServer;
 - (void)showMountError:(NSError *)error;
 
 @end

@@ -5,26 +5,34 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
+	<string>TranspRAR</string>
 	<key>CFBundleIconFile</key>
-	<string>${PRODUCT_NAME}.icns</string>
+	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.alleus.TranspRAR.service</string>
+	<string>com.alleus.TranspRAR.pref</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>TranspRAR</string>
 	<key>CFBundlePackageType</key>
-	<string>APPL</string>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<string>TranspRARPref</string>
+	<key>NSPrefPaneIconFile</key>
+	<string>TranspRAR.icns</string>
+	<key>NSPrefPaneIconLabel</key>
+	<string>TranspRAR</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-	<key>LSBackgroundOnly</key>
-	<true/>
+	<string>TranspRARPref</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
+	<key>SUFeedURL</key>
+	<string>http://www.1g.se/transprar/appcast/appcast.xml</string>
 </dict>
 </plist>

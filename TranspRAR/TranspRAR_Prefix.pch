@@ -4,6 +4,7 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+	#import "TranspRAR_Controller.h"
 	
 	#define ACLogFunction()			ACLog(@"%s", __FUNCTION__)
 	#define ACLogId(o)				ACLog(@"%s = %@", # o, o)
@@ -31,7 +32,12 @@
 	}
 	#else
 	inline static void ACLog(NSString *format, ...) {
-		// Do nothing
+		if ([TranspRAR_Controller debugLogging]) {
+			va_list argList;
+			va_start(argList, format);
+			NSLogv(format, argList);
+			va_end(argList);
+		}
 	}
 	#endif
 #endif

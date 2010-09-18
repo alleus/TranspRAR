@@ -3,28 +3,22 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
+	<string>en</string>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>${PRODUCT_NAME}.icns</string>
+	<string>Sparkle</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.alleus.TranspRAR.service</string>
+	<string>org.andymatuschak.Sparkle</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>Sparkle</string>
 	<key>CFBundlePackageType</key>
-	<string>APPL</string>
+	<string>FMWK</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.5 Beta 6</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-	<key>LSBackgroundOnly</key>
-	<true/>
+	<string>313</string>
 </dict>
 </plist>

@@ -21,7 +21,7 @@
 		FFA311CF0EE5160400FF2904 /* TranspRAR.icns in Resources */ = {isa = PBXBuildFile; fileRef = FFA311CE0EE5160400FF2904 /* TranspRAR.icns */; };
 		FFA311D10EE5167200FF2904 /* MacFUSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA311D00EE5167200FF2904 /* MacFUSE.framework */; };
 		FFD925C00EE507A800A7B2B2 /* TranspRAR_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */; };
-		FFD925C30EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm in Sources */ = {isa = PBXBuildFile; fileRef = FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm */; };
+		FFD925C30EE5082D00A7B2B2 /* TranspRAR_Filesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,112 +29,112 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* UniversalDetector.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = UniversalDetector;
 		};
 		5BA9D85D123A5AC600C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B23E0871190F29400620319 /* libUniversalDetector.a */;
+			remoteGlobalIDString = 1B23E0871190F29400620319;
 			remoteInfo = libUniversalDetector;
 		};
 		5BA9D85F123A5AC600C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B91CBE011D821A70081E40A /* libUniversalDetector.a */;
+			remoteGlobalIDString = 1B91CBE011D821A70081E40A;
 			remoteInfo = "libUniversalDetector (Windows)";
 		};
 		5BA9D861123A5AC600C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B0DDCAB0A2D0AD10009B697 /* DetectorTest */;
+			remoteGlobalIDString = 1B0DDCAB0A2D0AD10009B697;
 			remoteInfo = DetectorTest;
 		};
 		5BA9D872123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* XADMaster.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = XADMaster;
 		};
 		5BA9D874123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B5A7BA30A24F9B400B189EB /* XADTest */;
+			remoteGlobalIDString = 1B5A7BA30A24F9B400B189EB;
 			remoteInfo = XADTest;
 		};
 		5BA9D876123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1BBAB68B0EC274A3007FE6A2 /* XADTest2 */;
+			remoteGlobalIDString = 1BBAB68B0EC274A3007FE6A2;
 			remoteInfo = XADTest2;
 		};
 		5BA9D878123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1BC8931A0ED6F283006B47FE /* XADTest3 */;
+			remoteGlobalIDString = 1BC8931A0ED6F283006B47FE;
 			remoteInfo = XADTest3;
 		};
 		5BA9D87A123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B3A68A2101BA12C00AE25A8 /* XADTest4 */;
+			remoteGlobalIDString = 1B3A68A2101BA12C00AE25A8;
 			remoteInfo = XADTest4;
 		};
 		5BA9D87C123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B34A97511C2FD0500396C26 /* libXADMaster.a */;
+			remoteGlobalIDString = 1B34A97511C2FD0500396C26;
 			remoteInfo = libXADMaster.a;
 		};
 		5BA9D87E123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B23DDC01185EBA300620319 /* unar */;
+			remoteGlobalIDString = 1B23DDC01185EBA300620319;
 			remoteInfo = unar;
 		};
 		5BA9D880123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B91D18F11E1677B0081E40A /* lsar */;
+			remoteGlobalIDString = 1B91D18F11E1677B0081E40A;
 			remoteInfo = lsar;
 		};
 		5BA9D882123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B91CD5E11D97E7C0081E40A /* libXADMaster.a */;
+			remoteGlobalIDString = 1B91CD5E11D97E7C0081E40A;
 			remoteInfo = "libXADMaster.a (Windows)";
 		};
 		5BA9D884123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B91CDAC11D981E20081E40A /* unar.exe */;
+			remoteGlobalIDString = 1B91CDAC11D981E20081E40A;
 			remoteInfo = "unar.exe (Windows)";
 		};
 		5BA9D886123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 1B91D2EE11E694860081E40A /* lsar.exe */;
+			remoteGlobalIDString = 1B91D2EE11E694860081E40A;
 			remoteInfo = "lsar.exe (Windows)";
 		};
 		5BA9D888123A5ADC00C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* XADMaster */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = XADMaster;
 		};
 /* End PBXContainerItemProxy section */
@@ -178,7 +178,7 @@
 		FFD925BE0EE507A800A7B2B2 /* TranspRAR_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Controller.h; sourceTree = "<group>"; };
 		FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranspRAR_Controller.m; sourceTree = "<group>"; };
 		FFD925C10EE5082D00A7B2B2 /* TranspRAR_Filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Filesystem.h; sourceTree = "<group>"; };
-		FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TranspRAR_Filesystem.mm; sourceTree = "<group>"; };
+		FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranspRAR_Filesystem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +201,7 @@
 			children = (
 				5BA9D918123A68A700C73E85 /* Models */,
 				FFD925C10EE5082D00A7B2B2 /* TranspRAR_Filesystem.h */,
-				FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm */,
+				FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.m */,
 				FFD925BE0EE507A800A7B2B2 /* TranspRAR_Controller.h */,
 				FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */,
 			);
@@ -498,7 +498,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				FFD925C00EE507A800A7B2B2 /* TranspRAR_Controller.m in Sources */,
-				FFD925C30EE5082D00A7B2B2 /* TranspRAR_Filesystem.mm in Sources */,
+				FFD925C30EE5082D00A7B2B2 /* TranspRAR_Filesystem.m in Sources */,
 				5BA9D91B123A68CD00C73E85 /* ACArchiveEntry.m in Sources */,
 				5BA9D924123A698300C73E85 /* ACArchive.m in Sources */,
 				5BA9D941123A6B0700C73E85 /* ACPath.m in Sources */,
@@ -538,7 +538,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
@@ -546,6 +546,7 @@
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Info.plist;
@@ -553,6 +554,7 @@
 				OTHER_CFLAGS = "-DDEBUG";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TranspRAR;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -561,23 +563,23 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					/Library/Frameworks,
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TranspRAR;
 				STRIP_INSTALLED_PRODUCT = YES;
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -586,11 +588,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					x86_64,
-					i386,
-					ppc,
-				);
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = TranspRAR_Prefix.pch;
 				GCC_VERSION_i386 = 4.0;
@@ -600,17 +598,14 @@
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
 				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					x86_64,
-					i386,
-					ppc,
-				);
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = TranspRAR_Prefix.pch;
 				GCC_VERSION_i386 = 4.0;
@@ -620,6 +615,7 @@
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.5;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.5;
 				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
