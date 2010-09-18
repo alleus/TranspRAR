@@ -1069,7 +1069,7 @@
 		1B3A650110154DCE00AE25A8 /* CSHexDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSHexDump.m; sourceTree = "<group>"; };
 		1B3A66D51017B7E000AE25A8 /* XADNSISParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XADNSISParser.h; sourceTree = "<group>"; };
 		1B3A66D61017B7E000AE25A8 /* XADNSISParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XADNSISParser.m; sourceTree = "<group>"; };
-		1B3A68A2101BA12C00AE25A8 /* XADTest4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = XADTest4; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B3A68A2101BA12C00AE25A8 /* XADTest3 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = XADTest3; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B3A68A9101BA14A00AE25A8 /* XADTest4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XADTest4.m; sourceTree = "<group>"; };
 		1B3E2B530F27C8EA003EEF98 /* XADStuffItXEnglishHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XADStuffItXEnglishHandle.h; sourceTree = "<group>"; };
 		1B3E2B540F27C8EA003EEF98 /* XADStuffItXEnglishHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XADStuffItXEnglishHandle.m; sourceTree = "<group>"; };
@@ -1486,7 +1486,7 @@
 				1B5A7BA30A24F9B400B189EB /* XADTest */,
 				1BBAB68B0EC274A3007FE6A2 /* XADTest2 */,
 				1BC8931A0ED6F283006B47FE /* XADTest3 */,
-				1B3A68A2101BA12C00AE25A8 /* XADTest4 */,
+				1B3A68A2101BA12C00AE25A8 /* XADTest3 */,
 				1B34A97511C2FD0500396C26 /* libXADMaster.a */,
 				1B23DDC01185EBA300620319 /* unar */,
 				1B91D18F11E1677B0081E40A /* lsar */,
@@ -2493,7 +2493,7 @@
 			);
 			name = XADTest4;
 			productName = XADTest3;
-			productReference = 1B3A68A2101BA12C00AE25A8 /* XADTest4 */;
+			productReference = 1B3A68A2101BA12C00AE25A8 /* XADTest3 */;
 			productType = "com.apple.product-type.tool";
 		};
 		1B5A7BA20A24F9B400B189EB /* XADTest */ = {
@@ -4111,7 +4111,8 @@
 		1DEB91AE08733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -4147,8 +4148,8 @@
 		1DEB91AF08733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64;
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4184,11 +4185,8 @@
 		1DEB91B208733DA50010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					x86_64,
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 4.0;
@@ -4198,17 +4196,15 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
 				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
 				USE_HEADERMAP = NO;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
 		1DEB91B308733DA50010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					x86_64,
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_PROJECT_1)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_PROJECT_2)",
@@ -4224,6 +4220,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
 				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
 				USE_HEADERMAP = NO;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};

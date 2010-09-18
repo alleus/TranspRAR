@@ -23,4 +23,6 @@
 	NSString				*rootPath;
 }
 
+@property (nonatomic, retain) NSString *rootPath;
+
 @end

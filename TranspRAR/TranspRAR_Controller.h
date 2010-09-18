@@ -8,11 +8,11 @@
 #import <Cocoa/Cocoa.h>
 
 @class GMUserFileSystem;
-@class TranspRAR_Controller;
+@class TranspRAR_Filesystem;
 
 @interface TranspRAR_Controller : NSObject {
   GMUserFileSystem* fs_;
-  TranspRAR_Controller* fs_delegate_;
+  TranspRAR_Filesystem* fs_delegate_;
 }
 
 - (void)showMountError:(NSError *)error;

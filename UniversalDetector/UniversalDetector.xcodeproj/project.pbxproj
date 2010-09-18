@@ -856,11 +856,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					i386,
-					ppc,
-					x86_64,
-				);
+				ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 4.0;
@@ -868,6 +865,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				USE_HEADERMAP = NO;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -875,11 +873,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					i386,
-					ppc,
-					x86_64,
-				);
+				ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 4.0;
@@ -887,6 +882,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				USE_HEADERMAP = NO;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};

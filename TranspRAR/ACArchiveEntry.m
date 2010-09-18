@@ -7,27 +7,42 @@
 //
 
 #import "ACArchiveEntry.h"
+#import "ACArchive.h"
 
 
 @implementation ACArchiveEntry
 
+@synthesize filename;
 @synthesize parserDictionary;
-@synthesize parser;
 @synthesize handle;
 @synthesize archive;
 
+- (id)initWithFilename:(NSString *)aString {
+	if ((self = [super init])) {
+		self.filename = aString;
+	}
+	return self;
+}
+
 - (void)dealloc {
+	[filename release];
+	filename = nil;
 	[attributes release];
 	attributes = nil;
 	[parserDictionary release];
 	parserDictionary = nil;
-	[parser release];
-	parser = nil;
 	[handle release];
 	handle = nil;
 	archive = nil;
 	
 	[super dealloc];
+}
+
+- (void)closeHandle {
+	ACLog(@"Closing archive entry handler for %@ in %@", filename, archive.path);
+	[handle close];
+	[handle release];
+	handle = nil;
 }
 
 - (NSMutableDictionary *)attributes {
@@ -42,6 +57,24 @@
 		}
 	}
 	return attributes;
+}
+
+- (XADHandle *)handle {
+	if (!handle) {
+		@try {
+			ACLog(@"Creating archive entry handler for %@ in %@", filename, archive.path);
+			handle = [[archive.parser handleForEntryWithDictionary:self.parserDictionary wantChecksum:NO] retain];
+		}
+		@catch (NSException * e) {
+			NSLog(@" - Could not create archive entry handle for %@ in %@", filename, archive.path);
+			NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
+		}
+	}
+	return handle;
+}
+
+- (BOOL)handlePresent {
+	return (handle != nil);
 }
 
 @end

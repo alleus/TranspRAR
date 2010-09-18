@@ -13,18 +13,23 @@
 @class ACArchive;
 
 @interface ACArchiveEntry : NSObject {
+	NSString			*filename;
 	NSMutableDictionary	*attributes;
 	NSDictionary		*parserDictionary;
-	XADArchiveParser	*parser;
 	XADHandle			*handle;
 	
 	ACArchive			*archive;
 }
 
+- (id)initWithFilename:(NSString *)aString;
+
+@property (retain) NSString *filename;
 @property (readonly) NSMutableDictionary *attributes;
 @property (retain) NSDictionary *parserDictionary;
-@property (retain) XADArchiveParser *parser;
 @property (retain) XADHandle *handle;
 @property (assign) ACArchive *archive;
+@property (readonly) BOOL handlePresent;
+
+- (void)closeHandle;
 
 @end
