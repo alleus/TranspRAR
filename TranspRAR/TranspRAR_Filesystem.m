@@ -60,12 +60,13 @@
 }
 
 - (ACArchiveEntry *)archiveEntryForPath:(NSString *)path {
+	NSString *realPath = [rootPath stringByAppendingString:path];
 	ACPath *pathObject = [paths objectForKey:[path stringByDeletingLastPathComponent]];
 	
-	if (!pathObject && ![fileManager fileExistsAtPath:path]) {
+	if (!pathObject && ![fileManager fileExistsAtPath:realPath]) {
 		if (![path matchedByPattern:@"(^.*\\.DS_Store$)|(^.*/Contents$)|(^.*/\\._.*$)" options:REG_BASIC]) {
 			// We don't attempt to parse for the following files: /something/.DS_Store, /something/file.rar/Contents and /something/._file.rar
-			ACLog(@"Could not locate %@, parsing parent folder", path);
+			ACLog(@"Could not locate %@, parsing parent folder for archives", path);
 			[self contentsOfDirectoryAtPath:[path stringByDeletingLastPathComponent] error:NULL];
 			pathObject = [paths objectForKey:[path stringByDeletingLastPathComponent]];
 		}
@@ -78,9 +79,9 @@
 #pragma mark Directory Contents
 
 - (NSArray *)contentsOfDirectoryAtPath:(NSString *)path error:(NSError **)error {
-	path = [rootPath stringByAppendingString:path];
-	ACLog(@"Reading directory contents of %@", path);
-	NSArray *contents = [fileManager contentsOfDirectoryAtPath:path error:&*error];
+	NSString *realPath = [rootPath stringByAppendingString:path];
+	ACLog(@"Reading directory contents of %@", realPath);
+	NSArray *contents = [fileManager contentsOfDirectoryAtPath:realPath error:&*error];
 	
 	if (contents == nil) {
 		return nil;
@@ -110,7 +111,7 @@
 		} else if ([filename matchedByPattern:@"^.*\\.r[0-9]{2}$" options:REG_ICASE]) {
 			// Ignore all *.r00, *.r01, etc... files
 			ignoreFile = YES;
-		} else if ([filename isEqualToString:@"TranspRAR"] && [[path lastPathComponent] isEqualToString:@"Volumes"]) {
+		} else if ([filename isEqualToString:@"TranspRAR"] && [[realPath lastPathComponent] isEqualToString:@"Volumes"]) {
 			// Ignore the */Volumes/TranspRAR folder to stop any nasty loops
 			ignoreFile = YES;
 		}
@@ -121,7 +122,7 @@
 			if ([path isEqualToString:@"/"]) {
 				archiveName = [NSString stringWithFormat:@"/%@", filename];
 			} else {
-				archiveName = [NSString stringWithFormat:@"%@/%@", path, filename];
+				archiveName = [NSString stringWithFormat:@"%@/%@", realPath, filename];
 			}
 			
 			// See if we have scanned archives in the directory before
@@ -168,21 +169,21 @@
 - (NSDictionary *)attributesOfItemAtPath:(NSString *)path
                                 userData:(id)userData
                                    error:(NSError **)error {
-	path = [rootPath stringByAppendingString:path];
+	NSString *realPath = [rootPath stringByAppendingString:path];
 	ACArchiveEntry *entry = [self archiveEntryForPath:path];
 	
 	
 	if (entry) {
 		return entry.attributes;
 	} else {
-		return [fileManager attributesOfItemAtPath:path error:error];
+		return [fileManager attributesOfItemAtPath:realPath error:error];
 	}
 }
 
 - (NSDictionary *)attributesOfFileSystemForPath:(NSString *)path
                                           error:(NSError **)error {
-	path = [rootPath stringByAppendingString:path];
-	NSDictionary *dictionary = [fileManager attributesOfFileSystemForPath:path error:error];
+	NSString *realPath = [rootPath stringByAppendingString:path];
+	NSDictionary *dictionary = [fileManager attributesOfFileSystemForPath:realPath error:error];
 	if (dictionary) {
 		NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithDictionary:dictionary];
 		[attributes setObject:[NSNumber numberWithBool:YES] forKey:kGMUserFileSystemVolumeSupportsExtendedDatesKey];
@@ -192,8 +193,8 @@
 }
 
 - (NSString *)destinationOfSymbolicLinkAtPath:(NSString *)path error:(NSError **)error {
-	path = [rootPath stringByAppendingString:path];
-	NSString *destinationPath = [fileManager destinationOfSymbolicLinkAtPath:path error:&*error];
+	NSString *realPath = [rootPath stringByAppendingString:path];
+	NSString *destinationPath = [fileManager destinationOfSymbolicLinkAtPath:realPath error:&*error];
 	if (destinationPath) {
 		return [NSString stringWithFormat:@"/Volumes/TranspRAR%@", destinationPath];
 	}
@@ -207,7 +208,7 @@
                   mode:(int)mode
               userData:(id *)userData
                  error:(NSError **)error {
-	path = [rootPath stringByAppendingString:path];
+	NSString *realPath = [rootPath stringByAppendingString:path];
 	ACArchiveEntry *entry = [self archiveEntryForPath:path];
 	
 	if (entry) {
@@ -220,7 +221,7 @@
 			return NO;
 		}
 	} else {
-		int fd = open([path UTF8String], mode);
+		int fd = open([realPath UTF8String], mode);
 		
 		if (fd < 0) {
 			*error = [NSError errorWithPOSIXCode:errno];
@@ -233,7 +234,6 @@
 }
 
 - (void)releaseFileAtPath:(NSString *)path userData:(id)userData {
-	path = [rootPath stringByAppendingString:path];
 	if ([userData isKindOfClass:[ACArchiveEntry class]]) {
 		ACArchiveEntry *entry = userData;
 		[entry closeHandle];
@@ -251,7 +251,6 @@
                  size:(size_t)size 
                offset:(off_t)offset
                 error:(NSError **)error {
-	path = [rootPath stringByAppendingString:path];
 	if ([userData isKindOfClass:[ACArchiveEntry class]]) {
 		ACArchiveEntry *entry = userData;
 		XADHandle *handle = entry.handle;
