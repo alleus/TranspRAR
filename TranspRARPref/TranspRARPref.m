@@ -163,6 +163,7 @@
 		NSString *rootPath = [defaults objectForKey:kRootPath];
 		
 		NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+		[openPanel setShowsHiddenFiles:YES];
 		[openPanel setCanChooseDirectories:YES];
 		[openPanel setCanCreateDirectories:YES]; // Added by DustinVoss
 		[openPanel setPrompt:@"Choose folder"]; // Should be localized
