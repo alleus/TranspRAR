@@ -50,10 +50,11 @@ static BOOL debugLogging;
   
   NSString* mountPath = @"/Volumes/TranspRAR";
   fs_delegate_ = [[TranspRAR_Filesystem alloc] init];
-  NSString *rootPath = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kRootPath];
+  /*NSString *rootPath = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kRootPath];
   if (rootPath) {
     fs_delegate_.rootPath = rootPath;
-  }
+  }*/
+	fs_delegate_.rootPath = @"/";
   fs_ = [[GMUserFileSystem alloc] initWithDelegate:fs_delegate_ isThreadSafe:NO];
 	debugLogging = [[[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kDebugLogging] boolValue];
 
