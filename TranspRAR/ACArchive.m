@@ -9,10 +9,16 @@
 #import "ACArchive.h"
 #import <XADMaster/XADArchiveParser.h>
 
+#define kCloseTimerInterval			1.0
+
 
 @interface ACArchive ()
 
 - (void)startParser;
+
+- (void)startCloseTimer;
+
+- (void)forceCloseParser:(NSTimer *)timer;
 
 @end
 
@@ -42,6 +48,9 @@
 }
 
 - (void)dealloc {
+	[closeTimer invalidate];
+	[closeTimer release];
+	closeTimer = nil;
 	[parserLock lock];
 	[entries release];
 	entries = nil;
@@ -109,13 +118,27 @@
 	}
 	
 	if (!busy) {
-		ACLog(@"Closing archive parser for %@", path);
-		[[parser handle] close];
-		[parser release];
-		parser = nil;
+		[self performSelectorOnMainThread:@selector(startCloseTimer) withObject:nil waitUntilDone:YES];
 	}
 	
 	return !busy;
+}
+
+- (void)startCloseTimer {
+	ACLog(@"Scheduling closing of archive parser in %f seconds for %@", kCloseTimerInterval, path);
+	[closeTimer invalidate];
+	[closeTimer release];
+	closeTimer = [[NSTimer scheduledTimerWithTimeInterval:kCloseTimerInterval target:self selector:@selector(forceCloseParser:) userInfo:nil repeats:NO] retain];
+}
+
+- (void)forceCloseParser:(NSTimer *)timer {
+	ACLog(@"Closing archive parser for %@", path);
+	[[parser handle] close];
+	[parser release];
+	parser = nil;
+	hasParsed = NO;
+	[closeTimer release];
+	closeTimer = nil;
 }
 
 
@@ -133,6 +156,11 @@
 			NSLog(@" - Could not create archive parser for %@", path);
 			NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
 		}
+	} else if (closeTimer != nil) {
+		ACLog(@"Canceling previously scheduled close for %@", path);
+		[closeTimer invalidate];
+		[closeTimer release];
+		closeTimer = nil;
 	}
 	return parser;
 }

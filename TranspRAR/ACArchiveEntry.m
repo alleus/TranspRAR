@@ -63,6 +63,9 @@
 	if (!handle) {
 		@try {
 			ACLog(@"Creating archive entry handler for %@ in %@", filename, archive.path);
+			// Parse archive (if needed)
+			[archive parse];
+			// Create the handle
 			handle = [[archive.parser handleForEntryWithDictionary:self.parserDictionary wantChecksum:NO] retain];
 		}
 		@catch (NSException * e) {

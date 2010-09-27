@@ -18,6 +18,7 @@ enum {PARSE_INCOMPLETE, PARSE_COMPLETE};
 	BOOL					hasParsed;			// Flag indicating if the archive has been successfully parsed before.
 	NSLock					*parserLock;		// Thread lock used when parsing the archive in a separate thread.
 	NSConditionLock			*parserTimeoutLock;	// Conditional lock used to provide a timeout for parsing.
+	NSTimer					*closeTimer;
 }
 
 @property (retain) NSString *path;
