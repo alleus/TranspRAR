@@ -81,13 +81,23 @@
 - (NSArray *)contentsOfDirectoryAtPath:(NSString *)path error:(NSError **)error {
 	NSString *realPath = [rootPath stringByAppendingString:path];
 	ACLog(@"Reading directory contents of %@", realPath);
-	NSArray *contents = [fileManager contentsOfDirectoryAtPath:realPath error:&*error];
+	NSArray *contents = [fileManager contentsOfDirectoryAtPath:realPath error:error];
+	
+	//ACLog(@"contents: %@", contents);
+	
+	if (error)
+		if (*error)
+			ACLog(@"Error: %@", *error);
 	
 	if (contents == nil) {
 		return nil;
 	}
 	
+	
+	
 	NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+	
+
 	
 	for (NSString *filename in contents) {
 		BOOL ignoreFile = NO;
@@ -251,11 +261,28 @@
                  size:(size_t)size 
                offset:(off_t)offset
                 error:(NSError **)error {
+	ACLog(@"readFileAtPath: offset: %d, size: %d path: %@", offset, size, path);
 	if ([userData isKindOfClass:[ACArchiveEntry class]]) {
+		int i = 0;
+		
 		ACArchiveEntry *entry = userData;
 		XADHandle *handle = entry.handle;
-		[handle seekToFileOffset:offset];
-		return [handle readAtMost:size toBuffer:buffer];
+		
+		// Sometimes when the offset is larger than the first file in the archive, 
+		// it will read past the end of the file and throw an exception.
+		// Seems to happens when offset jumps from 0 to large number
+		// pointing to archive of high number.
+		// ToDo: Figure out why, and how to handle it
+			
+		@try {
+			[handle seekToFileOffset:offset];
+			i = [handle readAtMost:size toBuffer:buffer];		
+		}
+		@catch (NSException *exception) {
+			ACLog(@"readFileAtPath: Caught %@: %@", [exception name], [exception reason]);
+		}
+		
+		return i;
 	} else {
 		NSNumber *num = (NSNumber *)userData;
 		int fd = [num longValue];
