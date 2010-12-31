@@ -146,6 +146,8 @@
 #pragma mark Custom property getters
 
 - (XADArchiveParser *)parser {
+	// ToDo: Should lock the condigtion here to prevent multiple parsers 
+	// to be created on seperate threads
 	if (!parser) {
 		@try {
 			ACLog(@"Creating archive parser for %@", path);

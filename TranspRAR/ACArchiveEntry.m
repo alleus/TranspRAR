@@ -52,7 +52,7 @@
 		//[attributes setObject:[parserDictionary objectForKey:XADFileSizeKey] forKey:NSFileSize];
 		
 		// Archives with compression method other than 48 (like 51) seem
-		// to hang the XAD lib on seeking and/or reading. Therefore,
+		// to hang the XAD lib on seeking. Therefore,
 		// ignore those files (zero file size). Better safe than sorry 
 		// until a solution is found.
 		
