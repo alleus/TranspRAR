@@ -46,55 +46,59 @@
 }
 
 - (NSMutableDictionary *)attributes {
-	if (!attributes) {
-		attributes = [[NSMutableDictionary alloc] init];
-		
-		//[attributes setObject:[parserDictionary objectForKey:XADFileSizeKey] forKey:NSFileSize];
-		
-		// Archives with compression method other than 48 (like 51) seem
-		// to hang the XAD lib on seeking. Therefore,
-		// ignore those files (zero file size). Better safe than sorry 
-		// until a solution is found.
-		
-		 NSNumber *fileSize = [parserDictionary objectForKey:XADFileSizeKey];
-		 
-		 NSNumber *compressionMethod = [parserDictionary objectForKey:@"RARCompressionMethod"];
-		 NSNumber *compressionVersion = [parserDictionary objectForKey:@"RARCompressionVersion"];
+	@synchronized(self) {
+		if (!attributes) {
+			attributes = [[NSMutableDictionary alloc] init];
+			
+			//[attributes setObject:[parserDictionary objectForKey:XADFileSizeKey] forKey:NSFileSize];
+			
+			// Archives with compression method other than 48 (like 51) seem
+			// to hang the XAD lib on seeking. Therefore,
+			// ignore those files (zero file size). Better safe than sorry 
+			// until a solution is found.
+			
+			 NSNumber *fileSize = [parserDictionary objectForKey:XADFileSizeKey];
+			 
+			 NSNumber *compressionMethod = [parserDictionary objectForKey:@"RARCompressionMethod"];
+			 NSNumber *compressionVersion = [parserDictionary objectForKey:@"RARCompressionVersion"];
 
-		//ACLog(@"parserDictionary: %@", parserDictionary);
-		ACLog(@"method: %@ version: %@ (%@)", compressionMethod, compressionVersion, filename);
-		 
-		 if (![compressionMethod isEqual:[NSNumber numberWithInt:48]])
-			 fileSize = [NSNumber numberWithInt:0];
-		 
-		 [attributes setObject:fileSize forKey:NSFileSize];
-		 
-		
-		[attributes setObject:[parserDictionary objectForKey:XADLastModificationDateKey] forKey:NSFileModificationDate];
-		if ([[parserDictionary objectForKey:XADIsDirectoryKey] boolValue]) {
-			[attributes setObject:NSFileTypeDirectory forKey:NSFileType];
-		} else {
-			[attributes setObject:NSFileTypeRegular forKey:NSFileType];
+			//ACLog(@"parserDictionary: %@", parserDictionary);
+			ACLog(@"method: %@ version: %@ (%@)", compressionMethod, compressionVersion, filename);
+			 
+			 if (![compressionMethod isEqual:[NSNumber numberWithInt:48]])
+				 fileSize = [NSNumber numberWithInt:0];
+			 
+			 [attributes setObject:fileSize forKey:NSFileSize];
+			 
+			
+			[attributes setObject:[parserDictionary objectForKey:XADLastModificationDateKey] forKey:NSFileModificationDate];
+			if ([[parserDictionary objectForKey:XADIsDirectoryKey] boolValue]) {
+				[attributes setObject:NSFileTypeDirectory forKey:NSFileType];
+			} else {
+				[attributes setObject:NSFileTypeRegular forKey:NSFileType];
+			}
 		}
+		return attributes;
 	}
-	return attributes;
 }
 
 - (XADHandle *)handle {
-	if (!handle) {
-		@try {
-			ACLog(@"Creating archive entry handler for %@ in %@", filename, archive.path);
-			// Parse archive (if needed)
-			[archive parse];
-			// Create the handle
-			handle = [[archive.parser handleForEntryWithDictionary:self.parserDictionary wantChecksum:NO] retain];
+	@synchronized(self) {
+		if (!handle) {
+			@try {
+				ACLog(@"Creating archive entry handler for %@ in %@", filename, archive.path);
+				// Parse archive (if needed)
+				[archive parse];
+				// Create the handle
+				handle = [[archive.parser handleForEntryWithDictionary:self.parserDictionary wantChecksum:NO] retain];
+			}
+			@catch (NSException * e) {
+				NSLog(@" - Could not create archive entry handle for %@ in %@", filename, archive.path);
+				NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
+			}
 		}
-		@catch (NSException * e) {
-			NSLog(@" - Could not create archive entry handle for %@ in %@", filename, archive.path);
-			NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
-		}
+		return handle;
 	}
-	return handle;
 }
 
 - (BOOL)handlePresent {

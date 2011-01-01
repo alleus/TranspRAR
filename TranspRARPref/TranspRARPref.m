@@ -157,6 +157,7 @@
 }
 
 - (IBAction)rootPathPopUpChanged:(NSPopUpButton *)sender {
+
 	if ([sender selectedItem] != rootPathMenuItem) {
 		// Get root path
 		NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain];

@@ -146,25 +146,25 @@
 #pragma mark Custom property getters
 
 - (XADArchiveParser *)parser {
-	// ToDo: Should lock the condigtion here to prevent multiple parsers 
-	// to be created on seperate threads
-	if (!parser) {
-		@try {
-			ACLog(@"Creating archive parser for %@", path);
-			parser = [[XADArchiveParser archiveParserForPath:path] retain];
-			[parser setDelegate:self];
+	@synchronized(self) {
+		if (!parser) {
+			@try {
+				ACLog(@"Creating archive parser for %@", path);
+				parser = [[XADArchiveParser archiveParserForPath:path] retain];
+				[parser setDelegate:self];
+			}
+			@catch (NSException * e) {
+				NSLog(@" - Could not create archive parser for %@", path);
+				NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
+			}
+		} else if (closeTimer != nil) {
+			ACLog(@"Canceling previously scheduled close for %@", path);
+			[closeTimer invalidate];
+			[closeTimer release];
+			closeTimer = nil;
 		}
-		@catch (NSException * e) {
-			NSLog(@" - Could not create archive parser for %@", path);
-			NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
-		}
-	} else if (closeTimer != nil) {
-		ACLog(@"Canceling previously scheduled close for %@", path);
-		[closeTimer invalidate];
-		[closeTimer release];
-		closeTimer = nil;
+		return parser;
 	}
-	return parser;
 }
 
 

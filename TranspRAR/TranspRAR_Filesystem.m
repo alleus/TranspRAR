@@ -271,8 +271,10 @@
 			[handle seekToFileOffset:offset];
 			i = [handle readAtMost:size toBuffer:buffer];		
 		}
+		
 		@catch (NSException *exception) {
-			ACLog(@"readFileAtPath: Caught %@: %@", [exception name], [exception reason]);
+			NSLog(@"readFileAtPath: offset: %d, size: %d path: %@", offset, size, path);
+			NSLog(@"Caught %@: %@", [exception name], [exception reason]);
 		}
 		
 		return i;
