@@ -78,8 +78,8 @@
 				[attributes setObject:NSFileTypeRegular forKey:NSFileType];
 			}
 		}
-		return attributes;
 	}
+	return attributes;
 }
 
 - (XADHandle *)handle {
@@ -97,8 +97,8 @@
 				NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
 			}
 		}
-		return handle;
 	}
+	return handle;
 }
 
 - (BOOL)handlePresent {

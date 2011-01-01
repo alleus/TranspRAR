@@ -163,8 +163,8 @@
 			[closeTimer release];
 			closeTimer = nil;
 		}
-		return parser;
 	}
+	return parser;
 }
 
 
