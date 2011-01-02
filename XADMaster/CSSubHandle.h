@@ -8,6 +8,9 @@
 	off_t start,end;
 }
 
+// TranspRAR seek
+-(BOOL)transpRAR_seekToFileOffset:(off_t)offs timeout:(NSTimeInterval)timeout checkEvery:(int)checkEvery;
+
 // Initializers
 -(id)initWithHandle:(CSHandle *)handle from:(off_t)from length:(off_t)length;
 -(id)initAsCopyOf:(CSSubHandle *)other;

@@ -102,7 +102,7 @@
 				ACLog(@" - Parsing %@ failed.", [path lastPathComponent]);
 			}
 			
-			
+			//ToDo: Maybe should close somewhere
 			//[parser release];
 			//parser = nil;
 		}
@@ -119,7 +119,7 @@
 }
 
 - (BOOL)closeParser {	
-	return YES;
+	return YES; // ToDo: Check if this is bad (not closing)
 }
 
 - (void)startCloseTimer {
@@ -177,8 +177,6 @@
 
 -(void)archiveParser:(XADArchiveParser *)theParser foundEntryWithDictionary:(NSDictionary *)dict {
 	NSString *filename = [[dict objectForKey:XADFileNameKey] string];
-	
-	NSLog(@"found entry with dictionary: %@", dict);
 	
 	if (![entries objectForKey:filename]) {
 		ACArchiveEntry *entry = [[ACArchiveEntry alloc] initWithFilename:filename];

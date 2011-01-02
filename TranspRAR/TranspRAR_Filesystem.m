@@ -148,8 +148,6 @@
 			// See if we have scanned the archive before
 			if (!archive) {
 				
-				NSLog(@"no previous scan found, creating new object for path: %@", path);
-				
 				// No previous scan found, create a new object
 				archive = [[ACArchive alloc] initWithPath:archiveName];
 				[pathObject addArchive:archive withFilename:filename];
@@ -259,20 +257,32 @@
                  size:(size_t)size 
                offset:(off_t)offset
                 error:(NSError **)error {
-	ACLog(@"readFileAtPath: offset: %qi, size: %d path: %@", offset, size, path);
+	//ACLog(@"readFileAtPath: offset: %qi, size: %d path: %@", offset, size, path);
 	if ([userData isKindOfClass:[ACArchiveEntry class]]) {
 		int i = 0;
 		
 		ACArchiveEntry *entry = userData;
 		XADHandle *handle = entry.handle;
 		
-		// Sometimes when the offset is larger than the first file in the archive, 
-		// it will read past the end of the file and throw an exception.
-		// Seems to happens when offset jumps from 0 to large number
-		// pointing to archive of high number.
-		// ToDo: Figure out why, and how to handle it
+		// Since seeking is very slow for some archives when the offset
+		// is high, I've implemented a custom search method in
+		// CSBlockStreamHandle (parent of CSSubHandle) that times out
+		// ToDo: Find a faster way to seek! Don't know if 
+		// XADMaster is capable of that though.
 		@try {
-			[handle seekToFileOffset:offset];
+			if ([handle isKindOfClass:[CSSubHandle class]]) {
+				CSSubHandle *h = (CSSubHandle*)handle;
+				
+				BOOL seekSuccessful = [h transpRAR_seekToFileOffset:offset timeout:2 checkEvery:10];
+				if (!seekSuccessful) {
+					NSLog(@"Error: Seeking timed out for (%@). The RAR format of the archive seems to be difficult to seek through.", [path lastPathComponent]);
+					return 0;
+				}
+				
+			} else {
+				[handle seekToFileOffset:offset];
+			}
+
 			i = [handle readAtMost:size toBuffer:buffer];
 		}
 		@catch (NSException *exception) {

@@ -1,5 +1,8 @@
 #import "CSSubHandle.h"
 
+// TranspRAR
+#import "CSBlockStreamHandle.h"
+
 @implementation CSSubHandle
 
 -(id)initWithHandle:(CSHandle *)handle from:(off_t)from length:(off_t)length
@@ -60,6 +63,20 @@
 	if(offs<0) [self _raiseNotSupported:_cmd];
 	if(offs>end) [self _raiseEOF];
 	[parent seekToFileOffset:offs+start];
+}
+
+// TranspRAR seek
+- (BOOL)transpRAR_seekToFileOffset:(off_t)offs timeout:(NSTimeInterval)timeout checkEvery:(int)checkEvery {
+	if(offs<0) [self _raiseNotSupported:_cmd];
+	if(offs>end) [self _raiseEOF];
+	
+	if ([parent isKindOfClass:[CSBlockStreamHandle class]]) {
+		CSBlockStreamHandle *h = (CSBlockStreamHandle*)parent;
+		return [h transpRAR_seekToFileOffset:offs+start timeout:timeout checkEvery:checkEvery];
+	} 
+	
+	[parent seekToFileOffset:offs+start];
+	return YES;
 }
 
 -(void)seekToEndOfFile

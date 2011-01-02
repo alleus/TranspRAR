@@ -10,6 +10,9 @@
 	BOOL _endofblocks;
 }
 
+// TranspRAR seek
+-(BOOL)transpRAR_seekToFileOffset:(off_t)offs timeout:(NSTimeInterval)timeout checkEvery:(int)checkEvery;
+
 // Intializers
 -(id)initWithName:(NSString *)descname length:(off_t)length;
 -(id)initWithHandle:(CSHandle *)handle length:(off_t)length bufferSize:(int)buffersize;

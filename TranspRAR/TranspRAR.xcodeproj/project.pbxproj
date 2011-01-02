@@ -175,6 +175,8 @@
 		8D1107320486CEB800E47090 /* TranspRAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranspRAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F0902712D0295A00941C48 /* CSBlockStreamHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSBlockStreamHandle.m; path = ../XADMaster/CSBlockStreamHandle.m; sourceTree = SOURCE_ROOT; };
 		B2F0904812D02BDB00941C48 /* CSBlockStreamHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSBlockStreamHandle.h; path = ../XADMaster/CSBlockStreamHandle.h; sourceTree = SOURCE_ROOT; };
+		B2F0909E12D0335300941C48 /* CSSubHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSSubHandle.h; path = ../XADMaster/CSSubHandle.h; sourceTree = SOURCE_ROOT; };
+		B2F0909F12D0335300941C48 /* CSSubHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CSSubHandle.m; path = ../XADMaster/CSSubHandle.m; sourceTree = SOURCE_ROOT; };
 		FFA311CE0EE5160400FF2904 /* TranspRAR.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TranspRAR.icns; sourceTree = "<group>"; };
 		FFA311D00EE5167200FF2904 /* MacFUSE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacFUSE.framework; path = /Library/Frameworks/MacFUSE.framework; sourceTree = "<absolute>"; };
 		FFD925BE0EE507A800A7B2B2 /* TranspRAR_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Controller.h; sourceTree = "<group>"; };
@@ -326,6 +328,8 @@
 		B2F0901512D028F700941C48 /* XAD Mods */ = {
 			isa = PBXGroup;
 			children = (
+				B2F0909E12D0335300941C48 /* CSSubHandle.h */,
+				B2F0909F12D0335300941C48 /* CSSubHandle.m */,
 				B2F0904812D02BDB00941C48 /* CSBlockStreamHandle.h */,
 				B2F0902712D0295A00941C48 /* CSBlockStreamHandle.m */,
 			);

@@ -41,7 +41,50 @@ static inline int imin(int a,int b) { return a<b?a:b; }
 
 -(void)skipToNextBlock { [self seekToFileOffset:_blockstartpos+_blocklength]; }
 
+/* TranspRAR
+ Checks for timeouts to avoid long seek times 
+ Returns NO if seek timed out
+ */
 
+
+-(BOOL)transpRAR_seekToFileOffset:(off_t)offs timeout:(NSTimeInterval)timeout checkEvery:(int)checkEvery 
+{
+	if(![self _prepareStreamSeekTo:offs]) return YES;
+	
+	if(offs<_blockstartpos) [super seekToFileOffset:0];
+	
+	NSTimeInterval startTime = [NSDate timeIntervalSinceReferenceDate]; // Seek start time
+	
+	int i = 0;
+	
+	BOOL timedOut = NO;
+	
+	while(_blockstartpos+_blocklength<=offs)
+	{
+		i++;
+		if (i == checkEvery) {
+			i = 0;
+			
+			// Check if we have timed out
+			if ([NSDate timeIntervalSinceReferenceDate] - startTime > timeout) {
+				timedOut = YES;
+				break; 
+			}
+		}
+	
+		[self _readNextBlock];
+		if(endofstream)
+		{
+			if(offs==_blockstartpos) break;
+			else [self _raiseEOF];
+		}
+	}
+	
+	streampos=offs;
+	
+	return timedOut;
+}
+ 
 
 -(void)seekToFileOffset:(off_t)offs
 {
