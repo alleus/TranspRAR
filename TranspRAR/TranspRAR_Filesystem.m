@@ -159,7 +159,7 @@
 				// If the parser locks up, this will return after a specified timeout.
 				[archive parse];
 				// Attempt to close the parser (if there are any entry handlers, it won't close)
-				[archive closeParser];
+				//[archive closeParser];
 			}
 			
 			// Add all files contained in the archive (if any were added in the parsing) to the return array
@@ -216,12 +216,12 @@
                   mode:(int)mode
               userData:(id *)userData
                  error:(NSError **)error {
+	ACLog(@"[FileSystem] openFileAtPath: %@", [path lastPathComponent]);
+	
 	NSString *realPath = [rootPath stringByAppendingString:path];
 	ACArchiveEntry *entry = [self archiveEntryForPath:path];
-	
 	if (entry) {
 		*userData = entry;
-		
 		if (entry.handle != nil) {
 			return YES;
 		} else {
@@ -235,13 +235,13 @@
 			*error = [NSError errorWithPOSIXCode:errno];
 			return NO;
 		}
-		
 		*userData = [NSNumber numberWithLong:fd];
 		return YES;
 	}
 }
 
 - (void)releaseFileAtPath:(NSString *)path userData:(id)userData {
+	ACLog(@"[FileSystem] releaseFileAtPath: %@", [path lastPathComponent]);
 	if ([userData isKindOfClass:[ACArchiveEntry class]]) {
 		ACArchiveEntry *entry = userData;
 		[entry closeHandle];
@@ -259,7 +259,7 @@
                  size:(size_t)size 
                offset:(off_t)offset
                 error:(NSError **)error {
-	//ACLog(@"readFileAtPath: offset: %d, size: %d path: %@", offset, size, path);
+	ACLog(@"readFileAtPath: offset: %qi, size: %d path: %@", offset, size, path);
 	if ([userData isKindOfClass:[ACArchiveEntry class]]) {
 		int i = 0;
 		
@@ -273,9 +273,8 @@
 		// ToDo: Figure out why, and how to handle it
 		@try {
 			[handle seekToFileOffset:offset];
-			i = [handle readAtMost:size toBuffer:buffer];		
+			i = [handle readAtMost:size toBuffer:buffer];
 		}
-		
 		@catch (NSException *exception) {
 			NSLog(@"readFileAtPath: offset: %d, size: %d path: %@", offset, size, path);
 			NSLog(@"Caught %@: %@", [exception name], [exception reason]);

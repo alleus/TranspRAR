@@ -65,6 +65,7 @@ static BOOL debugLogging;
   [options addObject:volArg];
   [options addObject:@"volname=TranspRAR"];
   [options addObject:@"rdonly"];
+  //[options addObject:@"debug"];
   [fs_ mountAtPath:mountPath withOptions:options];
 	
 	[self startServer];

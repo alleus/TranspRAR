@@ -51,13 +51,13 @@
 		if (!attributes) {
 			attributes = [[NSMutableDictionary alloc] init];
 			
-			//[attributes setObject:[parserDictionary objectForKey:XADFileSizeKey] forKey:NSFileSize];
+			[attributes setObject:[parserDictionary objectForKey:XADFileSizeKey] forKey:NSFileSize];
 			
 			// Archives with compression method other than 48 (like 51) seem
 			// to hang the XAD lib on seeking. Therefore,
 			// ignore those files (zero file size). Better safe than sorry 
 			// until a solution is found.
-			
+			/*
 			 NSNumber *fileSize = [parserDictionary objectForKey:XADFileSizeKey];
 			 
 			 NSNumber *compressionMethod = [parserDictionary objectForKey:@"RARCompressionMethod"];
@@ -70,6 +70,7 @@
 				 fileSize = [NSNumber numberWithInt:0];
 			 
 			 [attributes setObject:fileSize forKey:NSFileSize];
+			 */
 			 
 			[attributes setObject:[parserDictionary objectForKey:XADLastModificationDateKey] forKey:NSFileModificationDate];
 			if ([[parserDictionary objectForKey:XADIsDirectoryKey] boolValue]) {

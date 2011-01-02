@@ -92,9 +92,6 @@
 			
 			ACLog(@" - Parsing: %@", [path lastPathComponent]);
 			
-			
-			
-			
 		
 			[self startParser];
 			hasParsed = YES;
@@ -121,33 +118,18 @@
 	return hasParsed;
 }
 
-- (BOOL)closeParser {
-	
-	BOOL busy = NO;
-	/*
-	NSArray *allEntries = [entries allValues];
-	for (ACArchiveEntry *entry in allEntries) {
-		if (entry.handlePresent) {
-			busy = YES;
-			break;
-		}
-	}
-	 */
-	
-	if (!busy) {
-		//[self performSelectorOnMainThread:@selector(startCloseTimer) withObject:nil waitUntilDone:YES];
-		[self forceCloseParser:nil];
-	}
-	
-	return !busy;
+- (BOOL)closeParser {	
+	return YES;
 }
 
 - (void)startCloseTimer {
+	/*
 	return;
 	ACLog(@"Scheduling closing of archive parser in %f seconds for %@", kCloseTimerInterval, [path lastPathComponent]);
 	[closeTimer invalidate];
 	[closeTimer release];
 	closeTimer = [[NSTimer scheduledTimerWithTimeInterval:kCloseTimerInterval target:self selector:@selector(forceCloseParser:) userInfo:nil repeats:NO] retain];
+	 */
 }
 
 - (void)forceCloseParser:(NSTimer *)timer {
@@ -178,21 +160,15 @@
 #pragma mark Private methods
 
 - (void)startParser {
-	NSLog(@"startParser: begin");
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	@try {
-		NSLog(@"1");
 		[parser parse];
-		//[parser performSelectorOnMainThread:@selector(parse) withObject:nil waitUntilDone:YES];
-		NSLog(@"2");
 	}
 	@catch (NSException *e) {
 		NSLog(@" - Could not parse archive %@", [path lastPathComponent]);
 		NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
-		//hasParsed = NO;
 	}	
 	[pool release];
-	NSLog(@"startParser: end");
 }
 
 
