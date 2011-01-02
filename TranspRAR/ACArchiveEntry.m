@@ -31,6 +31,7 @@
 	attributes = nil;
 	[parserDictionary release];
 	parserDictionary = nil;
+	[handle close];
 	[handle release];
 	handle = nil;
 	archive = nil;
@@ -97,9 +98,6 @@
 		}
 	
 	}
-	// Parse archive (if needed)
-	[archive parse];
-		
 	
 	return handle;
 }

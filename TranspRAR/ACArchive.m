@@ -41,8 +41,6 @@
 - (id)init {
 	if ((self = [super init])) {
 		entries = [[NSMutableDictionary alloc] init];
-		//parserLock = [[NSLock alloc] init];
-		//parserTimeoutLock = [[NSConditionLock alloc] initWithCondition:0];
 	}
 	return self;
 }
@@ -75,25 +73,51 @@
 
 - (BOOL)parse {
 	
-	if (hasParsed)
-		return;
-	
-	// Make sure parser exists
-	self.parser;
-	
 	@synchronized(self) {
 		if (!hasParsed) {
+			
+			// Create parser if not exising
+			if (!parser) {
+				@try {
+					ACLog(@"Creating archive parser for %@", [path lastPathComponent]);
+					parser = [[XADArchiveParser archiveParserForPath:path] retain];
+					[parser setDelegate:self];
+				}
+				@catch (NSException * e) {
+					NSLog(@" - Could not create archive parser for %@", [path lastPathComponent]);
+					NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
+				}
+			}
+			
+			
 			ACLog(@" - Parsing: %@", [path lastPathComponent]);
+			
+			
+			
+			
 		
 			[self startParser];
+			hasParsed = YES;
 			
 			if(hasParsed) {
 				ACLog(@" - Parsing %@ complete, %d entries in archive.", [path lastPathComponent], [entries count]);
 			} else {
 				ACLog(@" - Parsing %@ failed.", [path lastPathComponent]);
 			}
+			
+			
+			//[parser release];
+			//parser = nil;
 		}
+		
+		/*
+		[[parser handle] close];
+		[parser release];
+		parser = nil;
+		 */
 	}
+	
+	
 	return hasParsed;
 }
 
@@ -143,27 +167,9 @@
 
 
 #pragma mark -
-#pragma mark Custom property getters
+#pragma mark Parser
 
 - (XADArchiveParser *)parser {
-	@synchronized(self) {
-		if (!parser) {
-			@try {
-				ACLog(@"Creating archive parser for %@", [path lastPathComponent]);
-				parser = [[XADArchiveParser archiveParserForPath:path] retain];
-				[parser setDelegate:self];
-			}
-			@catch (NSException * e) {
-				NSLog(@" - Could not create archive parser for %@", [path lastPathComponent]);
-				NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
-			}
-		} else if (closeTimer != nil) {
-			ACLog(@"Canceling previously scheduled close for %@", [path lastPathComponent]);
-			[closeTimer invalidate];
-			[closeTimer release];
-			closeTimer = nil;
-		}
-	}
 	return parser;
 }
 
@@ -173,7 +179,6 @@
 
 - (void)startParser {
 	NSLog(@"startParser: begin");
-	hasParsed = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	@try {
 		NSLog(@"1");
