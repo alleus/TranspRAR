@@ -39,7 +39,7 @@
 }
 
 - (void)closeHandle {
-	ACLog(@"Closing archive entry handler for %@ in %@", filename, archive.path);
+	ACLog(@"Closing archive entry handler for %@ in %@", filename, [archive.path lastPathComponent]);
 	[handle close];
 	[handle release];
 	handle = nil;
@@ -70,7 +70,6 @@
 			 
 			 [attributes setObject:fileSize forKey:NSFileSize];
 			 
-			
 			[attributes setObject:[parserDictionary objectForKey:XADLastModificationDateKey] forKey:NSFileModificationDate];
 			if ([[parserDictionary objectForKey:XADIsDirectoryKey] boolValue]) {
 				[attributes setObject:NSFileTypeDirectory forKey:NSFileType];
@@ -79,6 +78,7 @@
 			}
 		}
 	}
+	
 	return attributes;
 }
 
@@ -86,18 +86,21 @@
 	@synchronized(self) {
 		if (!handle) {
 			@try {
-				ACLog(@"Creating archive entry handler for %@ in %@", filename, archive.path);
-				// Parse archive (if needed)
-				[archive parse];
+				ACLog(@"Creating archive entry handler for %@ in %@", filename, [archive.path lastPathComponent]);
 				// Create the handle
 				handle = [[archive.parser handleForEntryWithDictionary:self.parserDictionary wantChecksum:NO] retain];
 			}
 			@catch (NSException * e) {
-				NSLog(@" - Could not create archive entry handle for %@ in %@", filename, archive.path);
+				NSLog(@" - Could not create archive entry handle for %@ in %@", filename, [archive.path lastPathComponent]);
 				NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
 			}
 		}
+	
 	}
+	// Parse archive (if needed)
+	[archive parse];
+		
+	
 	return handle;
 }
 

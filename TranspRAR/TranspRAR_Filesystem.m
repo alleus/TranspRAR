@@ -144,8 +144,12 @@
 				[pathObject release];
 			}
 			
+			
 			// See if we have scanned the archive before
 			if (!archive) {
+				
+				NSLog(@"no previous scan found, creating new object for path: %@", path);
+				
 				// No previous scan found, create a new object
 				archive = [[ACArchive alloc] initWithPath:archiveName];
 				[pathObject addArchive:archive withFilename:filename];

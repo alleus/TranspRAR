@@ -41,26 +41,18 @@
 - (id)init {
 	if ((self = [super init])) {
 		entries = [[NSMutableDictionary alloc] init];
-		parserLock = [[NSLock alloc] init];
-		parserTimeoutLock = [[NSConditionLock alloc] initWithCondition:0];
+		//parserLock = [[NSLock alloc] init];
+		//parserTimeoutLock = [[NSConditionLock alloc] initWithCondition:0];
 	}
 	return self;
 }
 
 - (void)dealloc {
-	[closeTimer invalidate];
-	[closeTimer release];
-	closeTimer = nil;
-	[parserLock lock];
-	[entries release];
-	entries = nil;
-	[parserLock unlock];
-	[parserLock release];
-	parserLock = nil;
-	[parserTimeoutLock release];
-	parserTimeoutLock = nil;
 	[path release];
 	path = nil;
+	
+	[entries release];
+	entries = nil;
 	[parser release];
 	parser = nil;
 	
@@ -72,43 +64,43 @@
 #pragma mark Custom methods
 
 - (ACArchiveEntry *)entryWithFilename:(NSString *)filename {
-	[parserLock lock];
 	ACArchiveEntry *returnEntry = [entries objectForKey:filename];
-	[parserLock unlock];
 	return returnEntry;
 }
 
 - (NSArray *)entryFilenames {
-	[parserLock lock];
 	NSArray *returnArray = [entries allKeys];
-	[parserLock unlock];
 	return returnArray;
 }
 
 - (BOOL)parse {
-	if (!hasParsed) {
-		ACLog(@" - Parsing...");
-		NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:10.0];
+	
+	if (hasParsed)
+		return;
+	
+	// Make sure parser exists
+	self.parser;
+	
+	@synchronized(self) {
+		if (!hasParsed) {
+			ACLog(@" - Parsing: %@", [path lastPathComponent]);
 		
-		[self performSelectorInBackground:@selector(startParser) withObject:nil];
-		hasParsed = [parserTimeoutLock lockWhenCondition:1 beforeDate:timeoutDate];
-		if (hasParsed) {
-			[parserTimeoutLock unlock];
+			[self startParser];
+			
+			if(hasParsed) {
+				ACLog(@" - Parsing %@ complete, %d entries in archive.", [path lastPathComponent], [entries count]);
+			} else {
+				ACLog(@" - Parsing %@ failed.", [path lastPathComponent]);
+			}
 		}
-		
-		if(hasParsed) {
-			ACLog(@" - Parse complete, %d entries in archive.", [entries count]);
-		} else {
-			ACLog(@" - Parser timed out.");
-		}
-		
-		return hasParsed;
 	}
-	return YES;
+	return hasParsed;
 }
 
 - (BOOL)closeParser {
+	
 	BOOL busy = NO;
+	/*
 	NSArray *allEntries = [entries allValues];
 	for (ACArchiveEntry *entry in allEntries) {
 		if (entry.handlePresent) {
@@ -116,29 +108,37 @@
 			break;
 		}
 	}
+	 */
 	
 	if (!busy) {
-		[self performSelectorOnMainThread:@selector(startCloseTimer) withObject:nil waitUntilDone:YES];
+		//[self performSelectorOnMainThread:@selector(startCloseTimer) withObject:nil waitUntilDone:YES];
+		[self forceCloseParser:nil];
 	}
 	
 	return !busy;
 }
 
 - (void)startCloseTimer {
-	ACLog(@"Scheduling closing of archive parser in %f seconds for %@", kCloseTimerInterval, path);
+	return;
+	ACLog(@"Scheduling closing of archive parser in %f seconds for %@", kCloseTimerInterval, [path lastPathComponent]);
 	[closeTimer invalidate];
 	[closeTimer release];
 	closeTimer = [[NSTimer scheduledTimerWithTimeInterval:kCloseTimerInterval target:self selector:@selector(forceCloseParser:) userInfo:nil repeats:NO] retain];
 }
 
 - (void)forceCloseParser:(NSTimer *)timer {
-	ACLog(@"Closing archive parser for %@", path);
+	ACLog(@"Closing archive parser for %@", [path lastPathComponent]);
+	
+	/*
 	[[parser handle] close];
 	[parser release];
 	parser = nil;
+	 */
+	/*
 	hasParsed = NO;
 	[closeTimer release];
 	closeTimer = nil;
+	 */
 }
 
 
@@ -149,16 +149,16 @@
 	@synchronized(self) {
 		if (!parser) {
 			@try {
-				ACLog(@"Creating archive parser for %@", path);
+				ACLog(@"Creating archive parser for %@", [path lastPathComponent]);
 				parser = [[XADArchiveParser archiveParserForPath:path] retain];
 				[parser setDelegate:self];
 			}
 			@catch (NSException * e) {
-				NSLog(@" - Could not create archive parser for %@", path);
+				NSLog(@" - Could not create archive parser for %@", [path lastPathComponent]);
 				NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
 			}
 		} else if (closeTimer != nil) {
-			ACLog(@"Canceling previously scheduled close for %@", path);
+			ACLog(@"Canceling previously scheduled close for %@", [path lastPathComponent]);
 			[closeTimer invalidate];
 			[closeTimer release];
 			closeTimer = nil;
@@ -172,19 +172,22 @@
 #pragma mark Private methods
 
 - (void)startParser {
+	NSLog(@"startParser: begin");
+	hasParsed = YES;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	[parserTimeoutLock lock];
 	@try {
-		[self.parser parse];
+		NSLog(@"1");
+		[parser parse];
+		//[parser performSelectorOnMainThread:@selector(parse) withObject:nil waitUntilDone:YES];
+		NSLog(@"2");
 	}
 	@catch (NSException *e) {
-		NSLog(@" - Could not parse archive %@", path);
+		NSLog(@" - Could not parse archive %@", [path lastPathComponent]);
 		NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
+		//hasParsed = NO;
 	}	
-	if (![parserTimeoutLock tryLock]) {
-		[parserTimeoutLock unlockWithCondition:1];
-	}
 	[pool release];
+	NSLog(@"startParser: end");
 }
 
 
@@ -194,14 +197,15 @@
 -(void)archiveParser:(XADArchiveParser *)theParser foundEntryWithDictionary:(NSDictionary *)dict {
 	NSString *filename = [[dict objectForKey:XADFileNameKey] string];
 	
+	NSLog(@"found entry with dictionary: %@", dict);
+	
 	if (![entries objectForKey:filename]) {
 		ACArchiveEntry *entry = [[ACArchiveEntry alloc] initWithFilename:filename];
 		entry.parserDictionary = dict;
 		entry.archive = self;
-		
-		[parserLock lock];
+	
 		[entries setObject:entry forKey:filename];
-		[parserLock unlock];
+
 		[entry release];
 	}
 }
