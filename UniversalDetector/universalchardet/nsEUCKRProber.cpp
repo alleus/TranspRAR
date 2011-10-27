@@ -39,7 +39,7 @@
 
 void  nsEUCKRProber::Reset(void)
 {
-  mCodingSM->Reset(); 
+  mCodingSM->Reset();
   mState = eDetecting;
   mDistributionAnalyser.Reset();
   //mContextAnalyser.Reset();

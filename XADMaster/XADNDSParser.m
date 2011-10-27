@@ -251,7 +251,7 @@ static void AppendPNGChunk(NSMutableData *data,uint32_t chunktype,uint8_t *bytes
 							[NSNumber numberWithUnsignedLong:start],XADDataOffsetKey,
 							[NSNumber numberWithInt:currid],@"NDSFileID",
 						nil]];
-						
+
 						[fh seekToFileOffset:pos];
 					}
 					else NSLog(@"Error parsing nitro file entry");

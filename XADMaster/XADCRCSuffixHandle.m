@@ -60,7 +60,7 @@ CRCSize:(int)crcbytes bigEndianCRC:(BOOL)bigendian CRCTable:(const uint32_t *)cr
 -(BOOL)isChecksumCorrect
 {
 	if([parent hasChecksum]&&![parent isChecksumCorrect]) return NO;
-	if(![parent atEndOfFile]) return NO; 
+	if(![parent atEndOfFile]) return NO;
 
 	if(crcparent)
 	{

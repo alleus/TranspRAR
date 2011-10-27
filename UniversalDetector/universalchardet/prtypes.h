@@ -161,7 +161,7 @@ PR_BEGIN_EXTERN_C
 **              PRInt8
 ** DESCRIPTION:
 **  The int8 types are known to be 8 bits each. There is no type that
-**      is equivalent to a plain "char". 
+**      is equivalent to a plain "char".
 ************************************************************************/
 #if PR_BYTES_PER_BYTE == 1
 typedef unsigned char PRUint8;
@@ -200,7 +200,7 @@ typedef signed char PRInt8;
 ** TYPES:       PRUint16
 **              PRInt16
 ** DESCRIPTION:
-**  The int16 types are known to be 16 bits each. 
+**  The int16 types are known to be 16 bits each.
 ************************************************************************/
 #if PR_BYTES_PER_SHORT == 2
 typedef unsigned short PRUint16;
@@ -225,7 +225,7 @@ typedef short PRInt16;
 ** TYPES:       PRUint32
 **              PRInt32
 ** DESCRIPTION:
-**  The int32 types are known to be 32 bits each. 
+**  The int32 types are known to be 32 bits each.
 ************************************************************************/
 #if PR_BYTES_PER_INT == 4
 typedef unsigned int PRUint32;
@@ -295,7 +295,7 @@ typedef PRInt64 PRUint64;
 **  The PRIntn types are most appropriate for automatic variables. They are
 **      guaranteed to be at least 16 bits, though various architectures may
 **      define them to be wider (e.g., 32 or even 64 bits). These types are
-**      never valid for fields of a structure. 
+**      never valid for fields of a structure.
 ************************************************************************/
 #if PR_BYTES_PER_INT >= 2
 typedef int PRIntn;
@@ -307,14 +307,14 @@ typedef unsigned int PRUintn;
 /************************************************************************
 ** TYPES:       PRFloat64
 ** DESCRIPTION:
-**  NSPR's floating point type is always 64 bits. 
+**  NSPR's floating point type is always 64 bits.
 ************************************************************************/
 typedef double          PRFloat64;
 
 /************************************************************************
 ** TYPES:       PRSize
 ** DESCRIPTION:
-**  A type for representing the size of objects. 
+**  A type for representing the size of objects.
 ************************************************************************/
 typedef size_t PRSize;
 
@@ -322,7 +322,7 @@ typedef size_t PRSize;
 /************************************************************************
 ** TYPES:       PROffset32, PROffset64
 ** DESCRIPTION:
-**  A type for representing byte offsets from some location. 
+**  A type for representing byte offsets from some location.
 ************************************************************************/
 typedef PRInt32 PROffset32;
 typedef PRInt64 PROffset64;
@@ -331,7 +331,7 @@ typedef PRInt64 PROffset64;
 ** TYPES:       PRPtrDiff
 ** DESCRIPTION:
 **  A type for pointer difference. Variables of this type are suitable
-**      for storing a pointer or pointer subtraction. 
+**      for storing a pointer or pointer subtraction.
 ************************************************************************/
 typedef ptrdiff_t PRPtrdiff;
 
@@ -339,7 +339,7 @@ typedef ptrdiff_t PRPtrdiff;
 ** TYPES:       PRUptrdiff
 ** DESCRIPTION:
 **  A type for pointer difference. Variables of this type are suitable
-**      for storing a pointer or pointer sutraction. 
+**      for storing a pointer or pointer sutraction.
 ************************************************************************/
 typedef unsigned long PRUptrdiff;
 
@@ -349,7 +349,7 @@ typedef unsigned long PRUptrdiff;
 **  Use PRBool for variables and parameter types. Use PR_FALSE and PR_TRUE
 **      for clarity of target type in assignments and actual arguments. Use
 **      'if (bool)', 'while (!bool)', '(bool) ? x : y' etc., to test booleans
-**      just as you would C int-valued conditions. 
+**      just as you would C int-valued conditions.
 ************************************************************************/
 typedef PRIntn PRBool;
 #define PR_TRUE 1
@@ -364,7 +364,7 @@ typedef PRIntn PRBool;
 typedef PRUint8 PRPackedBool;
 
 /*
-** Status code used by some routines that have a single point of failure or 
+** Status code used by some routines that have a single point of failure or
 ** special status return.
 */
 typedef enum { PR_FAILURE = -1, PR_SUCCESS = 0 } PRStatus;

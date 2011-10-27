@@ -15,7 +15,7 @@ class RangeCoder
     inline unsigned int GetChar();
 
     uint low, code, range;
-    struct SUBRANGE 
+    struct SUBRANGE
     {
       uint LowCount, HighCount, scale;
     } SubRange;

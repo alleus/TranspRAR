@@ -22,7 +22,7 @@
 	NSBundle		*classBundle;
 	//SUUpdater		*updater;
 	NSInvocation	*updateRelaunchInvocation;
-	
+
 	IBOutlet NSTextField	*statusLabel;
 	IBOutlet NSPopUpButton	*rootPathPopUp;
 	IBOutlet NSMenuItem		*rootPathMenuItem;
@@ -31,7 +31,7 @@
 	IBOutlet NSButton		*autoLaunchSwitch;
 	IBOutlet NSButton		*debugLoggingSwitch;
 	IBOutlet NSProgressIndicator	*progressIndicator;
-	
+
 	NSDistantObject<ACTranspRARServiceProtocol>	*serverObject;
 }
 

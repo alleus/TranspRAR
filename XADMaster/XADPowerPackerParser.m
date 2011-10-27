@@ -110,7 +110,7 @@ static NSData *PowerPackerUnpack(NSData *packeddata,int unpackedlength)
 		int index=GetBits(2,packed,&bitpos);
 		int numbits=packed[index];
 		int numbytes=index+2;
-		int offset; 
+		int offset;
 
 		if(numbytes==5) // 5 means >=5
 		{

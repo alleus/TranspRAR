@@ -108,7 +108,7 @@ static uint32_t AllocContextVariantH(PPMdSubAllocatorVariantH *self)
 	}
 
 	if(self->FreeList->next) return _PointerToOffset(self,RemoveNode(self,0));
- 
+
     return _AllocUnits(self,0);
 }
 

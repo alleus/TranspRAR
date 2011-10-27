@@ -20,16 +20,16 @@ const int N_INDEXES=N1+N2+N3+N4;
 #pragma pack(1)
 #endif
 
-struct RAR_MEM_BLK 
+struct RAR_MEM_BLK
 {
   ushort Stamp, NU;
   RAR_MEM_BLK* next, * prev;
-  void insertAt(RAR_MEM_BLK* p) 
+  void insertAt(RAR_MEM_BLK* p)
   {
     next=(prev=p)->next;
     p->next=next->prev=this;
   }
-  void remove() 
+  void remove()
   {
     prev->next=next;
     next->prev=prev;

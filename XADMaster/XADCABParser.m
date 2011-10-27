@@ -167,7 +167,7 @@ static CSHandle *FindHandleForName(NSData *namedata,NSString *dirname,NSArray *d
 			{
 				folderindex=0;
 			}
-			
+
 			if(folderindex>=head.numfolders) [XADException raiseIllegalDataException];
 			NSDictionary *folder=[folders objectAtIndex:folderindex];
 

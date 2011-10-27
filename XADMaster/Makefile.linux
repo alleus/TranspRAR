@@ -214,7 +214,7 @@ LIBRARY_C_FILES =	BWT.c \
 			lzma/Bra.c \
 			lzma/Lzma2Dec.c \
 
-LIBRARY_CXX_FILES =		
+LIBRARY_CXX_FILES =
 
 XADTEST2_FILES =	XADTest2.m
 
@@ -294,7 +294,7 @@ LIBRARY_FILES = 	libXADMaster.a
 .SUFFIXES: .o .m .c
 
 .m.o:
-	$(OBJCC) $(OBJCFLAGS) $< -o $@	
+	$(OBJCC) $(OBJCFLAGS) $< -o $@
 
 .c.o:
 	$(CC) $(CFLAGS) $< -o $@

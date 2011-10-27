@@ -60,7 +60,7 @@ void SHA1_Update_WithRARBug(SHA_CTX *ctx,void *bytes,unsigned long length,int bu
 		uint32_t c=ctx->h2;
 		uint32_t d=ctx->h3;
 		uint32_t e=ctx->h4;
-		
+
 		SHA1_Update(ctx,(void *)block,64);
 		GarbleBlock(block,a,b,c,d,e);
 	}

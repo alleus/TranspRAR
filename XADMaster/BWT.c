@@ -8,9 +8,9 @@
 void CalculateInverseBWT(uint32_t *transform,uint8_t *block,int blocklen)
 {
 	int counts[256]={0},cumulativecounts[256];
-	
+
 	for(int i=0;i<blocklen;i++) counts[block[i]]++;
-	
+
 	int total=0;
 	for(int i=0;i<256;i++)
 	{
@@ -18,7 +18,7 @@ void CalculateInverseBWT(uint32_t *transform,uint8_t *block,int blocklen)
 		total+=counts[i];
 		counts[i]=0;
 	}
-	
+
 	for(int i=0;i<blocklen;i++)
 	{
 		transform[cumulativecounts[block[i]]+counts[block[i]]]=i;

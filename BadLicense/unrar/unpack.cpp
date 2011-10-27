@@ -549,7 +549,7 @@ bool Unpack::AddVMCode(unsigned int FirstByte,byte *Code,int CodeSize)
   int StackPos=PrgStack.Size()-EmptyCount;
   PrgStack[StackPos]=StackFilter;
   StackFilter->ExecCount=Filter->ExecCount;
- 
+
   uint BlockStart=RarVM::ReadData(Inp);
   if (FirstByte & 0x40)
     BlockStart+=258;
@@ -783,7 +783,7 @@ void Unpack::UnpWriteBuf()
       }
     }
   }
-      
+
   UnpWriteArea(WrittenBorder,UnpPtr);
   WrPtr=UnpPtr;
 }
@@ -844,7 +844,7 @@ bool Unpack::ReadTables()
     return(PPM.DecodeInit(this,PPMEscChar));
   }
   UnpBlockType=BLOCK_LZ;
-  
+
   PrevLowDist=0;
   LowDistRepCount=0;
 

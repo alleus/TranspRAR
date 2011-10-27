@@ -28,13 +28,13 @@ void RangeCoder::InitDecoder(Unpack *UnpackRead)
 }
 
 
-inline int RangeCoder::GetCurrentCount() 
+inline int RangeCoder::GetCurrentCount()
 {
   return (code-low)/(range /= SubRange.scale);
 }
 
 
-inline uint RangeCoder::GetCurrentShiftCount(uint SHIFT) 
+inline uint RangeCoder::GetCurrentShiftCount(uint SHIFT)
 {
   return (code-low)/(range >>= SHIFT);
 }

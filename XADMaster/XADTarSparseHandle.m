@@ -15,12 +15,12 @@
 		regions[ 0 ].offset = 0;
 		regions[ 0 ].hasData = YES;
 		regions[ 0 ].dataOffset = 0;
-		
+
 		numRegions = 1;
 		currentOffset = 0;
 		currentRegion = 0;
 		realFileSize = size;
-		
+
 	}
 	return( self );
 }
@@ -84,7 +84,7 @@
 	if( start + length >= regions[ inRegion ].offset + regions[ inRegion ].size )
 	{
 		//fprintf( stderr, "s: %d; l: %d; iro:%d; irs: %d; s1: %d, s2: %d (i: %d)\n", start, length, regions[ inRegion ].offset, regions[ inRegion ].size, start + length, regions[ inRegion ].offset + regions[ inRegion ].size, [self regionIndexForOffset:start] );
-		
+
 		[NSException raise:NSInvalidArgumentException format:@"Attempted to add sparse region over region boundary."];
 	}
 
@@ -124,7 +124,7 @@
 	}
 
 	XADTarSparseRegion inRegion = regions[ [self regionIndexForOffset:([self fileSize] - 1)] ];
-	
+
 	// Make a new region.
 	regions = reallocf( regions, sizeof( XADTarSparseRegion ) * ( numRegions + 1 ) );
 
@@ -222,7 +222,7 @@
 	//	fprintf( stderr, "Seeking: %d.\n", regions[ currentRegion ].dataOffset );
 		[parent seekToFileOffset:regions[ currentRegion ].dataOffset];
 	}
-	
+
 	// Fill the buffer with data.
 	memset( buffer, 0, num );
 	long positionInBuffer = 0;
@@ -263,7 +263,7 @@
 			positionInBuffer = num;
 		}
 	}
-	
+
 // 	fprintf( stderr, "Readatmost okay, read %d.\n", positionInBuffer );
 
 	return( positionInBuffer );

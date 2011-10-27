@@ -584,7 +584,7 @@
 	{
 		code=[filtercode objectAtIndex:num];
 	}
-  
+
 	// Read data section.
 	NSMutableData *data=nil;
 	if(flags&8)
