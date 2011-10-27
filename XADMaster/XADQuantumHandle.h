@@ -15,7 +15,7 @@ typedef struct QuantumModelSymbol
 
 typedef struct QuantumModel
 {
-	int numsymbols,shiftsleft; 
+	int numsymbols,shiftsleft;
 	QuantumModelSymbol symbols[65];
 } QuantumModel;
 

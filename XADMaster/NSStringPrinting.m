@@ -67,7 +67,7 @@
 	[self getCharacters:buffer range:NSMakeRange(0,length)];
 
 	int bufsize=WideCharToMultiByte(GetConsoleOutputCP(),0,buffer,length,NULL,0,NULL,NULL);
-	char mbuffer[bufsize]; 
+	char mbuffer[bufsize];
 	WideCharToMultiByte(GetConsoleOutputCP(),0,buffer,length,mbuffer,bufsize,NULL,NULL);
 
 	fwrite(mbuffer,bufsize,1,fh);

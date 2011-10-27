@@ -141,7 +141,7 @@
 {
 	for( int i = 0; i < num; i++ )
 	{
-		
+
 		off_t regionOffset = [XADTarParser readOctalNumberInRangeFromBuffer:NSMakeRange(24*i,12) buffer:header];
 		off_t regionLength = [XADTarParser readOctalNumberInRangeFromBuffer:NSMakeRange(24*i+12,12) buffer:header];
 
@@ -163,7 +163,7 @@
 	[header getBytes:name range:NSMakeRange(0,100)];
 	name[100] = '\000';
 	[dict setObject:[self XADPathWithCString:name separators:XADUnixPathSeparator] forKey:XADFileNameKey];
-	
+
 	unsigned int mode = [XADTarParser readOctalNumberInRangeFromBuffer:NSMakeRange(100,8) buffer:header];
 	[dict setObject:[NSNumber numberWithInt:mode] forKey:XADPosixPermissionsKey];
 
@@ -189,8 +189,8 @@
 
 	char typeFlag;
 	[header getBytes:&typeFlag range:NSMakeRange(156,1)];
-	
-	// There are only two type flags that tar, in general, supports.	
+
+	// There are only two type flags that tar, in general, supports.
 	// "Directory"
 	if( typeFlag == '5' )
 	{
@@ -256,7 +256,7 @@
 		key[read_length] = '\0';
 		char value[max_len - read_length + 1];
 		memcpy( value, key_val_pair + read_length + 1, (max_len - read_length) );
-		value[(max_len - read_length)] = '\0';		
+		value[(max_len - read_length)] = '\0';
 
 		// Check keys and add proper value to dict.
 		// Accessed/Created/Last Modified
@@ -283,7 +283,7 @@
 		else if( strcmp( key, "gid" ) == 0 ) {
 			[dict setObject:[NSNumber numberWithInt:[XADTarParser longFromCString:value]] forKey:XADPosixGroupKey];
 		}
-		
+
 		// File path and link path.
 		else if( strcmp( key, "path" ) == 0 ) {
 			[dict setObject:[self XADPathWithCString:value encodingName:XADUTF8StringEncodingName separators:XADUnixPathSeparator] forKey:XADFileNameKey];
@@ -319,7 +319,7 @@
 	[header getBytes:groupName range:NSMakeRange(297,32)];
 	groupName[32] = '\000';
 	[dict setObject:[self XADStringWithCString:groupName] forKey:XADPosixGroupNameKey];
-	
+
 	unsigned int devMajor = [XADTarParser readOctalNumberInRangeFromBuffer:NSMakeRange(329,8) buffer:header];
 
 	unsigned int devMinor = [XADTarParser readOctalNumberInRangeFromBuffer:NSMakeRange(337,8) buffer:header];
@@ -424,7 +424,7 @@
 		memset( longHeaderBytes, '\0', size );
 		[longHeader getBytes:longHeaderBytes range:NSMakeRange(0,size - 1)];
 		[handle seekToFileOffset:offset];
-		
+
 		// Prepare a new dictionary with the next header.
 		NSData *header = [handle readDataOfLength:512];
 		[dict removeAllObjects];
@@ -443,20 +443,20 @@
 	// Sparse header?
 	if( typeFlag == 'S' ) {
 		// For now, pass out a "Not supported".
-		
+
 // 		// Get and store real size.
 // 		off_t size = [XADTarParser readOctalNumberInRangeFromBuffer:NSMakeRange(483,12) buffer:header];
 // 		[dict setObject:[NSNumber numberWithLongLong:size] forKey:XADFileSizeKey];
 // 		[dict setObject:[NSNumber numberWithLongLong:size] forKey:XADDataLengthKey];
-// 
+//
 // 		// Set up sparse map storage.
 		[dict setObject:[NSNumber numberWithBool:YES] forKey:@"TARIsSparseFile"];
 // 		[dict setObject:[[NSMutableArray alloc] init] forKey:@"TARSparseRegionOffsets"];
 // 		[dict setObject:[[NSMutableArray alloc] init] forKey:@"TARSparseRegionLengths"];
-// 		
+//
 // 		NSData* sparseMap = [header subdataWithRange:NSMakeRange(386,96)];
 // 		[self parseSparseHeadersFromData:sparseMap numHeaders:4 toDict:dict];
-// 
+//
 // 		// Handle extended sparse headers.
 // 		char hasExtended;
 // 		[header getBytes:&hasExtended range:NSMakeRange(482,1)];
@@ -485,13 +485,13 @@
 {
 	// Reset global current header for posix.2001;
 	currentGlobalHeader = [NSData data];
-	
+
 	CSHandle *handle = [self handle];
 
 	// Be a little more memory-efficient.
 
 	NSData *header = [handle readDataOfLength:512];
-		
+
 	int tarFormat = [XADTarParser getTarType:header];
 
 	BOOL isArchiverOver = NO;
@@ -530,7 +530,7 @@
 		// Read next header.
 		if([handle atEndOfFile]) break;
 		header = [handle readDataOfLength:512];
-		
+
 		// See if the first byte is \0. This should mean that the archive is now over.
 		char firstByte = 1;
 		[header getBytes:&firstByte length:1];
@@ -546,9 +546,9 @@
 	if( [[dict objectForKey:@"TARIsSparseFile"] boolValue] ) {
 		// Just return nil.
 		return( nil );
-	
+
 // 		XADTarSparseHandle* sparseHandle = [[XADTarSparseHandle alloc] initWithHandle:retHandle size:[[dict objectForKey:XADDataLengthKey] longValue]];
-// 		NSArray* offsets = [dict objectForKey:@"TARSparseRegionOffsets"];	
+// 		NSArray* offsets = [dict objectForKey:@"TARSparseRegionOffsets"];
 // 		NSArray* lengths = [dict objectForKey:@"TARSparseRegionLengths"];
 // 		int sparseRegionCount = [offsets count];
 // 		for( int i = 0; i < sparseRegionCount; i++ ) {

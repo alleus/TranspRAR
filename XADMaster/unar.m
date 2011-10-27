@@ -259,7 +259,7 @@ int main(int argc,const char **argv)
 			[unarchiver setMacResourceForkStyle:forkstyle];
 
 			[unarchiver setDelegate:[[[Unarchiver alloc] init] autorelease]];
-			
+
 			[@"\n" print];
 
 			XADError parseerror=[unarchiver parseAndUnarchive];

@@ -59,7 +59,7 @@ public:
 #endif
 
 protected:
-  
+
   nsProbingState mState;
   char mLastCharClass;
   PRUint32 mFreqCounter[FREQ_CAT_NUM];

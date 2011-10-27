@@ -140,7 +140,7 @@ class Unpack:private BitInput
     unsigned int LastDist,LastLength;
 
     unsigned int UnpPtr,WrPtr;
-    
+
     int ReadTop;
     int ReadBorder;
 

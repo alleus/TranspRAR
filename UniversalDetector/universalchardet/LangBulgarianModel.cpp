@@ -45,7 +45,7 @@
 *****************************************************************/
 
 //Character Mapping Table:
-//this talbe is modified base on win1251BulgarianCharToOrderMap, so 
+//this talbe is modified base on win1251BulgarianCharToOrderMap, so
 //only number <64 is sure valid
 
 unsigned char Latin5_BulgarianCharToOrderMap[] =
@@ -88,13 +88,13 @@ unsigned char win1251BulgarianCharToOrderMap[] =
   7,  8,  5, 19, 29, 25, 22, 21, 27, 24, 17, 75, 52,253, 42, 16,  //f0
 };
 
-//Model Table: 
+//Model Table:
 //total sequences: 100%
 //first 512 sequences: 96.9392%
 //first 1024 sequences:3.0618%
 //rest  sequences:     0.2992%
-//negative sequences:  0.0020% 
-char BulgarianLangModel[] = 
+//negative sequences:  0.0020%
+char BulgarianLangModel[] =
 {
 0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,3,3,3,3,3,3,3,3,2,3,3,3,3,3,
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,3,3,3,2,2,3,2,2,1,2,2,
@@ -226,7 +226,7 @@ char BulgarianLangModel[] =
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 };
 
-SequenceModel Latin5BulgarianModel = 
+SequenceModel Latin5BulgarianModel =
 {
   Latin5_BulgarianCharToOrderMap,
   BulgarianLangModel,
@@ -235,7 +235,7 @@ SequenceModel Latin5BulgarianModel =
   "ISO-8859-5"
 };
 
-SequenceModel Win1251BulgarianModel = 
+SequenceModel Win1251BulgarianModel =
 {
   win1251BulgarianCharToOrderMap,
   BulgarianLangModel,

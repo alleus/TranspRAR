@@ -64,16 +64,16 @@ nsUniversalDetector::nsUniversalDetector(PRUint32 aLanguageFilter)
     mCharSetProbers[i] = nsnull;
 }
 
-nsUniversalDetector::~nsUniversalDetector() 
+nsUniversalDetector::~nsUniversalDetector()
 {
   for (PRInt32 i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
-    if (mCharSetProbers[i])      
+    if (mCharSetProbers[i])
       delete mCharSetProbers[i];
   if (mEscCharSetProber)
     delete mEscCharSetProber;
 }
 
-void 
+void
 nsUniversalDetector::Reset()
 {
   mDone = PR_FALSE;
@@ -101,7 +101,7 @@ nsUniversalDetector::Reset()
 
 nsresult nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
 {
-  if(mDone) 
+  if(mDone)
     return NS_OK;
 
   if (aLen > 0)
@@ -151,12 +151,12 @@ nsresult nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
         return NS_OK;
       }
   }
-  
+
   PRUint32 i;
   for (i = 0; i < aLen; i++)
   {
     //other than 0xa0, if every othe character is ascii, the page is ascii
-    if (aBuf[i] & '\x80' && aBuf[i] != '\xA0')  //Since many Ascii only page contains NBSP 
+    if (aBuf[i] & '\x80' && aBuf[i] != '\xA0')  //Since many Ascii only page contains NBSP
     {
       //we got a non-ascii byte (high-byte)
       if (mInputState != eHighbyte)
@@ -184,7 +184,7 @@ nsresult nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
           if (nsnull == mCharSetProbers[1])
             return NS_ERROR_OUT_OF_MEMORY;
         }
-        mCharSetProbers[2] = new nsLatin1Prober; 
+        mCharSetProbers[2] = new nsLatin1Prober;
         if (nsnull == mCharSetProbers[2])
           return NS_ERROR_OUT_OF_MEMORY;
       }
@@ -224,13 +224,13 @@ nsresult nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
       if (mCharSetProbers[i])
       {
         st = mCharSetProbers[i]->HandleData(aBuf, aLen);
-        if (st == eFoundIt) 
+        if (st == eFoundIt)
         {
           mDone = PR_TRUE;
           mDetectedCharset = mCharSetProbers[i]->GetCharSetName();
           return NS_OK;
         }
-      } 
+      }
     }
     break;
 
@@ -246,7 +246,7 @@ void nsUniversalDetector::DataEnd()
 {
   if (!mGotData)
   {
-    // we haven't got any data yet, return immediately 
+    // we haven't got any data yet, return immediately
     // caller program sometimes call DataEnd before anything has been sent to detector
     return;
   }
@@ -257,7 +257,7 @@ void nsUniversalDetector::DataEnd()
     Report(mDetectedCharset);
     return;
   }
-  
+
   switch (mInputState)
   {
   case eHighbyte:

@@ -56,7 +56,7 @@
 				repeat=1;
 				saved=byte;
 				return 0x81;
-			} 
+			}
 		}
 	}
 	else return saved=byte;

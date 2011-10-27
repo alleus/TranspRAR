@@ -63,7 +63,7 @@
 	path = nil;
 	[parser release];
 	parser = nil;
-	
+
 	[super dealloc];
 }
 
@@ -89,19 +89,19 @@
 	if (!hasParsed) {
 		ACLog(@" - Parsing...");
 		NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:10.0];
-		
+
 		[self performSelectorInBackground:@selector(startParser) withObject:nil];
 		hasParsed = [parserTimeoutLock lockWhenCondition:1 beforeDate:timeoutDate];
 		if (hasParsed) {
 			[parserTimeoutLock unlock];
 		}
-		
+
 		if(hasParsed) {
 			ACLog(@" - Parse complete, %d entries in archive.", [entries count]);
 		} else {
 			ACLog(@" - Parser timed out.");
 		}
-		
+
 		return hasParsed;
 	}
 	return YES;
@@ -116,11 +116,11 @@
 			break;
 		}
 	}
-	
+
 	if (!busy) {
 		[self performSelectorOnMainThread:@selector(startCloseTimer) withObject:nil waitUntilDone:YES];
 	}
-	
+
 	return !busy;
 }
 
@@ -178,7 +178,7 @@
 	@catch (NSException *e) {
 		NSLog(@" - Could not parse archive %@", path);
 		NSLog(@" - Exception: %@, Reason: %@", [e name], [e reason]);
-	}	
+	}
 	if (![parserTimeoutLock tryLock]) {
 		[parserTimeoutLock unlockWithCondition:1];
 	}
@@ -191,12 +191,12 @@
 
 -(void)archiveParser:(XADArchiveParser *)theParser foundEntryWithDictionary:(NSDictionary *)dict {
 	NSString *filename = [[dict objectForKey:XADFileNameKey] string];
-	
+
 	if (![entries objectForKey:filename]) {
 		ACArchiveEntry *entry = [[ACArchiveEntry alloc] initWithFilename:filename];
 		entry.parserDictionary = dict;
 		entry.archive = self;
-		
+
 		[parserLock lock];
 		[entries setObject:entry forKey:filename];
 		[parserLock unlock];

@@ -45,7 +45,7 @@
 /*
  * To add error code to your module, you need to do the following:
  *
- * 1) Add a module offset code.  Add yours to the bottom of the list 
+ * 1) Add a module offset code.  Add yours to the bottom of the list
  *    right below this comment, adding 1.
  *
  * 2) In your module, define a header file which uses one of the
@@ -104,7 +104,7 @@
  * returning codes from other modules that might also use
  * the generic base.
  */
-#define NS_ERROR_MODULE_GENERAL    51  
+#define NS_ERROR_MODULE_GENERAL    51
 
 /**
  * @name Standard Error Handling Macros
@@ -219,7 +219,7 @@
    The first matches:
 
      #define RPC_E_INVALID_PARAMETER          _HRESULT_TYPEDEF_(0x80010010L)
-   
+
    Errors returning this mean that the xpcom proxy code could not create a proxy for
    one of the in paramaters.
 
@@ -229,13 +229,13 @@
 */
 
 /* Returned when a proxy could not be create a proxy for one of the IN parameters
-   This is returned only when the "real" meathod has NOT been invoked. 
+   This is returned only when the "real" meathod has NOT been invoked.
 */
 
 #define NS_ERROR_PROXY_INVALID_IN_PARAMETER        ((nsresult) 0x80010010L)
 
 /* Returned when a proxy could not be create a proxy for one of the OUT parameters
-   This is returned only when the "real" meathod has ALREADY been invoked. 
+   This is returned only when the "real" meathod has ALREADY been invoked.
 */
 
 #define NS_ERROR_PROXY_INVALID_OUT_PARAMETER        ((nsresult) 0x80010011L)

@@ -17,7 +17,7 @@
 	NSMutableDictionary	*attributes;
 	NSDictionary		*parserDictionary;
 	XADHandle			*handle;
-	
+
 	ACArchive			*archive;
 }
 

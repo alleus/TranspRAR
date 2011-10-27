@@ -67,8 +67,8 @@ struct RootBlock
   xadUINT8 afs_BitmapExtend[4];
   xadUINT8 afs_Date[12];           /* last root alteration */
   xadUINT8 afs_Name[32];           /* BCPL name, max 30 chars */
-  xadUINT8 Unused3[4];                 
-  xadUINT8 Unused4[4];                 
+  xadUINT8 Unused3[4];
+  xadUINT8 Unused4[4];
   xadUINT8 afs_DiskDate[12];       /* last disk alteration */
   xadUINT8 afs_DiskMade[12];       /* disk creation date */
   xadUINT8 afs_HashChain[4];       /* == 0 */
@@ -115,13 +115,13 @@ struct FileExtensionBlock
   xadUINT8  afs_DataSize[4];
   xadUINT8  afs_FirstBlock[4];
   xadUINT8  afs_CheckSum[4];
-               
+
   xadUINT8  Unused1[47][4];
-               
+
   xadUINT8  afs_Parent[4];
   xadUINT8  afs_Extension[4];
   xadINT8   afs_SecondaryType[4];/* signed; ST_FILE */
-               
+
   xadUINT8  afs_BlockList[72][4];/* maybe larger!, unused for links */
 };
 

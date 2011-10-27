@@ -49,7 +49,7 @@
 
 		uint32_t creation=[fh readUInt32BE];
 		uint32_t modification=[fh readUInt32BE];
-		
+
 		[fh skipBytes:24];
 
 		uint32_t datasize=[fh readUInt32BE];

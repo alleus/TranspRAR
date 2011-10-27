@@ -100,7 +100,7 @@ ALL_OBJS =		$(LIBRARY_OBJS)
 
 
 
-EXECUTABLE_FILES =	
+EXECUTABLE_FILES =
 
 LIBRARY_FILES =	libUniversalDetector.a
 
@@ -112,7 +112,7 @@ LIBRARY_FILES =	libUniversalDetector.a
 .SUFFIXES: .o .m .c
 
 .m.o:
-	$(OBJCC) $(OBJCFLAGS) $< -o $@	
+	$(OBJCC) $(OBJCFLAGS) $< -o $@
 
 .c.o:
 	$(CC) $(CFLAGS) $< -o $@

@@ -39,7 +39,7 @@
 
 void  nsUTF8Prober::Reset(void)
 {
-  mCodingSM->Reset(); 
+  mCodingSM->Reset();
   mNumOfMBChar = 0;
   mState = eDetecting;
 }

@@ -161,13 +161,13 @@ unsigned char IBM866_CharToOrderMap[] =
 239, 68,240,241,242,243,244,245,246,247,248,249,250,251,252,255,
 };
 
-//Model Table: 
+//Model Table:
 //total sequences: 100%
 //first 512 sequences: 97.6601%
 //first 1024 sequences: 2.3389%
 //rest  sequences:      0.1237%
-//negative sequences:   0.0009% 
-char RussianLangModel[] = 
+//negative sequences:   0.0009%
+char RussianLangModel[] =
 {
 0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,1,3,3,3,3,1,3,3,3,2,3,2,3,3,
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,3,2,2,2,2,2,0,0,2,
@@ -300,7 +300,7 @@ char RussianLangModel[] =
 };
 
 
-SequenceModel Koi8rModel = 
+SequenceModel Koi8rModel =
 {
   KOI8R_CharToOrderMap,
   RussianLangModel,
@@ -309,7 +309,7 @@ SequenceModel Koi8rModel =
   "KOI8-R"
 };
 
-SequenceModel Win1251Model = 
+SequenceModel Win1251Model =
 {
   win1251_CharToOrderMap,
   RussianLangModel,
@@ -318,7 +318,7 @@ SequenceModel Win1251Model =
   "windows-1251"
 };
 
-SequenceModel Latin5Model = 
+SequenceModel Latin5Model =
 {
   latin5_CharToOrderMap,
   RussianLangModel,
@@ -327,7 +327,7 @@ SequenceModel Latin5Model =
   "ISO-8859-5"
 };
 
-SequenceModel MacCyrillicModel = 
+SequenceModel MacCyrillicModel =
 {
   macCyrillic_CharToOrderMap,
   RussianLangModel,
@@ -336,7 +336,7 @@ SequenceModel MacCyrillicModel =
   "x-mac-cyrillic"
 };
 
-SequenceModel Ibm866Model = 
+SequenceModel Ibm866Model =
 {
   IBM866_CharToOrderMap,
   RussianLangModel,
@@ -345,7 +345,7 @@ SequenceModel Ibm866Model =
   "IBM866"
 };
 
-SequenceModel Ibm855Model = 
+SequenceModel Ibm855Model =
 {
   IBM855_CharToOrderMap,
   RussianLangModel,

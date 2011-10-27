@@ -55,7 +55,7 @@ void SetPPMdContextStatesPointer(PPMdContext *self, PPMdState *newstates,PPMdCor
 { self->States=PointerToOffset(model->alloc,newstates); }
 
 PPMdContext *PPMdContextSuffix(PPMdContext *self,PPMdCoreModel *model)
-{ return OffsetToPointer(model->alloc,self->Suffix); } 
+{ return OffsetToPointer(model->alloc,self->Suffix); }
 
 void SetPPMdContextSuffixPointer(PPMdContext *self,PPMdContext *newsuffix,PPMdCoreModel *model)
 { self->Suffix=PointerToOffset(model->alloc,newsuffix); }

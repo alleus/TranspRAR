@@ -192,7 +192,7 @@ static BOOL LooksLikeZlib(uint8_t *sig)
 
 		int stride,phase;
 		int extractopcode=[self findOpcodeWithData:header blocks:blocks
-		startOffset:24 endOffset:stringtable 
+		startOffset:24 endOffset:stringtable
 		stringStartOffset:stringtable stringEndOffset:headerlength
 		opcodePossibilities:(int[]){3} count:1
 		stridePossibilities:(int[]){7} count:1
@@ -354,7 +354,7 @@ static BOOL LooksLikeZlib(uint8_t *sig)
 		int stringtable=[self findStringTableOffsetInData:header maxOffsets:6];
 		int stride,phase;
 		int extractopcode=[self findOpcodeWithData:header blocks:blocks
-		startOffset:24 endOffset:stringtable 
+		startOffset:24 endOffset:stringtable
 		stringStartOffset:stringtable stringEndOffset:headerlength
 		opcodePossibilities:(int[]){15,17,18,20,21} count:5
 		stridePossibilities:(int[]){6} count:1
@@ -995,7 +995,7 @@ stringStartOffset:(int)stringoffs stringEndOffset:(int)stringendoffs currentPath
 		if(c==0xe001 && i+1<length)
 		{
 			uint16_t val=CSUInt16LE(&bytes[i*2+2])&0x7fff;
-			if(val<32) 
+			if(val<32)
 			{
 				NSString *exp=strings[val];
 

@@ -354,7 +354,7 @@
 	}
 	else // not supported
 	{
-		return nil; 
+		return nil;
 	}
 
 	if(checksum) handle=[XADCRCHandle IBMCRC16HandleWithHandle:handle length:size correctCRC:crc conditioned:NO];

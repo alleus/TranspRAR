@@ -171,7 +171,7 @@ static const uint8_t *FindSignature(const uint8_t *ptr,int length)
 	CSHandle *handle=[self handle];
 
 	uint8_t buf[7];
-	[handle readBytes:7 toBuffer:buf];	
+	[handle readBytes:7 toBuffer:buf];
 
 	if(TestSignature(buf)==RAR_OLDSIGNATURE)
 	{
@@ -369,7 +369,7 @@ static const uint8_t *FindSignature(const uint8_t *ptr,int length)
 			parts=[NSMutableArray array];
 			[dict setObject:[NSNumber numberWithLongLong:0] forKey:XADSolidOffsetKey];
 		}
- 
+
 		[parts addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithLongLong:skipstart],@"SkipOffset",
 			[NSNumber numberWithLongLong:datasize],@"InputLength",

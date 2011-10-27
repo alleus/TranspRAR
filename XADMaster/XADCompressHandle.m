@@ -52,7 +52,7 @@
 			{
 				// Skip garbage data after a clear. God damn, this is dumb.
 				CSInputSkipBitsLE(input,symbolsize*(8-symbolcounter%8));
-				
+
 				ClearLZWTable(lzw);
 				symbolsize=9;
 				symbolcounter=0;

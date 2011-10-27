@@ -38,7 +38,7 @@
 //Sampling from about 20M text materials include literature and computer technology
 
 // Japanese frequency table, applied to both S-JIS and EUC-JP
-//They are sorted in order. 
+//They are sorted in order.
 
 /******************************************************************************
  * 128  --> 0.77094
@@ -49,14 +49,14 @@
  *
  * Idea Distribution Ratio = 0.92635 / (1-0.92635) = 12.58
  * Random Distribution Ration = 512 / (2965+62+83+86-512) = 0.191
- * 
- * Typical Distribution Ratio, 25% of IDR 
+ *
+ * Typical Distribution Ratio, 25% of IDR
  *****************************************************************************/
 
 #define JIS_TYPICAL_DISTRIBUTION_RATIO (float) 3.0
 
 
-//Char to FreqOrder table , 
+//Char to FreqOrder table ,
 #define JIS_TABLE_SIZE  4368
 
 static const PRInt16 JISCharToFreqOrder[] =
@@ -335,7 +335,7 @@ static const PRInt16 JISCharToFreqOrder[] =
 1444,1698,2385,2251,3729,1365,2281,2235,1717,6188, 864,3841,2515, 444, 527,2767, // 4352
 2922,3625, 544, 461,6189, 566, 209,2437,3398,2098,1065,2068,3331,3626,3257,2137, // 4368  //last 512
 
-/*************************************************************************************** 
+/***************************************************************************************
  *Everything below is of no interest for detection purpose							   *
  ***************************************************************************************
 

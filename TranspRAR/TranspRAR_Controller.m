@@ -47,7 +47,7 @@ static BOOL debugLogging;
                  name:kGMUserFileSystemDidMount object:nil];
   [center addObserver:self selector:@selector(didUnmount:)
                  name:kGMUserFileSystemDidUnmount object:nil];
-  
+
   NSString* mountPath = @"/Volumes/TranspRAR";
   fs_delegate_ = [[TranspRAR_Filesystem alloc] init];
   /*NSString *rootPath = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kRootPath];
@@ -59,14 +59,14 @@ static BOOL debugLogging;
 	debugLogging = [[[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kDebugLogging] boolValue];
 
   NSMutableArray* options = [NSMutableArray array];
-  NSString* volArg = 
-    [NSString stringWithFormat:@"volicon=%@", 
+  NSString* volArg =
+    [NSString stringWithFormat:@"volicon=%@",
      [[NSBundle mainBundle] pathForResource:@"TranspRAR" ofType:@"icns"]];
   [options addObject:volArg];
   [options addObject:@"volname=TranspRAR"];
   [options addObject:@"rdonly"];
   [fs_ mountAtPath:mountPath withOptions:options];
-	
+
 	[self startServer];
 }
 

@@ -43,7 +43,7 @@ nsEscCharSetProber::nsEscCharSetProber(PRUint32 aLanguageFilter)
 {
   for (PRUint32 i = 0; i < NUM_OF_ESC_CHARSETS; i++)
     mCodingSM[i] = nsnull;
-  if (aLanguageFilter & NS_FILTER_CHINESE_SIMPLIFIED) 
+  if (aLanguageFilter & NS_FILTER_CHINESE_SIMPLIFIED)
   {
     mCodingSM[0] = new nsCodingStateMachine(&HZSMModel);
     mCodingSM[1] = new nsCodingStateMachine(&ISO2022CNSMModel);

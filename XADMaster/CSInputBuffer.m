@@ -298,7 +298,7 @@ void CSInputSkipBitsLE(CSInputBuffer *self,int numbits)
 		int skipbits=numbits-(self->numbits&7);
 		CSInputSkipBytes(self,skipbits>>8);
 		if(skipbits&7) CSInputNextBitStringLE(self,skipbits&7);
-	}	
+	}
 }
 
 

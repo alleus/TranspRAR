@@ -561,7 +561,7 @@ void RarVM::Prepare(byte *Code,int CodeSize,VM_PreparedProgram *Prg)
       CurCmd->Op1.Type=CurCmd->Op2.Type=VM_OPNONE;
       CodeSize=0;
     }
-#endif  
+#endif
     uint DataFlag=fgetbits();
     faddbits(1);
 
@@ -647,7 +647,7 @@ void RarVM::Prepare(byte *Code,int CodeSize,VM_PreparedProgram *Prg)
 
   // If operand 'Addr' field has not been set by DecodeArg calls above,
   // let's set it to point to operand 'Data' field. It is necessary for
-  // VM_OPINT type operands (usual integers) or maybe if something was 
+  // VM_OPINT type operands (usual integers) or maybe if something was
   // not set properly for other operands. 'Addr' field is required
   // for quicker addressing of operand data.
   for (int I=0;I<Prg->CmdCount;I++)
@@ -674,7 +674,7 @@ void RarVM::DecodeArg(VM_PreparedOperand &Op,bool ByteMode)
     Op.Type=VM_OPREG;     // Operand is register (R[0]..R[7])
     Op.Data=(Data>>12)&7; // Register number
     Op.Addr=&R[Op.Data];  // Register address
-    faddbits(4);          // 1 flag bit and 3 register number bits 
+    faddbits(4);          // 1 flag bit and 3 register number bits
   }
   else
     if ((Data & 0xc000)==0)
@@ -808,7 +808,7 @@ void RarVM::Optimize(VM_PreparedProgram *Prg)
         break;
     }
 
-    // Below we'll replace universal opcodes with faster byte or word only 
+    // Below we'll replace universal opcodes with faster byte or word only
     // processing opcodes, which also do not modify processor flags to
     // provide better performance.
     if (FlagsRequired)
@@ -902,7 +902,7 @@ void RarVM::ExecuteStandardFilter(VM_StandardFilters FilterType)
               if (((Addr+Offset) & 0x80000000)==0)
                 SET_VALUE(false,Data,Addr+FileSize);
             }
-            else 
+            else
               if (((Addr-FileSize) & 0x80000000)!=0)
                 SET_VALUE(false,Data,Addr-Offset);
 #endif

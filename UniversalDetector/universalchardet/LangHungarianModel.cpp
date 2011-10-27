@@ -85,13 +85,13 @@ unsigned char win1250HungarianCharToOrderMap[] =
 245,246,247, 25, 74, 42, 24,248,249,250, 31, 56, 29,251,252,253,
 };
 
-//Model Table: 
+//Model Table:
 //total sequences: 100%
 //first 512 sequences: 94.7368%
 //first 1024 sequences:5.2623%
 //rest  sequences:     0.8894%
-//negative sequences:  0.0009% 
-char HungarianLangModel[] = 
+//negative sequences:  0.0009%
+char HungarianLangModel[] =
 {
 0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
 3,3,3,3,3,3,3,3,3,3,2,3,3,3,3,3,3,3,3,2,2,3,3,1,1,2,2,2,2,2,1,2,
@@ -223,7 +223,7 @@ char HungarianLangModel[] =
 0,1,1,1,1,1,1,0,1,1,0,1,0,1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,
 };
 
-SequenceModel Latin2HungarianModel = 
+SequenceModel Latin2HungarianModel =
 {
   Latin2_HungarianCharToOrderMap,
   HungarianLangModel,
@@ -232,7 +232,7 @@ SequenceModel Latin2HungarianModel =
   "ISO-8859-2"
 };
 
-SequenceModel Win1250HungarianModel = 
+SequenceModel Win1250HungarianModel =
 {
   win1250HungarianCharToOrderMap,
   HungarianLangModel,

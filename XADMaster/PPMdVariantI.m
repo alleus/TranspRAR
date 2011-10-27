@@ -834,7 +834,7 @@ static void RescalePPMdContextVariantI(PPMdContext *self,PPMdModelVariantI *mode
 	}
 
 	self->SummFreq+=(escfreq+1)>>1;
-	self->Flags|=0x04; 
+	self->Flags|=0x04;
 
 	// The found state is the first one to breach the limit, thus it is the largest and also first
 	model->core.FoundState=PPMdContextStates(self,&model->core);

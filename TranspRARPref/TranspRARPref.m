@@ -32,16 +32,16 @@
 - (void)didSelect {
 	// Notification for lost connection
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionDied:) name:NSConnectionDidDieNotification object:nil];
-	
+
 	// Get initial connection
 	[self checkForService:nil];
 	[self updateServerStatus];
-	
+
 	// Set info text
 	NSString *infoRTFPath = [classBundle pathForResource:@"Info" ofType:@"rtf"];
 	[infoLabel setAttributedStringValue:[[NSAttributedString alloc] initWithRTF:[NSData dataWithContentsOfFile:infoRTFPath] documentAttributes:nil]];
 	[infoLabel setAllowsEditingTextAttributes:YES];
-	
+
 	// Get auto launch state
 	NSString *servicePath = [classBundle pathForResource:@"TranspRAR" ofType:@"app"];
 	BOOL startOnLogin = NO;
@@ -53,22 +53,22 @@
 		}
 	}
 	[autoLaunchSwitch setState:(startOnLogin)?NSOnState:NSOffState];
-	
+
 	// Get root path
 	NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain];
 	[debugLoggingSwitch setState:([[defaults objectForKey:kDebugLogging] boolValue])?NSOnState:NSOffState];
 	NSString *rootPath = [defaults objectForKey:kRootPath];
-	
+
 	if (!rootPath) {
 		// First time pref pane is launched, set root path to home directory
 		rootPath = [@"~" stringByExpandingTildeInPath];
-		
+
 		NSMutableDictionary *mutableDefaults = (defaults)?[defaults mutableCopy]:[[NSMutableDictionary alloc] init];
 		[mutableDefaults setObject:rootPath forKey:kRootPath];
 		[[NSUserDefaults standardUserDefaults] setPersistentDomain:mutableDefaults forName:kPersistentDomain];
 		[mutableDefaults release];
 	}
-	
+
 	NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:rootPath];
 	[icon setSize:NSSizeFromCGSize(CGSizeMake(16, 16))];
 	[rootPathMenuItem setImage:icon];
@@ -111,7 +111,7 @@
 /*// Return YES to delay the relaunch until you do some processing; invoke the given NSInvocation to continue.
 - (BOOL)updater:(SUUpdater *)updater shouldPostponeRelaunchForUpdate:(SUAppcastItem *)update untilInvoking:(NSInvocation *)invocation {
 	updateRelaunchInvocation = [invocation retain];
-	
+
 	return YES;
 }*/
 
@@ -132,9 +132,9 @@
 - (IBAction)autoLaunchSwitchChanged:(id)sender {
 	NSString *servicePath = [classBundle pathForResource:@"TranspRAR" ofType:@"app"];
 	NSInteger loginItemIndex = NSNotFound;
-	
+
 	NSArray *loginItems = (NSArray *)CFPreferencesCopyAppValue(CFSTR("AutoLaunchedApplicationDictionary"), CFSTR("loginwindow"));
-	
+
 	NSUInteger i, count = [loginItems count];
 	for (i = 0; i < count; i++) {
 		NSDictionary *loginItem = [loginItems objectAtIndex:i];
@@ -143,15 +143,15 @@
 			break;
 		}
 	}
-	
+
 	NSMutableArray *mutableLoginItems = [loginItems mutableCopy];
-	
+
 	if ([sender state] == NSOnState && loginItemIndex == NSNotFound) {
 		[mutableLoginItems addObject:[NSDictionary dictionaryWithObject:servicePath forKey:@"Path"]];
 	} else if ([sender state] == NSOffState && loginItemIndex != NSNotFound) {
 		[mutableLoginItems removeObjectAtIndex:loginItemIndex];
 	}
-	
+
 	CFPreferencesSetAppValue(CFSTR("AutoLaunchedApplicationDictionary"), mutableLoginItems, CFSTR("loginwindow"));
 	CFPreferencesAppSynchronize(CFSTR("loginwindow"));
 }
@@ -161,7 +161,7 @@
 		// Get root path
 		NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain];
 		NSString *rootPath = [defaults objectForKey:kRootPath];
-		
+
 		NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 		[openPanel setShowsHiddenFiles:YES];
 		[openPanel setCanChooseDirectories:YES];
@@ -171,12 +171,12 @@
 		[openPanel setDirectoryURL:[NSURL fileURLWithPath:rootPath]];
 		if ([openPanel runModal] == NSFileHandlingPanelOKButton) {
 			rootPath = [[openPanel directoryURL] path];
-			
+
 			NSMutableDictionary *mutableDefaults = (defaults)?[defaults mutableCopy]:[[NSMutableDictionary alloc] init];
 			[mutableDefaults setObject:rootPath forKey:kRootPath];
 			[[NSUserDefaults standardUserDefaults] setPersistentDomain:mutableDefaults forName:kPersistentDomain];
 			[mutableDefaults release];
-			
+
 			NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:rootPath];
 			[icon setSize:NSSizeFromCGSize(CGSizeMake(16, 16))];
 			[rootPathMenuItem setImage:icon];

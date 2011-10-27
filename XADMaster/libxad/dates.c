@@ -271,7 +271,7 @@ FUNCxadConvertDates /* xadTAGPTR tags */
 #else
           CurrentTime(&timeval, &xadi.xd_Micros);
 #endif
-          
+
           CloseLibrary((struct Library *) IntuitionBase);
         }
         else
@@ -299,7 +299,7 @@ FUNCxadConvertDates /* xadTAGPTR tags */
     OpenLibrary("locale.library", 38)))
     {
       struct Locale *l;
-      
+
 #ifdef __amigaos4__
       struct LocaleIFace *ILocale;
       if (ILocale = (struct LocaleIFace *)GetInterface((struct Library *)LocaleBase, "main", 1L, NULL))
@@ -311,7 +311,7 @@ FUNCxadConvertDates /* xadTAGPTR tags */
         gmtoffs = l->loc_GMTOffset;
         CloseLocale(l);
       }
-      
+
 #ifdef __amigaos4__
       DropInterface((struct Interface *)ILocale);
       }

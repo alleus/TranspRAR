@@ -46,15 +46,15 @@
  *
  * Idea Distribution Ratio = 0.98653 / (1-0.98653) = 73.24
  * Random Distribution Ration = 512 / (2350-512) = 0.279.
- * 
- * Typical Distribution Ratio  
+ *
+ * Typical Distribution Ratio
  *****************************************************************************/
 
 #define EUCKR_TYPICAL_DISTRIBUTION_RATIO (float) 6.0
 
 #define EUCKR_TABLE_SIZE  2352
 
-//Char to FreqOrder table , 
+//Char to FreqOrder table ,
 static const PRInt16 EUCKRCharToFreqOrder[] =
 {
   13, 130, 120,1396, 481,1719,1720, 328, 609, 212,1721, 707, 400, 299,1722,  87,
@@ -205,7 +205,7 @@ static const PRInt16 EUCKRCharToFreqOrder[] =
 2629,2630,2631, 924, 648, 863, 603,2632,2633, 934,1540, 864, 865,2634, 642,1042,
  670,1190,2635,2636,2637,2638, 168,2639, 652, 873, 542,1054,1541,2640,2641,2642,  //512, 256
 
-/*************************************************************************************** 
+/***************************************************************************************
  *Everything below is of no interest for detection purpose							   *
  ***************************************************************************************
 

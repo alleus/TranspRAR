@@ -34,7 +34,7 @@
 	[handle release];
 	handle = nil;
 	archive = nil;
-	
+
 	[super dealloc];
 }
 

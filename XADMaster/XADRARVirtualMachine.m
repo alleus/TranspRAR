@@ -6,7 +6,7 @@
 
 
 uint32_t CSInputNextRARVMNumber(CSInputBuffer *input)
-{ 
+{
 	switch(CSInputNextBitString(input,2))
 	{
 		case 0: return CSInputNextBitString(input,4);

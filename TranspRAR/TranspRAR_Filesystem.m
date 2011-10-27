@@ -32,7 +32,7 @@
 
 
 // The core set of file system operations. This class will serve as the delegate
-// for GMUserFileSystemFilesystem. For more details, see the section on 
+// for GMUserFileSystemFilesystem. For more details, see the section on
 // GMUserFileSystemOperations found in the documentation at:
 // http://macfuse.googlecode.com/svn/trunk/core/sdk-objc/Documentation/index.html
 @implementation TranspRAR_Filesystem
@@ -55,14 +55,14 @@
 	fileManager = nil;
 	[rootPath release];
 	rootPath = nil;
-	
+
 	[super dealloc];
 }
 
 - (ACArchiveEntry *)archiveEntryForPath:(NSString *)path {
 	NSString *realPath = [rootPath stringByAppendingString:path];
 	ACPath *pathObject = [paths objectForKey:[path stringByDeletingLastPathComponent]];
-	
+
 	if (!pathObject && ![fileManager fileExistsAtPath:realPath]) {
 		if (![path matchedByPattern:@"(^.*\\.DS_Store$)|(^.*/Contents$)|(^.*/\\._.*$)" options:REG_BASIC]) {
 			// We don't attempt to parse for the following files: /something/.DS_Store, /something/file.rar/Contents and /something/._file.rar
@@ -71,7 +71,7 @@
 			pathObject = [paths objectForKey:[path stringByDeletingLastPathComponent]];
 		}
 	}
-	
+
 	return [pathObject entryWithFilename:[path lastPathComponent]];
 }
 
@@ -82,17 +82,17 @@
 	NSString *realPath = [rootPath stringByAppendingString:path];
 	ACLog(@"Reading directory contents of %@", realPath);
 	NSArray *contents = [fileManager contentsOfDirectoryAtPath:realPath error:&*error];
-	
+
 	if (contents == nil) {
 		return nil;
 	}
-	
+
 	NSMutableArray *returnArray = [[NSMutableArray alloc] init];
-	
+
 	for (NSString *filename in contents) {
 		BOOL ignoreFile = NO;
 		BOOL isArchive = NO;
-		
+
 		// "(\.part(1|01|001)\.rar$)|(^(?:(?!part\d{1,3}).)*\.rar$)"
 		if ([filename matchedByPattern:@"(^.*\\.rar$)|(^.*\\.001$)|(^.*\\.zip$)" options:REG_ICASE]) {
 			if ([filename matchedByPattern:@"^.*\\.part(([0-9]{1,3}))\\.rar$" options:REG_ICASE]) {
@@ -115,7 +115,7 @@
 			// Ignore the */Volumes/TranspRAR folder to stop any nasty loops
 			ignoreFile = YES;
 		}
-		
+
 		if (isArchive) {
 			// Archive! Start the procedure of reading the content
 			NSString *archiveName = nil;
@@ -124,12 +124,12 @@
 			} else {
 				archiveName = [NSString stringWithFormat:@"%@/%@", realPath, filename];
 			}
-			
+
 			// See if we have scanned archives in the directory before
 			ACPath *pathObject = [paths objectForKey:path];
 			// Prepare variable
 			ACArchive *archive = nil;
-			
+
 			if (pathObject) {
 				// Previous path object found, attempt to get archive
 				archive = [pathObject archiveWithFilename:filename];
@@ -139,28 +139,28 @@
 				[paths setObject:pathObject forKey:path];
 				[pathObject release];
 			}
-			
+
 			// See if we have scanned the archive before
 			if (!archive) {
 				// No previous scan found, create a new object
 				archive = [[ACArchive alloc] initWithPath:archiveName];
 				[pathObject addArchive:archive withFilename:filename];
 				[archive release];
-				
+
 				// Create a parser and start parsing the contents of the archive.
 				// If the parser locks up, this will return after a specified timeout.
 				[archive parse];
 				// Attempt to close the parser (if there are any entry handlers, it won't close)
 				[archive closeParser];
 			}
-			
+
 			// Add all files contained in the archive (if any were added in the parsing) to the return array
 			[returnArray addObjectsFromArray:[archive entryFilenames]];
 		} else if (!ignoreFile) {
 			[returnArray addObject:filename];
 		}
 	}
-	
+
 	return [returnArray autorelease];
 }
 
@@ -171,8 +171,8 @@
                                    error:(NSError **)error {
 	NSString *realPath = [rootPath stringByAppendingString:path];
 	ACArchiveEntry *entry = [self archiveEntryForPath:path];
-	
-	
+
+
 	if (entry) {
 		return entry.attributes;
 	} else {
@@ -198,22 +198,22 @@
 	if (destinationPath) {
 		return [NSString stringWithFormat:@"/Volumes/TranspRAR%@", destinationPath];
 	}
-	
+
 	return nil;
 }
 
 #pragma mark File Contents
 
-- (BOOL)openFileAtPath:(NSString *)path 
+- (BOOL)openFileAtPath:(NSString *)path
                   mode:(int)mode
               userData:(id *)userData
                  error:(NSError **)error {
 	NSString *realPath = [rootPath stringByAppendingString:path];
 	ACArchiveEntry *entry = [self archiveEntryForPath:path];
-	
+
 	if (entry) {
 		*userData = entry;
-		
+
 		if (entry.handle != nil) {
 			return YES;
 		} else {
@@ -222,12 +222,12 @@
 		}
 	} else {
 		int fd = open([realPath UTF8String], mode);
-		
+
 		if (fd < 0) {
 			*error = [NSError errorWithPOSIXCode:errno];
 			return NO;
 		}
-		
+
 		*userData = [NSNumber numberWithLong:fd];
 		return YES;
 	}
@@ -245,10 +245,10 @@
 	}
 }
 
-- (int)readFileAtPath:(NSString *)path 
+- (int)readFileAtPath:(NSString *)path
              userData:(id)userData
-               buffer:(char *)buffer 
-                 size:(size_t)size 
+               buffer:(char *)buffer
+                 size:(size_t)size
                offset:(off_t)offset
                 error:(NSError **)error {
 	if ([userData isKindOfClass:[ACArchiveEntry class]]) {
@@ -273,7 +273,7 @@
 /*- (NSArray *)extendedAttributesOfItemAtPath:(NSString *)path error:(NSError **)error {
 	path = [rootPath stringByAppendingString:path];
 	ACArchiveEntry *entry = [self archiveEntryForPath:path];
-	
+
 	if (entry) {
 		*error = [NSError errorWithPOSIXCode:errno];
 		return nil;
@@ -300,13 +300,13 @@
 	}
 }
 
-- (NSData *)valueOfExtendedAttribute:(NSString *)name 
+- (NSData *)valueOfExtendedAttribute:(NSString *)name
                         ofItemAtPath:(NSString *)path
                             position:(off_t)position
                                error:(NSError **)error {
 	path = [rootPath stringByAppendingString:path];
 	ACArchiveEntry *entry = [self archiveEntryForPath:path];
-	
+
 	if (entry) {
 		*error = [NSError errorWithPOSIXCode:errno];
 		return nil;
@@ -321,7 +321,7 @@
 		if ( size < 0 ) {
 			*error = [NSError errorWithPOSIXCode:errno];
 			return nil;
-		}  
+		}
 		return data;
 	}
 }*/

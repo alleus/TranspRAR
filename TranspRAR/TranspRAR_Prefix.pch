@@ -5,7 +5,7 @@
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
 	#import "TranspRAR_Controller.h"
-	
+
 	#define ACLogFunction()			ACLog(@"%s", __FUNCTION__)
 	#define ACLogId(o)				ACLog(@"%s = %@", # o, o)
 	#define ACLogInt(i)				ACLog(@"%s = %d", # i, i)

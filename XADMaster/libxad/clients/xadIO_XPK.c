@@ -65,7 +65,7 @@ static xadINT32 xadIO_XPK(struct xadInOut *io, xadSTRPTR password)
         return XADERR_RESOURCE;
       }
       #endif
-    
+
       if((mem = (xadSTRPTR) xadAllocVec(XADM i, XADMEMF_PUBLIC)))
       {
         for(s = 0; s < 8; ++s)
