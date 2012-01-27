@@ -1,14 +1,22 @@
 #import "XADDiskDoublerParser.h"
+
 #import "XADCompressHandle.h"
-#import "XADCompactProRLEHandle.h"
+#import "XADDiskDoublerMethod2Handle.h"
 #import "XADCompactProLZHHandle.h"
 #import "XADStuffItHuffmanHandle.h"
+#import "XADStacLZSHandle.h"
+#import "XADCompactProRLEHandle.h"
+#import "XADCompactProLZHHandle.h"
 #import "XADDiskDoublerADnHandle.h"
 #import "XADDiskDoublerDDnHandle.h"
+
 #import "XADXORHandle.h"
 #import "XADDeltaHandle.h"
+
 #import "XADCRCHandle.h"
 #import "XADChecksumHandle.h"
+#import "XADXORSumHandle.h"
+
 #import "NSDateXAD.h"
 
 @implementation XADDiskDoublerParser
@@ -28,6 +36,9 @@
 		if(CSUInt32BE(bytes)==0xabcd0054)
 		if(XADCalculateCRC(0,bytes,82,XADCRCReverseTable_1021)==
 		XADUnReverseCRC16(CSUInt16BE(bytes+82))) return YES;
+
+		if(CSUInt32BE(bytes)==0xabcd0054)
+		if(CSUInt16BE(bytes+82)==0) return YES; // Really old files have 0000 instead of a CRC.
 	}
 
 	if(length>=78)
@@ -54,7 +65,13 @@
 	CSHandle *fh=[self handle];
 	uint32_t magic=[fh readID];
 
-	if(magic==0xabcd0054) [self parseFileHeaderWithHandle:fh name:[self XADPathWithUnseparatedString:[self name]]];
+	if(magic==0xabcd0054)
+	{
+		NSString *name=[self name];
+		if([[name pathExtension] isEqual:@"dd"]) name=[name stringByDeletingPathExtension];
+		XADPath *xadname=[self XADPathWithUnseparatedString:name];
+		[self parseFileHeaderWithHandle:fh name:xadname];
+	}
 	else if(magic=='DDAR') [self parseArchive];
 	else if(magic=='DDA2') [self parseArchive2];
 }
@@ -333,11 +350,13 @@
 	{
 		case 0: return @"None";
 		case 1: return @"Compress";
-		case 3: return @"RLE";
-		case 4: return @"Huffman"; // packit?
+		case 2: return @"Method 2"; // Name unknown
+		case 3: return @"RLE"; // No support or testcases
+		case 4: return @"Huffman"; // packit? - No support or testcases
+		case 5: return @"Method 5"; // Almost same as method 2, but untested.
 		case 6: return @"ADS/AD2";
-		case 7: return @"LZSS";
-		case 8: return @"Compact Pro"; // Compact Pro
+		case 7: return @"Stac LZS";
+		case 8: return @"Compact Pro";
 		case 9: return @"AD/AD1";
 		case 10: return @"DDn";
 		default: return [NSString stringWithFormat:@"Method %d",method&0x7f];
@@ -370,9 +389,11 @@
 			int m2=[handle readUInt8]^xor;
 			int flags=[handle readUInt8]^xor;
 
-			handle=[[[XADCompressHandle alloc] initWithHandle:handle length:size flags:flags] autorelease];
+			handle=[[[XADCompressHandle alloc] initWithHandle:handle
+			length:size flags:flags] autorelease];
+
 			if(xor) handle=[[[XADXORHandle alloc] initWithHandle:handle
-			password:[NSData dataWithBytes:"Z" length:1]] autorelease];
+			password:[NSData dataWithBytes:(uint8_t[]){xor} length:1]] autorelease];
 
 			if(checksum)
 			{
@@ -383,14 +404,29 @@
 		}
 		break;
 
-		case 2: // Untested!
+		case 2: // Method 2
+		case 5: // Method 5 - Untested!
 		{
 			int xor=0;
 			if(info1>=0x2a&&(info2&0x80)==0) xor=0x5a;
 
-			handle=[[[XADStuffItHuffmanHandle alloc] initWithHandle:handle length:size] autorelease];
+			int numtrees;
+
+			if((method&0x7f)==5)
+			{
+				numtrees=[handle readUInt8];
+				if(numtrees==0) numtrees=256;
+			}
+			else
+			{
+				numtrees=256;
+			}
+
+			handle=[[[XADDiskDoublerMethod2Handle alloc]
+			initWithHandle:handle length:size numberOfTrees:numtrees] autorelease];
+
 			if(xor) handle=[[[XADXORHandle alloc] initWithHandle:handle
-			password:[NSData dataWithBytes:"Z" length:1]] autorelease];
+			password:[NSData dataWithBytes:(uint8_t[]){xor} length:1]] autorelease];
 
 			if(checksum)
 			{
@@ -400,13 +436,60 @@
 		}
 		break;
 
-		case 8:
+		case 4: // Huffman - Untested!
+		{
+			int xor=0;
+			if(info1>=0x2a&&(info2&0x80)==0) xor=0x5a;
+
+			handle=[[[XADStuffItHuffmanHandle alloc] initWithHandle:handle
+			length:size] autorelease];
+
+			if(xor) handle=[[[XADXORHandle alloc] initWithHandle:handle
+			password:[NSData dataWithBytes:(uint8_t[]){xor}length:1]] autorelease];
+
+			if(checksum)
+			{
+				handle=[[[XADChecksumHandle alloc] initWithHandle:handle length:size
+				correctChecksum:correctchecksum mask:0xffff] autorelease];
+			}
+		}
+		break;
+
+		case 7: // Stac LZS
+		{
+			[handle skipBytes:6];
+			uint32_t numentries=[handle readUInt32BE];
+
+			[handle skipBytes:8+2*numentries];
+
+			handle=[[[XADXORHandle alloc] initWithHandle:handle
+			password:[NSData dataWithBytes:(uint8_t[]){0xff} length:1]] autorelease];
+
+			handle=[[[XADStacLZSHandle alloc] initWithHandle:handle
+			length:size] autorelease];
+
+			handle=[[[XADXORHandle alloc] initWithHandle:handle
+			password:[NSData dataWithBytes:(uint8_t[]){0xff} length:1]] autorelease];
+
+			if(checksum)
+			{
+				if((size&1)==0) correctchecksum^=0xff;
+				handle=[[[XADXORSumHandle alloc] initWithHandle:handle length:size
+				correctChecksum:correctchecksum] autorelease];
+			}
+		}
+		break;
+
+		case 8: // Compact Pro
 		{
 			int sub=0;
 			for(int i=0;i<16;i++) sub+=[handle readUInt8];
 
-			if(sub==0) handle=[[[XADCompactProLZHHandle alloc] initWithHandle:handle blockSize:0xfff0] autorelease];
-			handle=[[[XADCompactProRLEHandle alloc] initWithHandle:handle length:size] autorelease];
+			if(sub==0) handle=[[[XADCompactProLZHHandle alloc]
+			initWithHandle:handle blockSize:0xfff0] autorelease];
+
+			handle=[[[XADCompactProRLEHandle alloc] initWithHandle:handle
+			length:size] autorelease];
 
 			if(checksum)
 			{
@@ -417,13 +500,13 @@
 		break;
 
 		case 6:
-		case 9:
+		case 9: // DiskDoubler AD
 		{
 			handle=[[[XADDiskDoublerADnHandle alloc] initWithHandle:handle length:size] autorelease];
 		}
 		break;
 
-		case 10:
+		case 10: // DiskDoubler DD
 		{
 			handle=[[[XADDiskDoublerDDnHandle alloc] initWithHandle:handle length:size] autorelease];
 		}

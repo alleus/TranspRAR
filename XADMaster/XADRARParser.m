@@ -14,10 +14,6 @@
 #import "NSDateXAD.h"
 #import "Scanning.h"
 
-#ifdef SUPPORT_OFFICIAL_UNRAR
-#import "../BadLicense/XADRAROfficialHandle.h"
-#endif
-
 #define RARFLAG_SKIP_IF_UNKNOWN 0x4000
 #define RARFLAG_LONG_BLOCK    0x8000
 
@@ -127,7 +123,7 @@ static const uint8_t *FindSignature(const uint8_t *ptr,int length)
 		// New naming scheme. Find the last number in the name, and look for other files
 		// with the same number of digits in the same location.
 		NSArray *matches;
-		if(matches=[name substringsCapturedByPattern:@"^(.*[^0-9])([0-9]+)(.*)\\.rar$" options:REG_ICASE])
+		if((matches=[name substringsCapturedByPattern:@"^(.*[^0-9])([0-9]+)(.*)\\.rar$" options:REG_ICASE]))
 		return [self scanForVolumesWithFilename:name
 		regex:[XADRegex regexWithPattern:[NSString stringWithFormat:@"^%@[0-9]{%d}%@.rar$",
 			[[matches objectAtIndex:1] escapedPattern],
@@ -138,7 +134,7 @@ static const uint8_t *FindSignature(const uint8_t *ptr,int length)
 
 	// Old naming scheme. Just look for rar/r01/s01 files.
 	NSArray *matches;
-	if(matches=[name substringsCapturedByPattern:@"^(.*)\\.(rar|r[0-9]{2}|s[0-9]{2})$" options:REG_ICASE])
+	if((matches=[name substringsCapturedByPattern:@"^(.*)\\.(rar|r[0-9]{2}|s[0-9]{2})$" options:REG_ICASE]))
 	{
 		return [self scanForVolumesWithFilename:name
 		regex:[XADRegex regexWithPattern:[NSString stringWithFormat:@"^%@\\.(rar|r[0-9]{2}|s[0-9]{2})$",
@@ -153,7 +149,7 @@ static const uint8_t *FindSignature(const uint8_t *ptr,int length)
 
 -(id)initWithHandle:(CSHandle *)handle name:(NSString *)name
 {
-	if(self=[super initWithHandle:handle name:name])
+	if((self=[super initWithHandle:handle name:name]))
 	{
 		keys=nil;
 	}
@@ -626,7 +622,10 @@ NSLog(@"%04x %04x %s",~crc&0xffff,block.crc,(~crc&0xffff)==block.crc?"<-------":
 	}
 	else
 	{
-		handle=[self subHandleFromSolidStreamForEntryWithDictionary:dict];
+		// Avoid 0-length files because they make trouble in solid streams.
+		off_t length=[[dict objectForKey:XADSolidLengthKey] longLongValue];
+		if(length==0) handle=[self zeroLengthHandleWithChecksum:NO];
+		else handle=[self subHandleFromSolidStreamForEntryWithDictionary:dict];
 	}
 
 	if(checksum) handle=[XADCRCHandle IEEECRC32HandleWithHandle:handle length:[handle fileSize]
@@ -639,9 +638,6 @@ NSLog(@"%04x %04x %s",~crc&0xffff,block.crc,(~crc&0xffff)==block.crc?"<-------":
 {
 	int version=[[[obj objectAtIndex:0] objectForKey:@"Version"] intValue];
 
-	#ifdef SUPPORT_OFFICIAL_UNRAR
-	return [[[XADRAROfficialHandle alloc] initWithRARParser:self version:version parts:obj] autorelease];
-	#else
 	switch(version)
 	{
 		case 15:
@@ -658,7 +654,6 @@ NSLog(@"%04x %04x %s",~crc&0xffff,block.crc,(~crc&0xffff)==block.crc?"<-------":
 		default:
 			return nil;
 	}
-	#endif
 }
 
 -(CSHandle *)handleWithVersion:(int)version skipOffset:(off_t)skipoffset
@@ -747,12 +742,18 @@ encrypted:(BOOL)encrypted cryptoVersion:(int)version salt:(NSData *)salt
 	return 0x80000;
 }
 
-+(BOOL)recognizeFileWithHandle:(CSHandle *)handle firstBytes:(NSData *)data name:(NSString *)name
++(BOOL)recognizeFileWithHandle:(CSHandle *)handle firstBytes:(NSData *)data
+name:(NSString *)name propertiesToAdd:(NSMutableDictionary *)props
 {
 	const uint8_t *bytes=[data bytes];
 	int length=[data length];
 
-	if(FindSignature(bytes,length)) return YES;
+	const uint8_t *header=FindSignature(bytes,length);
+	if(header)
+	{
+		[props setObject:[NSNumber numberWithLongLong:header-bytes] forKey:@"RAREmbedOffset"];
+		return YES;
+	}
 
 	return NO;
 }
@@ -776,7 +777,7 @@ encrypted:(BOOL)encrypted cryptoVersion:(int)version salt:(NSData *)salt
 	// New naming scheme. Find the last number in the name, and look for other files
 	// with the same number of digits in the same location.
 	NSArray *matches;
-	if(matches=[name substringsCapturedByPattern:@"^(.*[^0-9])([0-9]+)(.*)\\.exe$" options:REG_ICASE])
+	if((matches=[name substringsCapturedByPattern:@"^(.*[^0-9])([0-9]+)(.*)\\.exe$" options:REG_ICASE]))
 	return [self scanForVolumesWithFilename:name
 	regex:[XADRegex regexWithPattern:[NSString stringWithFormat:@"^%@[0-9]{%d}%@.(rar|exe)$",
 		[[matches objectAtIndex:1] escapedPattern],
@@ -787,16 +788,10 @@ encrypted:(BOOL)encrypted cryptoVersion:(int)version salt:(NSData *)salt
 	return nil;
 }
 
-static int MatchRarSignature(const uint8_t *bytes,int available,off_t offset,void *state)
-{
-	if(available<7) return NO;
-	return TestSignature(bytes);
-}
-
 -(void)parse
 {
-	if(![[self handle] scanUsingMatchingFunction:MatchRarSignature maximumLength:7])
-	[XADException raiseUnknownException];
+	off_t offs=[[[self properties] objectForKey:@"RAREmbedOffset"] longLongValue];
+	[[self handle] seekToFileOffset:offs];
 
 	[super parse];
 }

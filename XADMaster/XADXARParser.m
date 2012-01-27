@@ -103,7 +103,7 @@ static const NSString *DateFormat=@"Date";
 
 	NSEnumerator *enumerator=[files objectEnumerator];
 	NSMutableDictionary *file;
-	while(file=[enumerator nextObject])
+	while((file=[enumerator nextObject]))
 	{
 		if(![self shouldKeepParsing]) break;
 		[self finishFile:file parentPath:[self XADPath]];
@@ -170,7 +170,7 @@ static const NSString *DateFormat=@"Date";
 	{
 		NSEnumerator *enumerator=[filearray objectEnumerator];
 		NSMutableDictionary *file;
-		while(file=[enumerator nextObject]) [self finishFile:file parentPath:path];
+		while((file=[enumerator nextObject])) [self finishFile:file parentPath:path];
 	}
 }
 
@@ -320,7 +320,7 @@ definitions:(NSDictionary *)definitions destinationDictionary:(NSMutableDictiona
 {
 	NSEnumerator *enumerator=[attributes keyEnumerator];
 	NSString *key;
-	while(key=[enumerator nextObject])
+	while((key=[enumerator nextObject]))
 	{
 		NSArray *definition=[definitions objectForKey:[NSString stringWithFormat:@"%@ %@",name,key]];
 		if(definition) [self parseDefinition:definition string:[attributes objectForKey:key] destinationDictionary:dest];
@@ -429,6 +429,7 @@ length:(NSNumber *)length size:(NSNumber *)size checksum:(NSData *)checksum chec
 		length:[length longLongValue]];
 
 		if(!encodingstyle||[encodingstyle length]==0); // no encoding style, copy
+		else if([encodingstyle isEqual:@"application/octet-stream"]);  // octe-stream, also copy
 		else if([encodingstyle isEqual:@"application/x-gzip"]) handle=[CSZlibHandle zlibHandleWithHandle:handle length:sizeval];
 		else if([encodingstyle isEqual:@"application/x-bzip2"]) handle=[CSBzip2Handle bzip2HandleWithHandle:handle length:sizeval];
 		else if([encodingstyle isEqual:@"application/x-xz"]) handle=[[[XADXZHandle alloc] initWithHandle:handle length:sizeval] autorelease];

@@ -18,7 +18,7 @@
 
 -(id)initWithArchiveParser:(XADArchiveParser *)archiveparser
 {
-	if(self=[super init])
+	if((self=[super init]))
 	{
 		parser=[archiveparser retain];
 		destination=nil;
@@ -268,7 +268,7 @@ static NSInteger SortDirectoriesByDepthAndResource(id entry1,id entry2,void *con
 
 	NSEnumerator *enumerator=[deferreddirectories objectEnumerator];
 	NSArray *entry;
-	while(entry=[enumerator nextObject])
+	while((entry=[enumerator nextObject]))
 	{
 		NSString *path=[entry objectAtIndex:0];
 		NSDictionary *dict=[entry objectAtIndex:1];
@@ -435,8 +435,14 @@ static NSInteger SortDirectoriesByDepthAndResource(id entry1,id entry2,void *con
 			if(actual==0) break;
 		}
 
-		if(sizenum&&done!=size) return XADDecrunchError; // kind of hacky
-		if([srchandle hasChecksum]&&![srchandle isChecksumCorrect]) return XADChecksumError;
+		if([srchandle hasChecksum])
+		{
+			if(![srchandle isChecksumCorrect]) return XADChecksumError;
+		}
+		else
+		{
+			if(sizenum&&done!=size) return XADDecrunchError; // kind of hacky
+		}
 	}
 	@catch(id e)
 	{
@@ -484,7 +490,12 @@ deferDirectories:(BOOL)defer
 			if(![delegate unarchiver:self shouldCreateDirectory:path]) return XADBreakError;
 		}
 
+		#if MAC_OS_X_VERSION_MIN_REQUIRED>=1050
+		if([manager createDirectoryAtPath:path
+		withIntermediateDirectories:NO attributes:nil error:NULL]) return XADNoError;
+		#else
 		if([manager createDirectoryAtPath:path attributes:nil]) return XADNoError;
+		#endif
 		else return XADMakeDirectoryError;
 	}
 }

@@ -43,7 +43,7 @@ static inline int imin(int a,int b) { return a<b?a:b; }
 	NSArray *matches;
 
 	// Check for .z01 style files.
-	if(matches=[name substringsCapturedByPattern:@"^(.*)\\.(z[0-9]{2}|zip)$" options:REG_ICASE])
+	if((matches=[name substringsCapturedByPattern:@"^(.*)\\.(z[0-9]{2}|zip)$" options:REG_ICASE]))
 	{
 		return [self scanForVolumesWithFilename:name
 		regex:[XADRegex regexWithPattern:[NSString stringWithFormat:@"^%@\\.(zip|z[0-9]{2})$",
@@ -53,7 +53,7 @@ static inline int imin(int a,int b) { return a<b?a:b; }
 
 	// In case the first part of a .zip.001 split file was detected, find the other parts.
 	// If a later part was detected, XADSplitFileParser will handle it instead.
-	if(matches=[name substringsCapturedByPattern:@"^(.*)\\.[0-9]{3}$" options:REG_ICASE])
+	if((matches=[name substringsCapturedByPattern:@"^(.*)\\.[0-9]{3}$" options:REG_ICASE]))
 	{
 		return [self scanForVolumesWithFilename:name
 		regex:[XADRegex regexWithPattern:[NSString stringWithFormat:@"^%@\\.[0-9]{3}$",
@@ -68,7 +68,7 @@ static inline int imin(int a,int b) { return a<b?a:b; }
 
 -(id)initWithHandle:(CSHandle *)handle name:(NSString *)name
 {
-	if(self=[super initWithHandle:handle name:name])
+	if((self=[super initWithHandle:handle name:name]))
 	{
 		prevdict=nil;
 		prevname=nil;
@@ -270,7 +270,7 @@ static inline int imin(int a,int b) { return a<b?a:b; }
 			NSDictionary *extradict=nil;
 			@try {
 				if(localextralength) extradict=[self parseZipExtraWithLength:localextralength nameData:namedata
-				uncompressedSizePointer:NULL compressedSizePointer:NULL];
+				uncompressedSizePointer:&uncompsize compressedSizePointer:&compsize];
 			} @catch(id e) {
 				[self setObject:[NSNumber numberWithBool:YES] forPropertyKey:XADIsCorruptedKey];
 				NSLog(@"Error parsing Zip extra fields: %@",e);
@@ -647,7 +647,7 @@ uncompressedSizePointer:(off_t *)uncompsizeptr compressedSizePointer:(off_t *)co
 		}
 		else
 		{
-			//NSLog(@"unknown extension: %x %d %@",extid,size,[fh readDataOfLength:size]);
+			NSLog(@"unknown extension: %x %d %@",extid,size,[fh readDataOfLength:size]);
 		}
 
 		[fh seekToFileOffset:next];
@@ -684,6 +684,7 @@ isLastEntry:(BOOL)islastentry
 		[NSDate XADDateWithMSDOSDateTime:date],XADLastModificationDateKey,
 		[NSNumber numberWithUnsignedInt:crc],@"ZipCRC32",
 		[NSNumber numberWithUnsignedInt:localdate],@"ZipLocalDate",
+		[NSNumber numberWithInt:extfileattrib],@"ZipFileAttributes",
 		[NSNumber numberWithUnsignedLongLong:compsize],XADCompressedSizeKey,
 		[NSNumber numberWithUnsignedLongLong:uncompsize],XADFileSizeKey,
 		[NSNumber numberWithLongLong:dataoffset],XADDataOffsetKey,
@@ -742,10 +743,23 @@ isLastEntry:(BOOL)islastentry
 		const uint8_t *namebytes=[namedata bytes];
 		int namelength=[namedata length];
 
-		if(flags&0x800)
-		[dict setObject:[self XADPathWithData:namedata encodingName:XADUTF8StringEncodingName separators:XADUnixPathSeparator] forKey:XADFileNameKey];
+		char *separators;
+		if(system==0)
+		{
+			// Kludge: IZArc claims to be MS-DOS, and uses DOS path separators.
+			// Allow DOS paths in this case, since files shouldn't contain
+			// backslashes anyway.
+			separators=XADEitherPathSeparator;
+		}
 		else
-		[dict setObject:[self XADPathWithData:namedata separators:XADUnixPathSeparator] forKey:XADFileNameKey];
+		{
+			separators=XADUnixPathSeparator;
+		}
+
+		if(flags&0x800)
+		[dict setObject:[self XADPathWithData:namedata encodingName:XADUTF8StringEncodingName separators:separators] forKey:XADFileNameKey];
+		else
+		[dict setObject:[self XADPathWithData:namedata separators:separators] forKey:XADFileNameKey];
 
 		if(namebytes[namelength-1]=='/'&&uncompsize==0)
 		[dict setObject:[NSNumber numberWithBool:YES] forKey:XADIsDirectoryKey];
@@ -771,19 +785,6 @@ isLastEntry:(BOOL)islastentry
 			if(memcmp(namebytes+namelength-4,".bin",4)==0)
 			[dict setObject:[NSNumber numberWithBool:YES] forKey:XADMightBeMacBinaryKey];
 		}
-
-		// Kludge to make executables in bad Mac OS X app bundles
-		// without permission information executable.
-		if(namelength>22&&system!=3)
-		{
-			for(int i=1;i<namelength-21;i++)
-			if(memcmp(namebytes+i,".app/Contents/MacOS/",20)==0)
-			{
-				mode_t mask=umask(0); umask(mask);
-				[dict setObject:[NSNumber numberWithUnsignedShort:0777&~mask] forKey:XADPosixPermissionsKey];
-				break;
-			}
-		}
 	}
 	else
 	{
@@ -801,19 +802,33 @@ isLastEntry:(BOOL)islastentry
 
 	if(extfileattrib!=0xffffffff)
 	{
-		//if(zc.System==1) fi2->xfi_Protection = ((EndGetI32(zc.ExtFileAttrib)>>16)^15)&0xFF; // amiga
-		if(system==0) // ms-dos
+		if(system==0) // MS-DOS
 		{
 			if(extfileattrib&0x10) [dict setObject:[NSNumber numberWithBool:YES] forKey:XADIsDirectoryKey];
-			[dict setObject:[NSNumber numberWithInt:extfileattrib] forKey:XADDOSFileAttributesKey];
+			[dict setObject:[NSNumber numberWithUnsignedInt:extfileattrib] forKey:XADDOSFileAttributesKey];
 		}
-		else if(system==3) // unix
+
+		if(system==1) // Amiga
+		{
+			[dict setObject:[NSNumber numberWithUnsignedInt:extfileattrib] forKey:XADAmigaProtectionBitsKey];
+		}
+
+		if(system==3) // Unix
 		{
 			int perm=extfileattrib>>16;
 			[dict setObject:[NSNumber numberWithInt:perm] forKey:XADPosixPermissionsKey];
-
-			if((perm&0xf000)==0x4000) [dict setObject:[NSNumber numberWithBool:YES] forKey:XADIsDirectoryKey];
-			else if((perm&0xf000)==0xa000) [dict setObject:[NSNumber numberWithBool:YES] forKey:XADIsLinkKey];
+		}
+		else
+		{
+			#ifndef __MINGW32__
+			// Several amazingly broken archivers on OS X create files that do
+			// not contain proper permissions extra records, and use non-sensical
+			// OS field values. They still expect apps and scripts to be executable,
+			// though, because Archive Utility by default makes all files executable.
+			// Don't bother with this on Windows.
+			mode_t mask=umask(0); umask(mask);
+			[dict setObject:[NSNumber numberWithUnsignedShort:0777&~mask] forKey:XADPosixPermissionsKey];
+			#endif
 		}
 	}
 
@@ -824,7 +839,7 @@ isLastEntry:(BOOL)islastentry
 		[self addRemeberedEntryAndForget];
 	}
 
-	if(uncompsize==0&&!islastentry&&![dict objectForKey:XADIsDirectoryKey])
+	if(uncompsize==0&&!islastentry&&![dict objectForKey:XADIsDirectoryKey]&&namedata)
 	{
 		// this entry could be a directory, save it for testing against the next entry
 		[self rememberEntry:dict withName:namedata];

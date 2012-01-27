@@ -4,6 +4,7 @@
 
 
 
+NSString *XADASCIIStringEncodingName=@"US-ASCII";
 NSString *XADUTF8StringEncodingName=@"utf-8";
 
 NSString *XADISOLatin1StringEncodingName=@"iso-8859-1";
@@ -63,7 +64,7 @@ NSString *XADMacOSCroatianStringEncodingName=@"x-mac-croatian";
 	if([stringsource analyzeDataAndCheckForASCII:bytedata])
 	return [self initWithString:[[[NSString alloc] initWithData:bytedata encoding:NSASCIIStringEncoding] autorelease]];
 
-	if(self=[super init])
+	if((self=[super init]))
 	{
 		data=[bytedata retain];
 		string=nil;
@@ -74,7 +75,7 @@ NSString *XADMacOSCroatianStringEncodingName=@"x-mac-croatian";
 
 -(id)initWithData:(NSData *)bytedata encodingName:(NSString *)encoding
 {
-	if(self=[super init])
+	if((self=[super init]))
 	{
 		// TODO: handle decoding failures
 		string=[[XADString stringForData:bytedata encodingName:encoding] retain];
@@ -86,7 +87,7 @@ NSString *XADMacOSCroatianStringEncodingName=@"x-mac-croatian";
 
 -(id)initWithString:(NSString *)knownstring
 {
-	if(self=[super init])
+	if((self=[super init]))
 	{
 		string=[knownstring retain];
 		data=nil;
@@ -278,7 +279,7 @@ NSString *XADMacOSCroatianStringEncodingName=@"x-mac-croatian";
 
 -(id)init
 {
-	if(self=[super init])
+	if((self=[super init]))
 	{
 		detector=[UniversalDetector new]; // can return nil if UniversalDetector is not found
 		fixedencodingname=nil;
@@ -320,8 +321,9 @@ NSString *XADMacOSCroatianStringEncodingName=@"x-mac-croatian";
 	{
 		static NSDictionary *macalternatives=nil;
 		if(!macalternatives) macalternatives=[[NSDictionary alloc] initWithObjectsAndKeys:
-			XADMacOSRomanStringEncodingName,XADWindowsCP1252StringEncodingName,
-			XADMacOSJapaneseStringEncodingName,XADShiftJISStringEncodingName,
+			XADMacOSRomanStringEncodingName,[XADASCIIStringEncodingName lowercaseString],
+			XADMacOSRomanStringEncodingName,[XADWindowsCP1252StringEncodingName lowercaseString],
+			XADMacOSJapaneseStringEncodingName,[XADShiftJISStringEncodingName lowercaseString],
 		nil];
 
 		NSString *macalternative=[macalternatives objectForKey:[encoding lowercaseString]];

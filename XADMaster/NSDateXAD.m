@@ -4,6 +4,7 @@
 
 #define SecondsFrom1904To1970 2082844800
 #define SecondsFrom1601To1970 11644473600
+#define SecondsFrom1970ToLastDayOf1978 283910400
 
 @implementation NSDate (XAD)
 
@@ -20,10 +21,20 @@
 
 +(NSDate *)XADDateWithMSDOSDate:(uint16_t)date time:(uint16_t)time
 {
-	return [self XADDateWithMSDOSDateTime:((uint32_t)date<<16)|(uint32_t)time];
+	return [self XADDateWithMSDOSDate:date time:time timeZone:nil];
+}
+
++(NSDate *)XADDateWithMSDOSDate:(uint16_t)date time:(uint16_t)time timeZone:(NSTimeZone *)tz
+{
+	return [self XADDateWithMSDOSDateTime:((uint32_t)date<<16)|(uint32_t)time timeZone:tz];
 }
 
 +(NSDate *)XADDateWithMSDOSDateTime:(uint32_t)msdos
+{
+	return [self XADDateWithMSDOSDateTime:msdos timeZone:nil];
+}
+
++(NSDate *)XADDateWithMSDOSDateTime:(uint32_t)msdos timeZone:(NSTimeZone *)tz
 {
 	int second=(msdos&31)*2;
 	int minute=(msdos>>5)&63;
@@ -31,7 +42,7 @@
 	int day=(msdos>>16)&31;
 	int month=(msdos>>21)&15;
 	int year=1980+(msdos>>25);
-	return [NSCalendarDate dateWithYear:year month:month day:day hour:hour minute:minute second:second timeZone:nil];
+	return [NSCalendarDate dateWithYear:year month:month day:day hour:hour minute:minute second:second timeZone:tz];
 }
 
 +(NSDate *)XADDateWithWindowsFileTime:(uint64_t)filetime
@@ -42,6 +53,17 @@
 +(NSDate *)XADDateWithWindowsFileTimeLow:(uint32_t)low high:(uint32_t)high
 {
 	return [NSDate XADDateWithWindowsFileTime:((uint64_t)high<<32)|(uint64_t)low];
+}
+
++(NSDate *)XADDateWithCPMDate:(uint16_t)date time:(uint16_t)time
+{
+	int second=(time&31)*2;
+	int minute=(time>>5)&63;
+	int hour=(time>>11)&31;
+
+	double seconds=second+minute*60+hour*3600+date*86400;
+
+	return [NSDate dateWithTimeIntervalSince1970:seconds+SecondsFrom1970ToLastDayOf1978];
 }
 
 
