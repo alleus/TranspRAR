@@ -11,6 +11,7 @@
 #import <MacFUSE/MacFUSE.h>
 #import <XADMaster/XADArchive.h>
 #import <XADMaster/XADRegex.h>
+#import "IconFamily.h"
 
 
 // Category on NSError to  simplify creating an NSError based on posix errno.
@@ -44,6 +45,7 @@
 		paths = [[NSMutableDictionary alloc] init];
 		fileManager = [[NSFileManager alloc] init];
 		rootPath = @"";
+		overlayImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TranspRAR" ofType:@"icns"]];
 	}
 	return self;
 }
@@ -201,6 +203,18 @@
 	}
 	
 	return nil;
+}
+
+- (NSDictionary *)finderAttributesAtPath:(NSString *)path 
+                                   error:(NSError **)error {
+	ACArchiveEntry *entry = [self archiveEntryForPath:path];
+	
+	if (entry && [TranspRAR_Controller colorLabels]) {
+		NSDictionary *returnDictionary = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedShort:(kColor ^ 1)] forKey:kGMUserFileSystemFinderFlagsKey];
+		return returnDictionary;
+	} else {
+		return nil;
+	}
 }
 
 #pragma mark File Contents

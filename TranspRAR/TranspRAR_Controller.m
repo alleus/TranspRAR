@@ -12,12 +12,14 @@
 
 #define kRootPath			@"RootPath"
 #define kDebugLogging		@"DebugLogging"
+#define kColorLabels		@"ColorLabels"
 #define kPersistentDomain	@"com.alleus.TranspRAR.pref"
 
 
 @implementation TranspRAR_Controller
 
 static BOOL debugLogging;
+static BOOL colorLabels;
 
 - (void)mountFailed:(NSNotification *)notification {
 	NSDictionary* userInfo = [notification userInfo];
@@ -57,6 +59,7 @@ static BOOL debugLogging;
 	fs_delegate_.rootPath = @"/";
 	fs_ = [[GMUserFileSystem alloc] initWithDelegate:fs_delegate_ isThreadSafe:NO];
 	debugLogging = [[[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kDebugLogging] boolValue];
+	colorLabels = [[[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kColorLabels] boolValue];
 	
 	NSMutableArray* options = [NSMutableArray array];
 	NSString* volArg = [NSString stringWithFormat:@"volicon=%@", [[NSBundle mainBundle] pathForResource:@"TranspRAR" ofType:@"icns"]];
@@ -78,6 +81,10 @@ static BOOL debugLogging;
 
 + (BOOL)debugLogging {
 	return debugLogging;
+}
+
++ (BOOL)colorLabels {
+	return colorLabels;
 }
 
 - (void)startServer {

@@ -21,6 +21,8 @@
 	NSMutableDictionary		*paths;
 	
 	NSString				*rootPath;
+	
+	NSImage					*overlayImage;
 }
 
 @property (nonatomic, retain) NSString *rootPath;

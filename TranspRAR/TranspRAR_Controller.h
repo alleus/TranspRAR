@@ -17,6 +17,7 @@
 }
 
 + (BOOL)debugLogging;
++ (BOOL)colorLabels;
 - (void)startServer;
 - (void)showMountError:(NSError *)error;
 

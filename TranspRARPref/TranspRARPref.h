@@ -30,6 +30,7 @@
 	IBOutlet NSTextField	*infoLabel;
 	IBOutlet NSButton		*autoLaunchSwitch;
 	IBOutlet NSButton		*debugLoggingSwitch;
+	IBOutlet NSButton		*labelSwitch;
 	IBOutlet NSProgressIndicator	*progressIndicator;
 	
 	NSDistantObject<ACTranspRARServiceProtocol>	*serverObject;
@@ -44,6 +45,7 @@
 - (IBAction)autoLaunchSwitchChanged:(id)sender;
 - (IBAction)rootPathPopUpChanged:(id)sender;
 - (IBAction)debugLoggingSwitchChanged:(id)sender;
+- (IBAction)labelSwitchChanged:(id)sender;
 
 
 @end

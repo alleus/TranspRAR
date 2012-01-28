@@ -10,6 +10,7 @@
 
 #define kRootPath			@"RootPath"
 #define kDebugLogging		@"DebugLogging"
+#define kColorLabels		@"ColorLabels"
 #define kPersistentDomain	@"com.alleus.TranspRAR.pref"
 
 @interface TranspRARPref ()
@@ -57,6 +58,7 @@
 	// Get root path
 	NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain];
 	[debugLoggingSwitch setState:([[defaults objectForKey:kDebugLogging] boolValue])?NSOnState:NSOffState];
+	[labelSwitch setState:([[defaults objectForKey:kColorLabels] boolValue])?NSOnState:NSOffState];
 	NSString *rootPath = [defaults objectForKey:kRootPath];
 	
 	if (!rootPath) {
@@ -100,11 +102,13 @@
 		[statusLabel setStringValue:@"TranspRAR is running."];
 		[rootPathPopUp setEnabled:NO];
 		[debugLoggingSwitch setEnabled:NO];
+		[labelSwitch setEnabled:NO];
 	} else {
 		[startStopButton setTitle:@"Start TranspRAR"];
 		[statusLabel setStringValue:@"TranspRAR is stopped."];
 		[rootPathPopUp setEnabled:YES];
 		[debugLoggingSwitch setEnabled:YES];
+		[labelSwitch setEnabled:YES];
 	}
 }
 
@@ -190,6 +194,14 @@
 	NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain];
 	NSMutableDictionary *mutableDefaults = (defaults)?[defaults mutableCopy]:[[NSMutableDictionary alloc] init];
 	[mutableDefaults setObject:[NSNumber numberWithBool:([sender state] == NSOnState)] forKey:kDebugLogging];
+	[[NSUserDefaults standardUserDefaults] setPersistentDomain:mutableDefaults forName:kPersistentDomain];
+	[mutableDefaults release];
+}
+
+- (IBAction)labelSwitchChanged:(id)sender {
+	NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain];
+	NSMutableDictionary *mutableDefaults = (defaults)?[defaults mutableCopy]:[[NSMutableDictionary alloc] init];
+	[mutableDefaults setObject:[NSNumber numberWithBool:([sender state] == NSOnState)] forKey:kColorLabels];
 	[[NSUserDefaults standardUserDefaults] setPersistentDomain:mutableDefaults forName:kPersistentDomain];
 	[mutableDefaults release];
 }
