@@ -76,7 +76,7 @@
 }
 
 - (void)checkForService:(NSTimer *)timer {
-	serverObject = [NSConnection rootProxyForConnectionWithRegisteredName:@"TranspRAR" host:nil];
+	serverObject = (id)[NSConnection rootProxyForConnectionWithRegisteredName:@"TranspRAR" host:nil];
 	if (serverObject) {
 		[serverObject setProtocolForProxy:@protocol(ACTranspRARServiceProtocol)];
 		[self updateServerStatus];

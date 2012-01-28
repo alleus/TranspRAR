@@ -10,3 +10,4 @@ DeveloperSettings.xcconfig
 dSYM_Archive/
 The Unarchiver/
 Signing/
+*.xcuserdatad

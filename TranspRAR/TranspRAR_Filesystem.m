@@ -192,7 +192,8 @@
 	return nil;
 }
 
-- (NSString *)destinationOfSymbolicLinkAtPath:(NSString *)path error:(NSError **)error {
+- (NSString *)destinationOfSymbolicLinkAtPath:(NSString *)path
+                                        error:(NSError **)error {
 	NSString *realPath = [rootPath stringByAppendingString:path];
 	NSString *destinationPath = [fileManager destinationOfSymbolicLinkAtPath:realPath error:&*error];
 	if (destinationPath) {

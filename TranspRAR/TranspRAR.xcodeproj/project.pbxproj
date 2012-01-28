@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		2A344B7714D3EEDF00F94B79 /* OSXFUSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */; };
 		5BA9D88A123A5AF700C73E85 /* XADMaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D873123A5AD100C73E85 /* XADMaster.framework */; };
 		5BA9D88B123A5B0300C73E85 /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */; };
 		5BA9D8B9123A61FE00C73E85 /* XADMaster.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D873123A5AD100C73E85 /* XADMaster.framework */; };
@@ -19,12 +20,18 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		FFA311CF0EE5160400FF2904 /* TranspRAR.icns in Resources */ = {isa = PBXBuildFile; fileRef = FFA311CE0EE5160400FF2904 /* TranspRAR.icns */; };
-		FFA311D10EE5167200FF2904 /* MacFUSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFA311D00EE5167200FF2904 /* MacFUSE.framework */; };
 		FFD925C00EE507A800A7B2B2 /* TranspRAR_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */; };
 		FFD925C30EE5082D00A7B2B2 /* TranspRAR_Filesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2AE0DBC614D32AC700D6D07B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B342390131D8B5B00CCDF77;
+			remoteInfo = XADTest5;
+		};
 		5BA9D85B123A5AC600C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
@@ -162,6 +169,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSXFUSE.framework; path = ../../../../../../Library/Frameworks/OSXFUSE.framework; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TranspRAR_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Prefix.pch; sourceTree = "<group>"; };
 		5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UniversalDetector.xcodeproj; path = ../UniversalDetector/UniversalDetector.xcodeproj; sourceTree = SOURCE_ROOT; };
 		5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XADMaster.xcodeproj; path = ../XADMaster/XADMaster.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -186,9 +194,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A344B7714D3EEDF00F94B79 /* OSXFUSE.framework in Frameworks */,
 				5BA9D88A123A5AF700C73E85 /* XADMaster.framework in Frameworks */,
 				5BA9D88B123A5B0300C73E85 /* UniversalDetector.framework in Frameworks */,
-				FFA311D10EE5167200FF2904 /* MacFUSE.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +246,7 @@
 		29B97314FDCFA39411CA2CEA /* TranspRAR */ = {
 			isa = PBXGroup;
 			children = (
+				2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -283,7 +292,7 @@
 			children = (
 				5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */,
 				5BA9D85E123A5AC600C73E85 /* libUniversalDetector.a */,
-				5BA9D860123A5AC600C73E85 /* libUniversalDetector.a */,
+				5BA9D860123A5AC600C73E85 /* libUniversalDetector.win.a */,
 				5BA9D862123A5AC600C73E85 /* DetectorTest */,
 			);
 			name = Products;
@@ -297,10 +306,11 @@
 				5BA9D877123A5AD100C73E85 /* XADTest2 */,
 				5BA9D879123A5AD100C73E85 /* XADTest3 */,
 				5BA9D87B123A5AD100C73E85 /* XADTest4 */,
+				2AE0DBC714D32AC700D6D07B /* XADTest5 */,
 				5BA9D87D123A5AD100C73E85 /* libXADMaster.a */,
 				5BA9D87F123A5AD100C73E85 /* unar */,
 				5BA9D881123A5AD100C73E85 /* lsar */,
-				5BA9D883123A5AD100C73E85 /* libXADMaster.a */,
+				5BA9D883123A5AD100C73E85 /* libXADMaster.win.a */,
 				5BA9D885123A5AD100C73E85 /* unar.exe */,
 				5BA9D887123A5AD100C73E85 /* lsar.exe */,
 			);
@@ -350,7 +360,11 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TranspRAR" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* TranspRAR */;
 			projectDirPath = "";
 			projectReferences = (
@@ -371,6 +385,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		2AE0DBC714D32AC700D6D07B /* XADTest5 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = XADTest5;
+			remoteRef = 2AE0DBC614D32AC700D6D07B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -385,10 +406,10 @@
 			remoteRef = 5BA9D85D123A5AC600C73E85 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5BA9D860123A5AC600C73E85 /* libUniversalDetector.a */ = {
+		5BA9D860123A5AC600C73E85 /* libUniversalDetector.win.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libUniversalDetector.a;
+			path = libUniversalDetector.win.a;
 			remoteRef = 5BA9D85F123A5AC600C73E85 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -455,10 +476,10 @@
 			remoteRef = 5BA9D880123A5AD100C73E85 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5BA9D883123A5AD100C73E85 /* libXADMaster.a */ = {
+		5BA9D883123A5AD100C73E85 /* libXADMaster.win.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libXADMaster.a;
+			path = libXADMaster.win.a;
 			remoteRef = 5BA9D882123A5AD100C73E85 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -554,7 +575,7 @@
 				OTHER_CFLAGS = "-DDEBUG";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TranspRAR;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -579,7 +600,7 @@
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TranspRAR;
 				STRIP_INSTALLED_PRODUCT = YES;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};

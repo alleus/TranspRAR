@@ -11,9 +11,9 @@
 @class TranspRAR_Filesystem;
 
 @interface TranspRAR_Controller : NSObject {
-  GMUserFileSystem* fs_;
-  TranspRAR_Filesystem* fs_delegate_;
-	NSConnection	*connection;
+	GMUserFileSystem *fs_;
+	TranspRAR_Filesystem *fs_delegate_;
+	NSConnection *connection;
 }
 
 + (BOOL)debugLogging;
