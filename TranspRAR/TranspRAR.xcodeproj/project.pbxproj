@@ -169,7 +169,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSXFUSE.framework; path = ../../../../../../Library/Frameworks/OSXFUSE.framework; sourceTree = "<group>"; };
+		2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSXFUSE.framework; path = /Library/Frameworks/OSXFUSE.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* TranspRAR_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Prefix.pch; sourceTree = "<group>"; };
 		5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UniversalDetector.xcodeproj; path = ../UniversalDetector/UniversalDetector.xcodeproj; sourceTree = SOURCE_ROOT; };
 		5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XADMaster.xcodeproj; path = ../XADMaster/XADMaster.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -182,7 +182,6 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* TranspRAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranspRAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFA311CE0EE5160400FF2904 /* TranspRAR.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TranspRAR.icns; sourceTree = "<group>"; };
-		FFA311D00EE5167200FF2904 /* MacFUSE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacFUSE.framework; path = /Library/Frameworks/MacFUSE.framework; sourceTree = "<absolute>"; };
 		FFD925BE0EE507A800A7B2B2 /* TranspRAR_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Controller.h; sourceTree = "<group>"; };
 		FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranspRAR_Controller.m; sourceTree = "<group>"; };
 		FFD925C10EE5082D00A7B2B2 /* TranspRAR_Filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Filesystem.h; sourceTree = "<group>"; };
@@ -219,8 +218,8 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				FFA311D00EE5167200FF2904 /* MacFUSE.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -246,7 +245,6 @@
 		29B97314FDCFA39411CA2CEA /* TranspRAR */ = {
 			isa = PBXGroup;
 			children = (
-				2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
