@@ -10,9 +10,7 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		2A344B7714D3EEDF00F94B79 /* OSXFUSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */; };
 		5BA9D88A123A5AF700C73E85 /* XADMaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D873123A5AD100C73E85 /* XADMaster.framework */; };
-		5BA9D88B123A5B0300C73E85 /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */; };
 		5BA9D8B9123A61FE00C73E85 /* XADMaster.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D873123A5AD100C73E85 /* XADMaster.framework */; };
-		5BA9D8BA123A620000C73E85 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */; };
 		5BA9D91B123A68CD00C73E85 /* ACArchiveEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9D91A123A68CD00C73E85 /* ACArchiveEntry.m */; };
 		5BA9D924123A698300C73E85 /* ACArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9D923123A698300C73E85 /* ACArchive.m */; };
 		5BA9D941123A6B0700C73E85 /* ACPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9D940123A6B0700C73E85 /* ACPath.m */; };
@@ -31,34 +29,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1B342390131D8B5B00CCDF77;
 			remoteInfo = XADTest5;
-		};
-		5BA9D85B123A5AC600C73E85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = UniversalDetector;
-		};
-		5BA9D85D123A5AC600C73E85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1B23E0871190F29400620319;
-			remoteInfo = libUniversalDetector;
-		};
-		5BA9D85F123A5AC600C73E85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1B91CBE011D821A70081E40A;
-			remoteInfo = "libUniversalDetector (Windows)";
-		};
-		5BA9D861123A5AC600C73E85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1B0DDCAB0A2D0AD10009B697;
-			remoteInfo = DetectorTest;
 		};
 		5BA9D872123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -144,6 +114,13 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = XADMaster;
 		};
+		B5C4605B15C0E25D00D7E03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B31CB9213C6423600ED119E /* XADTest6 */;
+			remoteInfo = XADTest6;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -153,7 +130,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5BA9D8BA123A620000C73E85 /* UniversalDetector.framework in Copy Frameworks */,
 				5BA9D8B9123A61FE00C73E85 /* XADMaster.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -171,7 +147,6 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSXFUSE.framework; path = /Library/Frameworks/OSXFUSE.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* TranspRAR_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Prefix.pch; sourceTree = "<group>"; };
-		5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UniversalDetector.xcodeproj; path = ../UniversalDetector/UniversalDetector.xcodeproj; sourceTree = SOURCE_ROOT; };
 		5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XADMaster.xcodeproj; path = ../XADMaster/XADMaster.xcodeproj; sourceTree = SOURCE_ROOT; };
 		5BA9D919123A68CD00C73E85 /* ACArchiveEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACArchiveEntry.h; sourceTree = "<group>"; };
 		5BA9D91A123A68CD00C73E85 /* ACArchiveEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACArchiveEntry.m; sourceTree = "<group>"; };
@@ -195,7 +170,6 @@
 			files = (
 				2A344B7714D3EEDF00F94B79 /* OSXFUSE.framework in Frameworks */,
 				5BA9D88A123A5AF700C73E85 /* XADMaster.framework in Frameworks */,
-				5BA9D88B123A5B0300C73E85 /* UniversalDetector.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,7 +224,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */,
 				5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */,
 			);
 			name = TranspRAR;
@@ -285,17 +258,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5BA9D855123A5AC600C73E85 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */,
-				5BA9D85E123A5AC600C73E85 /* libUniversalDetector.a */,
-				5BA9D860123A5AC600C73E85 /* libUniversalDetector.win.a */,
-				5BA9D862123A5AC600C73E85 /* DetectorTest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		5BA9D864123A5AD100C73E85 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +267,7 @@
 				5BA9D879123A5AD100C73E85 /* XADTest3 */,
 				5BA9D87B123A5AD100C73E85 /* XADTest4 */,
 				2AE0DBC714D32AC700D6D07B /* XADTest5 */,
+				B5C4605C15C0E25D00D7E03D /* XADTest6 */,
 				5BA9D87D123A5AD100C73E85 /* libXADMaster.a */,
 				5BA9D87F123A5AD100C73E85 /* unar */,
 				5BA9D881123A5AD100C73E85 /* lsar */,
@@ -367,10 +330,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 5BA9D855123A5AC600C73E85 /* Products */;
-					ProjectRef = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-				},
-				{
 					ProductGroup = 5BA9D864123A5AD100C73E85 /* Products */;
 					ProjectRef = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 				},
@@ -388,34 +347,6 @@
 			fileType = "compiled.mach-o.executable";
 			path = XADTest5;
 			remoteRef = 2AE0DBC614D32AC700D6D07B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = UniversalDetector.framework;
-			remoteRef = 5BA9D85B123A5AC600C73E85 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5BA9D85E123A5AC600C73E85 /* libUniversalDetector.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libUniversalDetector.a;
-			remoteRef = 5BA9D85D123A5AC600C73E85 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5BA9D860123A5AC600C73E85 /* libUniversalDetector.win.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libUniversalDetector.win.a;
-			remoteRef = 5BA9D85F123A5AC600C73E85 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5BA9D862123A5AC600C73E85 /* DetectorTest */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = DetectorTest;
-			remoteRef = 5BA9D861123A5AC600C73E85 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5BA9D873123A5AD100C73E85 /* XADMaster.framework */ = {
@@ -493,6 +424,13 @@
 			fileType = "compiled.mach-o.executable";
 			path = lsar.exe;
 			remoteRef = 5BA9D886123A5AD100C73E85 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5C4605C15C0E25D00D7E03D /* XADTest6 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = XADTest6;
+			remoteRef = B5C4605B15C0E25D00D7E03D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
