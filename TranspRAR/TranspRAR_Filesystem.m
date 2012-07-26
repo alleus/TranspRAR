@@ -11,7 +11,7 @@
 #import <MacFUSE/MacFUSE.h>
 #import <XADMaster/XADArchive.h>
 #import <XADMaster/XADRegex.h>
-#import "IconFamily.h"
+//#import "IconFamily.h"
 
 
 // Category on NSError to  simplify creating an NSError based on posix errno.

@@ -742,6 +742,7 @@
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = UniversalDetector;
 				SKIP_INSTALL = YES;
+				SYMROOT = ../build;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
 			};
@@ -889,6 +890,7 @@
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = UniversalDetector;
 				SKIP_INSTALL = YES;
+				SYMROOT = ../build;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
 			};
@@ -983,6 +985,7 @@
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				PRODUCT_NAME = UniversalDetector;
 				SKIP_INSTALL = YES;
+				SYMROOT = ../build;
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = NO;
 			};
