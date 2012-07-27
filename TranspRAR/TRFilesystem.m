@@ -206,14 +206,28 @@ static BOOL TRGetArchiveAndSubpathForPath(NSString **const archivePath, NSString
 - (NSDictionary *)finderAttributesAtPath:(NSString *const)path error:(NSError **const)error
 {
 	if(error) *error = nil;
-	if(![TRController colorLabels]) return nil;
-	NSString *const fullpath = [_rootPath stringByAppendingString:path];
 	NSString *archivePath = nil;
-	if(!TRGetArchiveAndSubpathForPath(&archivePath, NULL, fullpath)) return nil;
-	if(archivePath || TRIsArchivePath(fullpath)) return [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSNumber numberWithUnsignedShort:kColorOrange], kGMUserFileSystemFinderFlagsKey,
+	NSString *subpath = nil;
+	NSString *const fullpath = [_rootPath stringByAppendingString:path];
+	if(!TRGetArchiveAndSubpathForPath(&archivePath, &subpath, fullpath)) return nil;
+
+	UInt16 flags = kNilOptions;
+	if(archivePath) {
+		if([TRController colorLabels]) flags |= kColorOrange;
+		if([[subpath lastPathComponent] hasPrefix:@"."]) flags |= kIsInvisible;
+	} else {
+		if([TRController colorLabels] && TRIsArchivePath(fullpath)) flags |= kColorOrange;
+		LSItemInfoRecord info = {};
+		if(LSCopyItemInfoForURL((CFURLRef)[NSURL fileURLWithPath:fullpath], kLSRequestBasicFlagsOnly, &info) == noErr && info.flags & kLSItemInfoIsInvisible) flags |= kIsInvisible;
+		else {
+			static NSSet *ignoredPaths = nil;
+			if(!ignoredPaths) ignoredPaths = [[NSSet setWithObjects:@"/dev", @"/net", @"/etc", @"/home", @"/tmp", @"/var", @"/mach_kernel.ctfsys", @"/mach.sym", nil] retain];
+			if([ignoredPaths containsObject:fullpath]) flags |= kIsInvisible;
+		}
+	}
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+		[NSNumber numberWithUnsignedShort:flags], kGMUserFileSystemFinderFlagsKey,
 		nil];
-	return nil;
 }
 
 #pragma mark Extended Attributes
