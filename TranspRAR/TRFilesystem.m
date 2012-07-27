@@ -164,9 +164,8 @@ static BOOL TRGetArchiveAndSubpathForPath(NSString **const archivePath, NSString
 	if(!TRGetArchiveAndSubpathForPath(&archivePath, &subpath, fullpath)) return NO;
 	if(archivePath) {
 		TRNode *const node = [[self nodeForArchivePath:archivePath] nodeForSubpath:subpath];
-		CSHandle *const handle = [[node parser] handleForEntryWithDictionary:[node info] wantChecksum:NO];
-		*userInfo = handle;
-		return !!handle; // TODO: Return error.
+		*userInfo = node;
+		return !!node; // TODO: Return error.
 	} else {
 		int const fd = open([fullpath UTF8String], mode);
 		if(fd < 0) {
@@ -182,7 +181,8 @@ static BOOL TRGetArchiveAndSubpathForPath(NSString **const archivePath, NSString
 	if([userInfo isKindOfClass:[NSNumber class]]) {
 		(void)close([userInfo intValue]);
 	} else {
-		[userInfo close];
+		// We open and close sub-handles for each read, so we don't need to do anything here.
+		// However, we should add archive/node unloading at some point.
 	}
 }
 - (int)readFileAtPath:(NSString *const)path userData:(id const)userInfo buffer:(char *const)buffer size:(size_t const)size offset:(off_t const)offset error:(NSError **const)error
@@ -196,8 +196,12 @@ static BOOL TRGetArchiveAndSubpathForPath(NSString **const archivePath, NSString
 		return ret;
 	} else {
 		if(error) *error = nil;
-		[userInfo seekToFileOffset:offset];
-		return [userInfo readAtMost:size toBuffer:buffer];
+		TRNode *const node = userInfo;
+		CSHandle *const handle = [[node parser] handleForEntryWithDictionary:[node info] wantChecksum:NO];
+		[handle seekToFileOffset:offset];
+		int const length = [handle readAtMost:size toBuffer:buffer];
+		[handle close];
+		return length;
 	}
 }
 
