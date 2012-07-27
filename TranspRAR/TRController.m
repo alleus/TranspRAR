@@ -1,25 +1,19 @@
-//
-//  TranspRAR_Controller.m
-//  TranspRAR
-//
-//  Created by Martin Alléus on 2010-09-06.
-//  Copyright 2010 Appcorn AB. All rights reserved.
-//
-#import "TranspRAR_Controller.h"
-#import "TranspRAR_Filesystem.h"
+// Created by Martin Alléus.
+// Copyright 2010 Appcorn AB. All rights reserved.
+#import "TRController.h"
 #import <OSXFUSE/OSXFUSE.h>
 
+#import "TRFilesystem.h"
 
-#define kRootPath			@"RootPath"
-#define kDebugLogging		@"DebugLogging"
-#define kColorLabels		@"ColorLabels"
-#define kPersistentDomain	@"com.alleus.TranspRAR.pref"
-
-
-@implementation TranspRAR_Controller
+#define kRootPath @"RootPath"
+#define kDebugLogging @"DebugLogging"
+#define kColorLabels @"ColorLabels"
+#define kPersistentDomain @"com.alleus.TranspRAR.pref"
 
 static BOOL debugLogging;
 static BOOL colorLabels;
+
+@implementation TRController
 
 - (void)mountFailed:(NSNotification *)notification {
 	NSDictionary* userInfo = [notification userInfo];
@@ -30,11 +24,11 @@ static BOOL colorLabels;
 }
 
 - (void)didMount:(NSNotification *)notification {
-	NSDictionary* userInfo = [notification userInfo];
-	NSString* mountPath = [userInfo objectForKey:kGMUserFileSystemMountPathKey];
-	NSString* parentPath = [mountPath stringByDeletingLastPathComponent];
-	[[NSWorkspace sharedWorkspace] selectFile:mountPath
-					 inFileViewerRootedAtPath:parentPath];
+//	NSDictionary* userInfo = [notification userInfo];
+//	NSString* mountPath = [userInfo objectForKey:kGMUserFileSystemMountPathKey];
+//	NSString* parentPath = [mountPath stringByDeletingLastPathComponent];
+//	[[NSWorkspace sharedWorkspace] selectFile:mountPath
+//	inFileViewerRootedAtPath:parentPath];
 }
 
 - (void)didUnmount:(NSNotification*)notification {
@@ -51,7 +45,7 @@ static BOOL colorLabels;
 				   name:kGMUserFileSystemDidUnmount object:nil];
 	
 	NSString* mountPath = @"/Volumes/TranspRAR";
-	fs_delegate_ = [[TranspRAR_Filesystem alloc] init];
+	fs_delegate_ = [[TRFilesystem alloc] init];
 	/*NSString *rootPath = [[[NSUserDefaults standardUserDefaults] persistentDomainForName:kPersistentDomain] objectForKey:kRootPath];
 	if (rootPath) {
 		fs_delegate_.rootPath = rootPath;

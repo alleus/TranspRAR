@@ -22,9 +22,83 @@
 	<string>0.1.2</string>
 	<key>LSBackgroundOnly</key>
 	<true/>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSMainNibFile</key>
+	<string>TRMain</string>
+	<key>TRSupportedExtensions</key>
+	<array>
+		<string>zip</string>
+			<string>z01</string>
+			<string>cbz</string>
+		<string>rar</string>
+			<string>cbr</string>
+		<string>7z</string>
+		<string>lha</string>
+			<string>lhz</string>
+		<string>zipx</string>
+		<string>sit</string>
+			<string>sitx</string>
+			<!--<string>1</string>-->
+		<string>hqx</string>
+		<string>gz</string>
+			<string>gzip</string>
+		<string>tgz</string>
+			<string>tar-gz</string>
+		<string>bz2</string>
+			<string>bzip2</string>
+			<string>bz</string>
+		<string>tbz2</string>
+			<string>tbz</string>
+		<string>xz</string>
+		<string>txz</string>
+		<string>tar</string>
+		<string>iso</string>
+		<string>cdi</string>
+		<string>nrg</string>
+		<string>mdf</string>
+		<string>gtar</string>
+		<string>z</string>
+		<string>taz</string>
+			<string>tar-z</string>
+		<string>lzma</string>
+		<string>xar</string>
+		<string>ace</string>
+		<string>arj</string>
+		<string>arc</string>
+			<string>pac</string>
+			<string>spk</string>
+		<string>zoo</string>
+		<string>lbr</string>
+			<string>lqr</string>
+			<string>lzr</string>
+		<string>cab</string>
+		<string>rpm</string>
+		<string>deb</string>
+		<string>alz</string>
+		<string>dd</string>
+		<string>cpt</string>
+		<string>pit</string>
+		<string>pit</string>
+		<string>now</string>
+		<string>sea</string>
+		<!--<string>exe</string>-->
+		<string>cpio</string>
+		<string>cpgz</string>
+		<string>pax</string>
+		<string>ha</string>
+		<string>adf</string>
+		<string>adz</string>
+		<string>dms</string>
+		<string>f</string>
+		<string>lzx</string>
+		<string>dcs</string>
+		<string>pkd</string>
+		<string>xms</string>
+		<string>zom</string>
+		<string>pp</string>
+		<string>nsa</string>
+		<string>sar</string>
+	</array>
 </dict>
 </plist>

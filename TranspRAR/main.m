@@ -1,14 +1,6 @@
-//
-//  main.m
-//  TranspRAR
-//
-//  Created by Martin Alléus on 2010-09-06.
-//  Copyright 2010 Appcorn AB. All rights reserved.
-//
-
-#import <Cocoa/Cocoa.h>
-
-int main(int argc, char *argv[])
+// Created by Martin Alléus.
+// Copyright 2010 Appcorn AB. All rights reserved.
+int main(int const argc, char const **const argv)
 {
-    return NSApplicationMain(argc,  (const char **) argv);
+	return NSApplicationMain(argc, argv);
 }

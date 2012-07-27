@@ -244,6 +244,11 @@
 		}
 		else
 		{
+			if(!maincode) // HACK
+			{
+				NSLog(@"Missing code at %s:%d, %@",__FILE__,__LINE__,[self name]);
+				[XADException raiseInputException];
+			}
 			int symbol=CSInputNextSymbolUsingCode(input,maincode);
 			int offs,len;
 
@@ -287,6 +292,11 @@
 				int offsindex=symbol-259;
 				offs=oldoffset[offsindex];
 
+				if(!lengthcode) // HACK
+				{
+					NSLog(@"Missing code at %s:%d, %@",__FILE__,__LINE__,[self name]);
+					[XADException raiseInputException];
+				}
 				int lensymbol=CSInputNextSymbolUsingCode(input,lengthcode);
 				len=lengthbases[lensymbol]+2;
 				if(lengthbits[lensymbol]>0) len+=CSInputNextBitString(input,lengthbits[lensymbol]);
@@ -309,6 +319,11 @@
 				len=lengthbases[symbol-271]+3;
 				if(lengthbits[symbol-271]>0) len+=CSInputNextBitString(input,lengthbits[symbol-271]);
 
+				if(!offsetcode) // HACK
+				{
+					NSLog(@"Missing code at %s:%d, %@",__FILE__,__LINE__,[self name]);
+					[XADException raiseInputException];
+				}
 				int offssymbol=CSInputNextSymbolUsingCode(input,offsetcode);
 				offs=offsetbases[offssymbol]+1;
 				if(offsetbits[offssymbol]>0)
@@ -325,6 +340,11 @@
 						}
 						else
 						{
+							if(!lowoffsetcode) // HACK
+							{
+								NSLog(@"Missing code at %s:%d, %@",__FILE__,__LINE__,[self name]);
+								[XADException raiseInputException];
+							}
 							int lowoffsetsymbol=CSInputNextSymbolUsingCode(input,lowoffsetcode);
 							if(lowoffsetsymbol==16)
 							{
