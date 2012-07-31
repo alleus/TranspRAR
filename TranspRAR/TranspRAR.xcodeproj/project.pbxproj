@@ -7,21 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		2A344B7714D3EEDF00F94B79 /* OSXFUSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */; };
 		5BA9D88A123A5AF700C73E85 /* XADMaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D873123A5AD100C73E85 /* XADMaster.framework */; };
-		5BA9D88B123A5B0300C73E85 /* UniversalDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */; };
 		5BA9D8B9123A61FE00C73E85 /* XADMaster.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D873123A5AD100C73E85 /* XADMaster.framework */; };
-		5BA9D8BA123A620000C73E85 /* UniversalDetector.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */; };
-		5BA9D91B123A68CD00C73E85 /* ACArchiveEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9D91A123A68CD00C73E85 /* ACArchiveEntry.m */; };
-		5BA9D924123A698300C73E85 /* ACArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9D923123A698300C73E85 /* ACArchive.m */; };
-		5BA9D941123A6B0700C73E85 /* ACPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9D940123A6B0700C73E85 /* ACPath.m */; };
-		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B5C460C915C1DF2D00D7E03D /* TRNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C460C815C1DF2D00D7E03D /* TRNode.m */; };
+		B5C4616715C1F9B600D7E03D /* TRMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5C4616615C1F9B600D7E03D /* TRMain.xib */; };
 		FFA311CF0EE5160400FF2904 /* TranspRAR.icns in Resources */ = {isa = PBXBuildFile; fileRef = FFA311CE0EE5160400FF2904 /* TranspRAR.icns */; };
-		FFD925C00EE507A800A7B2B2 /* TranspRAR_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */; };
-		FFD925C30EE5082D00A7B2B2 /* TranspRAR_Filesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.m */; };
+		FFD925C00EE507A800A7B2B2 /* TRController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD925BF0EE507A800A7B2B2 /* TRController.m */; };
+		FFD925C30EE5082D00A7B2B2 /* TRFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD925C20EE5082D00A7B2B2 /* TRFilesystem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,34 +26,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1B342390131D8B5B00CCDF77;
 			remoteInfo = XADTest5;
-		};
-		5BA9D85B123A5AC600C73E85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
-			remoteInfo = UniversalDetector;
-		};
-		5BA9D85D123A5AC600C73E85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1B23E0871190F29400620319;
-			remoteInfo = libUniversalDetector;
-		};
-		5BA9D85F123A5AC600C73E85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1B91CBE011D821A70081E40A;
-			remoteInfo = "libUniversalDetector (Windows)";
-		};
-		5BA9D861123A5AC600C73E85 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1B0DDCAB0A2D0AD10009B697;
-			remoteInfo = DetectorTest;
 		};
 		5BA9D872123A5AD100C73E85 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -144,6 +111,13 @@
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = XADMaster;
 		};
+		B5C4605B15C0E25D00D7E03D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1B31CB9213C6423600ED119E;
+			remoteInfo = XADTest6;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -153,7 +127,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5BA9D8BA123A620000C73E85 /* UniversalDetector.framework in Copy Frameworks */,
 				5BA9D8B9123A61FE00C73E85 /* XADMaster.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -162,30 +135,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2A344B7614D3EEDF00F94B79 /* OSXFUSE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OSXFUSE.framework; path = /Library/Frameworks/OSXFUSE.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* TranspRAR_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Prefix.pch; sourceTree = "<group>"; };
-		5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UniversalDetector.xcodeproj; path = ../UniversalDetector/UniversalDetector.xcodeproj; sourceTree = SOURCE_ROOT; };
+		32CA4F630368D1EE00C91783 /* prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefix.pch; sourceTree = "<group>"; };
 		5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XADMaster.xcodeproj; path = ../XADMaster/XADMaster.xcodeproj; sourceTree = SOURCE_ROOT; };
-		5BA9D919123A68CD00C73E85 /* ACArchiveEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACArchiveEntry.h; sourceTree = "<group>"; };
-		5BA9D91A123A68CD00C73E85 /* ACArchiveEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACArchiveEntry.m; sourceTree = "<group>"; };
-		5BA9D922123A698300C73E85 /* ACArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACArchive.h; sourceTree = "<group>"; };
-		5BA9D923123A698300C73E85 /* ACArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACArchive.m; sourceTree = "<group>"; };
-		5BA9D93F123A6B0700C73E85 /* ACPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPath.h; sourceTree = "<group>"; };
-		5BA9D940123A6B0700C73E85 /* ACPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPath.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* TranspRAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranspRAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5C460C715C1DF2D00D7E03D /* TRNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRNode.h; sourceTree = "<group>"; };
+		B5C460C815C1DF2D00D7E03D /* TRNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRNode.m; sourceTree = "<group>"; };
+		B5C4616615C1F9B600D7E03D /* TRMain.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TRMain.xib; sourceTree = "<group>"; };
 		FFA311CE0EE5160400FF2904 /* TranspRAR.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TranspRAR.icns; sourceTree = "<group>"; };
-		FFD925BE0EE507A800A7B2B2 /* TranspRAR_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Controller.h; sourceTree = "<group>"; };
-		FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranspRAR_Controller.m; sourceTree = "<group>"; };
-		FFD925C10EE5082D00A7B2B2 /* TranspRAR_Filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranspRAR_Filesystem.h; sourceTree = "<group>"; };
-		FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranspRAR_Filesystem.m; sourceTree = "<group>"; };
+		FFD925BE0EE507A800A7B2B2 /* TRController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRController.h; sourceTree = "<group>"; };
+		FFD925BF0EE507A800A7B2B2 /* TRController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRController.m; sourceTree = "<group>"; };
+		FFD925C10EE5082D00A7B2B2 /* TRFilesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRFilesystem.h; sourceTree = "<group>"; };
+		FFD925C20EE5082D00A7B2B2 /* TRFilesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRFilesystem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,7 +162,6 @@
 			files = (
 				2A344B7714D3EEDF00F94B79 /* OSXFUSE.framework in Frameworks */,
 				5BA9D88A123A5AF700C73E85 /* XADMaster.framework in Frameworks */,
-				5BA9D88B123A5B0300C73E85 /* UniversalDetector.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,11 +172,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5BA9D918123A68A700C73E85 /* Models */,
-				FFD925C10EE5082D00A7B2B2 /* TranspRAR_Filesystem.h */,
-				FFD925C20EE5082D00A7B2B2 /* TranspRAR_Filesystem.m */,
-				FFD925BE0EE507A800A7B2B2 /* TranspRAR_Controller.h */,
-				FFD925BF0EE507A800A7B2B2 /* TranspRAR_Controller.m */,
+				FFD925BE0EE507A800A7B2B2 /* TRController.h */,
+				FFD925BF0EE507A800A7B2B2 /* TRController.m */,
+				FFD925C10EE5082D00A7B2B2 /* TRFilesystem.h */,
+				FFD925C20EE5082D00A7B2B2 /* TRFilesystem.m */,
+				B5C460C715C1DF2D00D7E03D /* TRNode.h */,
+				B5C460C815C1DF2D00D7E03D /* TRNode.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -250,7 +217,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */,
 				5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */,
 			);
 			name = TranspRAR;
@@ -259,7 +225,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* TranspRAR_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -268,10 +234,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FFA311CE0EE5160400FF2904 /* TranspRAR.icns */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				B5C4616615C1F9B600D7E03D /* TRMain.xib */,
+				FFA311CE0EE5160400FF2904 /* TranspRAR.icns */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -285,17 +250,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5BA9D855123A5AC600C73E85 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */,
-				5BA9D85E123A5AC600C73E85 /* libUniversalDetector.a */,
-				5BA9D860123A5AC600C73E85 /* libUniversalDetector.win.a */,
-				5BA9D862123A5AC600C73E85 /* DetectorTest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		5BA9D864123A5AD100C73E85 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +259,7 @@
 				5BA9D879123A5AD100C73E85 /* XADTest3 */,
 				5BA9D87B123A5AD100C73E85 /* XADTest4 */,
 				2AE0DBC714D32AC700D6D07B /* XADTest5 */,
+				B5C4605C15C0E25D00D7E03D /* XADTest6 */,
 				5BA9D87D123A5AD100C73E85 /* libXADMaster.a */,
 				5BA9D87F123A5AD100C73E85 /* unar */,
 				5BA9D881123A5AD100C73E85 /* lsar */,
@@ -313,19 +268,6 @@
 				5BA9D887123A5AD100C73E85 /* lsar.exe */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		5BA9D918123A68A700C73E85 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				5BA9D919123A68CD00C73E85 /* ACArchiveEntry.h */,
-				5BA9D91A123A68CD00C73E85 /* ACArchiveEntry.m */,
-				5BA9D922123A698300C73E85 /* ACArchive.h */,
-				5BA9D923123A698300C73E85 /* ACArchive.m */,
-				5BA9D93F123A6B0700C73E85 /* ACPath.h */,
-				5BA9D940123A6B0700C73E85 /* ACPath.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,10 +309,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 5BA9D855123A5AC600C73E85 /* Products */;
-					ProjectRef = 5BA9D854123A5AC600C73E85 /* UniversalDetector.xcodeproj */;
-				},
-				{
 					ProductGroup = 5BA9D864123A5AD100C73E85 /* Products */;
 					ProjectRef = 5BA9D863123A5AD100C73E85 /* XADMaster.xcodeproj */;
 				},
@@ -388,34 +326,6 @@
 			fileType = "compiled.mach-o.executable";
 			path = XADTest5;
 			remoteRef = 2AE0DBC614D32AC700D6D07B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5BA9D85C123A5AC600C73E85 /* UniversalDetector.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = UniversalDetector.framework;
-			remoteRef = 5BA9D85B123A5AC600C73E85 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5BA9D85E123A5AC600C73E85 /* libUniversalDetector.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libUniversalDetector.a;
-			remoteRef = 5BA9D85D123A5AC600C73E85 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5BA9D860123A5AC600C73E85 /* libUniversalDetector.win.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libUniversalDetector.win.a;
-			remoteRef = 5BA9D85F123A5AC600C73E85 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5BA9D862123A5AC600C73E85 /* DetectorTest */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = DetectorTest;
-			remoteRef = 5BA9D861123A5AC600C73E85 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5BA9D873123A5AD100C73E85 /* XADMaster.framework */ = {
@@ -495,6 +405,13 @@
 			remoteRef = 5BA9D886123A5AD100C73E85 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B5C4605C15C0E25D00D7E03D /* XADTest6 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = XADTest6;
+			remoteRef = B5C4605B15C0E25D00D7E03D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -502,9 +419,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				FFA311CF0EE5160400FF2904 /* TranspRAR.icns in Resources */,
+				B5C4616715C1F9B600D7E03D /* TRMain.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,11 +432,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				FFD925C00EE507A800A7B2B2 /* TranspRAR_Controller.m in Sources */,
-				FFD925C30EE5082D00A7B2B2 /* TranspRAR_Filesystem.m in Sources */,
-				5BA9D91B123A68CD00C73E85 /* ACArchiveEntry.m in Sources */,
-				5BA9D924123A698300C73E85 /* ACArchive.m in Sources */,
-				5BA9D941123A6B0700C73E85 /* ACPath.m in Sources */,
+				FFD925C00EE507A800A7B2B2 /* TRController.m in Sources */,
+				FFD925C30EE5082D00A7B2B2 /* TRFilesystem.m in Sources */,
+				B5C460C915C1DF2D00D7E03D /* TRNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,25 +447,6 @@
 			targetProxy = 5BA9D888123A5ADC00C73E85 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				089C165DFE840E0CC02AAC07 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1DDD58150DA1D0A300B32029 /* English */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C01FCF4B08A954540054247B /* Debug */ = {
@@ -609,7 +504,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_PREFIX_HEADER = TranspRAR_Prefix.pch;
+				GCC_PREFIX_HEADER = prefix.pch;
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -617,6 +512,7 @@
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
 				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
+				SYMROOT = ../build;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -626,7 +522,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_PREFIX_HEADER = TranspRAR_Prefix.pch;
+				GCC_PREFIX_HEADER = prefix.pch;
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -634,6 +530,7 @@
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.5;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.5;
 				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
+				SYMROOT = ../build;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;

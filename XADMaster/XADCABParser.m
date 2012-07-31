@@ -176,8 +176,8 @@ static CSHandle *FindHandleForName(NSData *namedata,NSString *dirname,NSArray *d
 			NSDictionary *folder=[folders objectAtIndex:folderindex];
 
 			XADPath *name;
-			if(attribs&0x80) name=[self XADPathWithData:namedata encodingName:XADUTF8StringEncodingName separators:XADWindowsPathSeparator];
-			else name=[self XADPathWithData:namedata separators:XADWindowsPathSeparator];
+			if(attribs&0x80) name=[self XADPathWithData:namedata encodingName:XADUTF8StringEncodingName separators:XADEitherPathSeparator];
+			else name=[self XADPathWithData:namedata separators:XADEitherPathSeparator];
 
 			NSMutableDictionary *dict=[NSMutableDictionary dictionaryWithObjectsAndKeys:
 				name,XADFileNameKey,
@@ -292,7 +292,9 @@ static CSHandle *FindHandleForName(NSData *namedata,NSString *dirname,NSArray *d
 		case 1: return [[[XADMSZipHandle alloc] initWithBlockReader:blocks] autorelease];
 		case 2: return [[[XADQuantumHandle alloc] initWithBlockReader:blocks windowBits:(method>>8)&0x1f] autorelease];
 		case 3: return [[[XADMSLZXHandle alloc] initWithBlockReader:blocks windowBits:(method>>8)&0x1f] autorelease];
-		default: return nil;
+		default:
+			[self reportInterestingFileWithReason:@"Unsupported compression method %d",method&0x0f];
+			return nil;
 	}
 }
 
