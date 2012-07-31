@@ -129,14 +129,12 @@ static BOOL TRGetArchiveAndSubpathForPath(NSString **const archivePath, NSString
 				NSFileTypeRegular, NSFileType,
 				nil];
 		}
+	} else if(TRIsArchivePath(fullpath)) {
+		return [NSDictionary dictionaryWithObjectsAndKeys:
+			NSFileTypeDirectory, NSFileType,
+			nil];
 	} else {
-		if(TRIsArchivePath(fullpath)) {
-			return [NSDictionary dictionaryWithObjectsAndKeys:
-				NSFileTypeDirectory, NSFileType,
-				nil];
-		} else {
-			return [[[NSFileManager defaultManager] attributesOfItemAtPath:fullpath error:error] mutableCopy];
-		}
+		return [[[NSFileManager defaultManager] attributesOfItemAtPath:fullpath error:error] mutableCopy];
 	}
 }
 - (NSDictionary *)attributesOfFileSystemForPath:(NSString *const)path error:(NSError **const)error
