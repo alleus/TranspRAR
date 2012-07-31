@@ -134,7 +134,7 @@ static BOOL TRGetArchiveAndSubpathForPath(NSString **const archivePath, NSString
 			NSFileTypeDirectory, NSFileType,
 			nil];
 	} else {
-		return [[[NSFileManager defaultManager] attributesOfItemAtPath:fullpath error:error] mutableCopy];
+		return [[NSFileManager defaultManager] attributesOfItemAtPath:fullpath error:error];
 	}
 }
 - (NSDictionary *)attributesOfFileSystemForPath:(NSString *const)path error:(NSError **const)error
