@@ -96,7 +96,7 @@
 			if(namelen>63) namelen=63;
 
 			XADString *name=[self XADStringWithBytes:header+SITFH_FNAME length:namelen];
-			XADPath *path=[currdir pathByAppendingPathComponent:name];
+			XADPath *path=[currdir pathByAppendingXADStringComponent:name];
 
 			off_t start=[fh offsetInFile];
 
@@ -173,9 +173,6 @@
 
 					// TODO: deal with this? if(!datalen&&datamethod==0) size=crunchsize
 
-					//if(method!=0&&method!=2&&method!=3&&method!=5&&method!=8&&method!=13&&method!=14&&method!=15)
-					//DebugFileSearched(ai, "Unknown or untested compression method %ld.",SITPI(fi)->Method);
-
 					XADString *compressionname=[self nameOfCompressionMethod:datamethod];
 					if(compressionname) [dict setObject:compressionname forKey:XADCompressionNameKey];
 
@@ -216,12 +213,11 @@
 
 	int compressionmethod=[[dict objectForKey:@"StuffItCompressionMethod"] intValue];
 	off_t size=[[dict objectForKey:XADFileSizeKey] longLongValue];
-	off_t compsize=[[dict objectForKey:XADCompressedSizeKey] longLongValue];
 
 	NSNumber *enc=[dict objectForKey:XADIsEncryptedKey];
 	if(enc&&[enc boolValue])
 	{
-		fh = [self decryptHandleForEntryWithDictionary:dict handle:fh];
+		fh=[self decryptHandleForEntryWithDictionary:dict handle:fh];
 	}
 	
 	CSHandle *handle;
@@ -235,12 +231,22 @@
 		case 5: handle=[[[XADLZHDynamicHandle alloc] initWithHandle:fh length:size] autorelease]; break;
 		// TODO: Figure out if the initialization of the window differs between LHArc and StuffIt
 		//case 6:  fixed huffman
-		case 8: handle=[[[XADStuffItMWHandle alloc] initWithHandle:fh inputLength:compsize outputLength:size] autorelease]; break;
+		case 8:
+		{
+			[self reportInterestingFileWithReason:@"Compression method 8 (MW)"];
+			handle=[[[XADStuffItMWHandle alloc] initWithHandle:fh length:size] autorelease]; break;
+		}
 		case 13: handle=[[[XADStuffIt13Handle alloc] initWithHandle:fh length:size] autorelease]; break;
-		case 14: handle=[[[XADStuffIt14Handle alloc] initWithHandle:fh inputLength:compsize outputLength:size] autorelease]; break;
+		case 14:
+		{
+			[self reportInterestingFileWithReason:@"Compression method 14"];
+			handle=[[[XADStuffIt14Handle alloc] initWithHandle:fh length:size] autorelease]; break;
+		}
 		case 15: handle=[[[XADStuffItArsenicHandle alloc] initWithHandle:fh length:size] autorelease]; break;
 
-		default: return nil;
+		default:
+			[self reportInterestingFileWithReason:@"Unsupported compression method %d",compressionmethod&0x0f];
+			return nil;
 	}
 
 	if(checksum)
